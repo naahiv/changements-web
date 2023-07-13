@@ -1,0 +1,119 @@
+@use 'base';
+
+// hero
+
+.hero {
+	height: 100vh;
+	position: relative;
+	z-index: 1;
+}
+
+.heroContent {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba($color: #000000, $alpha: 0.5);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.container {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: calc(base.$gap / 2);
+
+	h1,
+	p {
+		text-align: center;
+		color: white;
+	}
+
+	p {
+		font-size: 1.5rem;
+		line-height: 2.2rem;
+	}
+}
+
+.buttons {
+	display: flex;
+	gap: calc(base.$gap / 4);
+}
+
+// highlights
+
+.highlights {
+	grid-column: span 12;
+	display: flex;
+	justify-content: space-evenly;
+
+	div {
+		width: 25%;
+		border-right: 1px solid black;
+		* {
+			text-align: center;
+		}
+	}
+
+	div:last-of-type {
+		border: 0;
+	}
+}
+
+// Donor & NGO
+
+.donorNgoBackground {
+	display: flex;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	transition: none;
+
+	div {
+		width: 50%;
+		height: 100%;
+		transition: none;
+	}
+}
+
+.orange {
+	background-color: base.$color-secondary-orange;
+}
+
+.darkRed {
+	background-color: base.$color-secondary-red;
+}
+
+@media screen and (max-width: 1024px) {
+	.donorNgoBackground {
+		flex-direction: column;
+
+		div {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.buttons {
+		flex-direction: column;
+	}
+
+	.highlights {
+		flex-wrap: wrap;
+		row-gap: calc(base.$gap / 2);
+
+		div {
+			width: 50%;
+		}
+
+		div:nth-of-type(2) {
+			border: 0;
+		}
+	}
+}

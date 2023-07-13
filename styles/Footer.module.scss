@@ -1,0 +1,35 @@
+@use 'base';
+
+.footerContainer {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.footerLinks {
+	display: flex;
+	gap: calc(base.$gap / 2);
+
+	a {
+		color: white;
+	}
+}
+
+.credits {
+	background-color: base.$color-secondary-red;
+	padding: 1.25rem 0;
+	color: white;
+	font-size: 0.875rem;
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 768px) {
+	.footerContainer {
+		flex-direction: column-reverse;
+		gap: calc(base.$gap / 4);
+	}
+}

@@ -1,0 +1,98 @@
+@use 'base';
+
+.title {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+// Left side - Contact Form
+
+.contact {
+	grid-column: span 6;
+
+	form {
+		margin-top: calc(base.$gap / 2);
+		display: flex;
+		flex-direction: column;
+		gap: calc(base.$gap / 3);
+
+		label {
+			display: none;
+		}
+
+		input,
+		textarea {
+			width: 100%;
+		}
+
+		textarea {
+			height: 6rem;
+		}
+
+		button {
+			width: fit-content;
+		}
+	}
+}
+
+.inputs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: calc(base.$gap / 2);
+}
+
+// Right side - Links
+
+.links {
+	grid-column: span 6;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: base.$gap;
+
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: calc(base.$gap / 2);
+	}
+
+	a {
+		color: black;
+		font-weight: 700;
+	}
+
+	a:hover {
+		color: base.$color-primary-orange;
+		transition: 0.1ms;
+	}
+}
+
+// tablet
+
+@media screen and (max-width: 1024px) {
+	.inputs {
+		grid-template-columns: 1fr;
+		grid-gap: calc(base.$gap / 4);
+	}
+}
+
+// mobile
+
+@media screen and (max-width: 768px) {
+	.contact {
+		grid-column: span 12;
+	}
+
+	.links {
+		grid-column: span 12;
+
+		ul {
+			grid-column: span 2;
+			gap: calc(base.$gap / 3);
+		}
+	}
+
+	.contactMenu {
+		display: none !important;
+	}
+}

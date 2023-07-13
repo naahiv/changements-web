@@ -1,0 +1,289 @@
+@use 'base';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	transition: 0.3s;
+}
+
+// Sections
+
+section {
+	margin-bottom: 6.25rem;
+	position: relative;
+}
+
+.sectionContainer {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-gap: base.$gap;
+}
+
+.section-title {
+	margin-bottom: calc(base.$gap / 3);
+}
+
+.section-title::after {
+	content: '';
+	height: 2px;
+	background-color: base.$color-primary-red;
+	width: 5rem;
+	margin-top: calc(base.$gap / 3);
+	display: block;
+}
+
+.twoColumnSectionContainer {
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+
+	.buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: calc(base.$gap / 4);
+		margin-top: calc(base.$gap / 2);
+	}
+}
+
+.columnImage,
+.columnText {
+	width: 50%;
+	position: relative;
+	background-color: base.$color-primary-gray;
+}
+
+.columnImage {
+	aspect-ratio: 1 / 1;
+}
+
+.columnText {
+	padding: calc(base.$gap + (base.$gap / 2));
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+// Text
+
+h1 {
+	font-size: 4.625rem;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 2rem;
+}
+
+p {
+	line-height: 1.5rem;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	width: fit-content;
+}
+
+// Text Color
+
+.red {
+	color: base.$color-primary-red;
+}
+
+.orange {
+	color: base.$color-primary-orange;
+}
+
+.dark-red {
+	color: base.$color-secondary-red;
+}
+
+.dark-orange {
+	color: base.$color-secondary-orange;
+}
+
+.white {
+	color: white;
+}
+
+// Buttons
+button {
+	padding: 0.625rem 1.25rem;
+	font: inherit;
+	background: none;
+	border-radius: 5px;
+	border: 1px solid black;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: calc(base.$gap / 6);
+}
+
+button:hover {
+	background: black;
+	color: white;
+}
+
+.button-orange {
+	background-color: base.$color-primary-orange;
+	color: white;
+	border: base.$color-primary-orange 1px solid;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-orange:hover {
+	background: none;
+	color: base.$color-primary-orange;
+
+	.button-arrow::after {
+		border-color: base.$color-primary-orange;
+	}
+}
+
+.button-red {
+	background-color: base.$color-primary-red;
+	color: white;
+	border: base.$color-primary-red 1px solid;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-red:hover {
+	background: none;
+	color: white;
+	border-color: white;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-dark-red {
+	background-color: base.$color-secondary-red;
+	color: white;
+	border: base.$color-secondary-red 1px solid;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-dark-red:hover {
+	background: none;
+	color: white;
+	border-color: white;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-white {
+	color: white;
+	border: white 1px solid;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-white:hover {
+	background: black;
+	color: white;
+	border-color: black;
+
+	.button-arrow::after {
+		border-color: white;
+	}
+}
+
+.button-arrow {
+	width: 0.3rem;
+	height: 0.6rem;
+	overflow: hidden;
+	position: relative;
+}
+.button-arrow::after {
+	position: absolute;
+	content: '';
+	border: 1px solid black;
+	width: 0.6rem;
+	aspect-ratio: 1 / 1;
+	transform: rotate(45deg);
+	right: 3px;
+}
+
+// forms
+
+input,
+textarea,
+select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	box-sizing: border-box;
+	outline: none;
+	box-shadow: none;
+	border-radius: 5px;
+	border: 1px solid base.$color-secondary-red;
+	padding: calc(base.$gap / 6) calc(base.$gap / 4);
+}
+
+// tablet
+
+@media screen and (max-width: 1024px) {
+	.columnImage,
+	.columnText {
+		width: 100%;
+	}
+}
+
+// mobile
+
+@media screen and (max-width: 768px) {
+	section {
+		margin-bottom: base.$gap;
+	}
+
+	.sectionContainer {
+		gap: calc(base.$gap / 2);
+	}
+
+	.columnText {
+		padding: calc(base.$gap / 2);
+	}
+
+	h1 {
+		font-size: 2.25rem;
+	}
+
+	// h2 {
+	// 	font-size: 1.8rem;
+	// }
+
+	// h3 {
+	// 	font-size: 1.2rem;
+	// }
+}
