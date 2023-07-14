@@ -11,6 +11,8 @@ const Button = ({ children, color, url }) => {
 		btnColor = 'button-dark-red'
 	} else if (color == 'white') {
 		btnColor = 'button-white'
+	} else if (color == 'simple') {
+		btnColor = 'button-simple'
 	}
 
 	return (

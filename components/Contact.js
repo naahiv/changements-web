@@ -12,7 +12,7 @@ import { menu } from './Header'
 const Contact = () => {
 	return (
 		<section id='contact'>
-			<div className={styles.title}>
+			<div className='titleContainer'>
 				<SectionTitle color='black'>
 					Get In <span className='red'>Touch</span>
 				</SectionTitle>
@@ -38,12 +38,7 @@ const Contact = () => {
 
 					<ul className={styles.contactMenu}>
 						{menu.map(mapItem => (
-							<Link
-								key={mapItem.url}
-								href={mapItem.url}
-								scroll={false}
-								passHref
-							>
+							<Link key={mapItem.url} href={mapItem.url}>
 								<li>{mapItem.text}</li>
 							</Link>
 						))}

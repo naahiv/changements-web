@@ -1,3 +1,4 @@
+// head element
 import Head from 'next/head'
 
 // sections
@@ -53,7 +54,7 @@ export default function Home() {
 				<ImageTextColumns
 					direction='row-reverse'
 					buttonText='Browse Portfolio'
-					url=''
+					url='/portfolio'
 					photoUrl='/indian-old-woman.jpg'
 				>
 					<SectionTitle color='black'>

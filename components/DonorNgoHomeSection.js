@@ -42,7 +42,7 @@ const DonorNgoHomeSection = () => {
 						make all the difference.
 					</p>
 					<div className='buttons'>
-						<Button url='' color='white'>
+						<Button url='/ngo-square' color='white'>
 							Learn More
 						</Button>
 						<Button color='orange' url=''>

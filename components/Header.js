@@ -15,11 +15,11 @@ export const menu = [
 		text: 'About Us'
 	},
 	{
-		url: '/ngo',
+		url: '/ngo-square',
 		text: 'NGO Square'
 	},
 	{
-		url: '/donor',
+		url: '/donors-nook',
 		text: `Donor's Nook`
 	},
 	{
@@ -57,7 +57,7 @@ const Header = () => {
 		<header className={`${styles.header} ${menuOpen ? styles.openMenu : ''}`}>
 			<div className={styles.headerElements}>
 				<div className={styles.logoNav}>
-					<Link href='/' scroll={false} passHref>
+					<Link href='/'>
 						<Image
 							src='logo.svg'
 							width={176}
@@ -73,12 +73,7 @@ const Header = () => {
 				<nav className={menuOpen ? '' : styles.hidden}>
 					<ul>
 						{menu.map(mapItem => (
-							<Link
-								key={mapItem.url}
-								href={mapItem.url}
-								scroll={false}
-								passHref
-							>
+							<Link key={mapItem.url} href={mapItem.url}>
 								<li onClick={() => closeMenu()} className='nav-li'>
 									{mapItem.text}
 								</li>

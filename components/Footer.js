@@ -10,10 +10,10 @@ const Footer = () => {
 			<div className={styles.footerContainer}>
 				<p>Changements - Copyright 2023 - All Rights Reserved</p>
 				<div className={styles.footerLinks}>
-					<Link href='' scroll={false} passHref>
+					<Link href=''>
 						<p>Privacy Policy</p>
 					</Link>
-					<Link href='' scroll={false} passHref>
+					<Link href=''>
 						<p>Terms of Use</p>
 					</Link>
 				</div>

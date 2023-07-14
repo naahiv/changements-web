@@ -16,6 +16,12 @@ section {
 	position: relative;
 }
 
+.titleContainer {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
 .sectionContainer {
 	width: 90%;
 	max-width: 1440px;
@@ -71,6 +77,37 @@ section {
 	justify-content: center;
 }
 
+// All pages hero
+
+.pages-hero {
+	width: 100%;
+	height: 40rem;
+	position: relative;
+}
+
+.pages-hero-content {
+	height: 100%;
+	width: 100%;
+	background-color: rgba($color: #000000, $alpha: 0.5);
+	position: absolute;
+
+	div {
+		width: 90%;
+		height: 100%;
+		max-width: 1440px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: calc(base.$gap / 2);
+
+		* {
+			text-align: center;
+			color: white;
+		}
+	}
+}
+
 // Text
 
 h1 {
@@ -83,6 +120,10 @@ h2 {
 
 h3 {
 	font-size: 2rem;
+}
+
+h4 {
+	font-size: 1.5rem;
 }
 
 p {
@@ -131,6 +172,7 @@ button {
 	display: flex;
 	align-items: center;
 	gap: calc(base.$gap / 6);
+	color: black;
 }
 
 button:hover {
@@ -232,6 +274,30 @@ button:hover {
 	right: 3px;
 }
 
+.button-simple {
+	border: none;
+	padding: 0;
+	color: base.$color-primary-orange;
+	font-weight: 600;
+
+	.button-arrow::after {
+		border-color: base.$color-primary-orange;
+	}
+}
+
+.button-simple:hover {
+	background: none;
+	color: base.$color-primary-red;
+
+	.button-arrow {
+		margin-left: 0.4rem;
+	}
+
+	.button-arrow::after {
+		border-color: base.$color-primary-red;
+	}
+}
+
 // forms
 
 input,
@@ -251,12 +317,39 @@ select {
 	padding: calc(base.$gap / 6) calc(base.$gap / 4);
 }
 
+// cards
+
+.card {
+	grid-column: span 3;
+}
+
+.card-photo {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	position: relative;
+}
+
+.card-text {
+	display: flex;
+	flex-direction: column;
+	gap: calc(base.$gap / 6);
+	margin: calc(base.$gap / 3) 0;
+}
+
+.subtitle {
+	font-size: 0.875rem;
+}
+
 // tablet
 
 @media screen and (max-width: 1024px) {
 	.columnImage,
 	.columnText {
 		width: 100%;
+	}
+
+	.card {
+		grid-column: span 6;
 	}
 }
 
@@ -279,11 +372,7 @@ select {
 		font-size: 2.25rem;
 	}
 
-	// h2 {
-	// 	font-size: 1.8rem;
-	// }
-
-	// h3 {
-	// 	font-size: 1.2rem;
-	// }
+	.card {
+		grid-column: span 12;
+	}
 }
