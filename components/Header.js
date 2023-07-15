@@ -59,11 +59,12 @@ const Header = () => {
 				<div className={styles.logoNav}>
 					<Link href='/'>
 						<Image
-							src='logo.svg'
+							src='/logo.svg'
 							width={176}
 							height={42}
 							alt='Changements Logo'
 							priority={true}
+							as='img'
 						/>
 					</Link>
 

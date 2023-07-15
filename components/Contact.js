@@ -11,7 +11,7 @@ import { menu } from './Header'
 
 const Contact = () => {
 	return (
-		<section id='contact'>
+		<section>
 			<div className='titleContainer'>
 				<SectionTitle color='black'>
 					Get In <span className='red'>Touch</span>

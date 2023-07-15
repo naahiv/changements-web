@@ -1,9 +1,6 @@
 // Head element
 import Head from 'next/head'
 
-// styles
-import styles from '@/styles/Portfolio.module.scss'
-
 // components
 import PagesHero from '@/components/PagesHero'
 import SectionTitle from '@/components/SectionTitle'
@@ -64,10 +61,18 @@ const portfolio = () => {
 				</ImageTextColumns>
 
 				{/* NonProfits Section */}
-				<CardsSection title='NonProfits' content={nonProfits} />
+				<CardsSection
+					title='NonProfits'
+					content={nonProfits}
+					folder='portfolio'
+				/>
 
 				{/* Programs Section */}
-				<CardsSection title='Programs' content={programs} />
+				<CardsSection
+					title='Programs'
+					content={programs}
+					folder='portfolio/programs'
+				/>
 
 				{/* Contact */}
 				<Contact />

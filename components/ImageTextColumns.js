@@ -25,6 +25,7 @@ const ImageTextColumns = ({
 						alt='Section Image'
 						priority={false}
 						loading='lazy'
+						as='img'
 					/>
 				</div>
 				<div className='columnText'>

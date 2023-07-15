@@ -1,0 +1,128 @@
+@use 'base';
+
+section {
+	margin-bottom: 6.25rem;
+	position: relative;
+}
+
+.section-margin-top {
+	margin-top: 9rem;
+}
+
+.titleContainer {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+.sectionContainer {
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-gap: base.$gap;
+}
+
+.section-title {
+	margin-bottom: calc(base.$gap / 3);
+}
+
+.section-title::after {
+	content: '';
+	height: 2px;
+	background-color: base.$color-primary-red;
+	width: 5rem;
+	margin-top: calc(base.$gap / 3);
+	display: block;
+}
+
+.twoColumnSectionContainer {
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	max-width: 1440px;
+	margin: 0 auto;
+
+	.buttons-row {
+		margin-top: calc(base.$gap / 2);
+	}
+}
+
+.columnImage,
+.columnText {
+	width: 50%;
+	position: relative;
+	background-color: base.$color-primary-gray;
+}
+
+.columnImage {
+	aspect-ratio: 1 / 1;
+}
+
+.columnText {
+	padding: calc(base.$gap + (base.$gap / 2));
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+// All pages hero
+
+.pages-hero {
+	width: 100%;
+	height: 40rem;
+	position: relative;
+}
+
+.pages-hero-content {
+	height: 100%;
+	width: 100%;
+	background-color: rgba($color: #000000, $alpha: 0.5);
+	position: absolute;
+
+	div {
+		width: 90%;
+		height: 100%;
+		max-width: 1440px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: calc(base.$gap / 2);
+
+		* {
+			text-align: center;
+			color: white;
+		}
+	}
+}
+
+// tablet
+
+@media screen and (max-width: 1024px) {
+	.columnImage,
+	.columnText {
+		width: 100%;
+	}
+}
+
+// mobile
+
+@media screen and (max-width: 768px) {
+	section {
+		margin-bottom: base.$gap;
+	}
+
+	.section-margin-top {
+		margin-top: 6.25rem;
+	}
+
+	.sectionContainer {
+		gap: calc(base.$gap / 2);
+	}
+
+	.columnText {
+		padding: calc(base.$gap / 2);
+	}
+}

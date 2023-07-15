@@ -59,3 +59,70 @@ export const programs = [
 		buttonUrl: ''
 	}
 ]
+
+export const articles = [
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Celebrating Water!',
+		subtitle: 'Nov 24, 2022',
+		text: '30 years have gone by since REC Trichy. The 9 of them are spread across 3 continents. It was the pandemic that got them thinking...',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	}
+]

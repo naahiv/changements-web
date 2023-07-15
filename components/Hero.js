@@ -15,6 +15,7 @@ const Hero = () => {
 				style={{ objectFit: 'cover' }}
 				alt='Image of children from India'
 				priority={true}
+				as='img'
 			/>
 
 			<div className={styles.heroContent}>
@@ -29,7 +30,7 @@ const Hero = () => {
 						impact.
 					</p>
 
-					<div className={styles.buttons}>
+					<div className='buttons-row'>
 						<Button color='orange' url=''>
 							Register an NGO
 						</Button>

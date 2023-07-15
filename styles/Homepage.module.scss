@@ -40,11 +40,6 @@
 	}
 }
 
-.buttons {
-	display: flex;
-	gap: calc(base.$gap / 4);
-}
-
 // highlights
 
 .highlights {
@@ -100,10 +95,6 @@
 }
 
 @media screen and (max-width: 768px) {
-	.buttons {
-		flex-direction: column;
-	}
-
 	.highlights {
 		flex-wrap: wrap;
 		row-gap: calc(base.$gap / 2);

@@ -10,6 +10,7 @@ const PagesHero = ({ children, imageUrl }) => {
 				style={{ objectFit: 'cover' }}
 				alt='Page Hero Image'
 				priority={true}
+				as='img'
 			/>
 
 			<div className='pages-hero-content'>

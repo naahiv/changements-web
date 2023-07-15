@@ -23,7 +23,7 @@ const DonorNgoHomeSection = () => {
 						for a happier, healthier and just world. ​A few cups of coffee can
 						make all the difference.
 					</p>
-					<div className='buttons'>
+					<div className='buttons-row'>
 						<Button url=''>Learn More</Button>
 						<Button color='dark-red' url=''>
 							Become a Doner
@@ -41,7 +41,7 @@ const DonorNgoHomeSection = () => {
 						for a happier, healthier and just world. ​A few cups of coffee can
 						make all the difference.
 					</p>
-					<div className='buttons'>
+					<div className='buttons-row'>
 						<Button url='/ngo-square' color='white'>
 							Learn More
 						</Button>

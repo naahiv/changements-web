@@ -1,0 +1,48 @@
+@use '../../styles/base';
+
+.blogPhoto {
+	grid-column: span 4;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	position: relative;
+}
+
+.blogText {
+	grid-column: span 8;
+
+	h3 {
+		margin-bottom: calc(base.$gap / 3);
+	}
+}
+
+.date {
+	font-size: 0.8rem;
+}
+
+.text {
+	columns: 2;
+}
+
+// tablet
+
+@media screen and (max-width: 1024px) {
+	.text {
+		columns: 1;
+	}
+}
+
+// mobile
+
+@media screen and (max-width: 768px) {
+	.blogPhoto {
+		grid-column: span 12;
+	}
+
+	.blogText {
+		grid-column: span 12;
+
+		h3 {
+			margin-bottom: calc(base.$gap / 4);
+		}
+	}
+}

@@ -2,12 +2,14 @@
 import SectionTitle from './SectionTitle'
 import Card from './Card'
 
-const CardsSection = ({ title, content }) => {
+const CardsSection = ({ title, content, folder }) => {
 	return (
 		<section>
-			<div className='titleContainer'>
-				<SectionTitle>{title}</SectionTitle>
-			</div>
+			{title && (
+				<div className='titleContainer'>
+					<SectionTitle>{title}</SectionTitle>
+				</div>
+			)}
 			<div className='sectionContainer'>
 				{content &&
 					content.map((item, index) => (
@@ -18,7 +20,9 @@ const CardsSection = ({ title, content }) => {
 							text={item.text}
 							photo={item.photo}
 							buttonText={item.buttonText}
-							buttonUrl={item.buttonUrl}
+							buttonUrl={`/${folder}/${item.title
+								.toLowerCase()
+								.replace(/\s+/g, '-')}`}
 						/>
 					))}
 			</div>
