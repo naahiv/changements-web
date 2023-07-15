@@ -50,7 +50,7 @@ const Article = () => {
 							<div className={styles.blogText}>
 								<p className={styles.date}>{article.subtitle}</p>
 								<h3>{article.title}</h3>
-								<p className={styles.text}>{article.text}</p>
+								<p>{article.text}</p>
 							</div>
 						</div>
 					)}

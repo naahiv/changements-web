@@ -1,5 +1,7 @@
 @use '../../styles/base';
 
+// NGO
+
 .ngoPhoto {
 	position: relative;
 	grid-column: span 2;
@@ -29,6 +31,44 @@
 	gap: calc(base.$gap / 4);
 }
 
+// Program
+
+.programTitle {
+	margin-bottom: calc(base.$gap / 2);
+}
+
+.programPhoto {
+	position: relative;
+	grid-column: span 3;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+}
+
+.programContent {
+	grid-column: span 9;
+}
+
+.programInfo {
+	display: flex;
+	flex-direction: column;
+	gap: calc(base.$gap / 2);
+}
+
+.programHighlights {
+	display: flex;
+	gap: base.$gap;
+
+	div {
+		padding-right: base.$gap;
+		border-right: 1px solid base.$color-secondary-red;
+	}
+
+	div:last-of-type {
+		padding-right: 0;
+		border-right: none;
+	}
+}
+
 // tablet
 
 @media screen and (max-width: 1024px) {
@@ -37,6 +77,8 @@
 // mobile
 
 @media screen and (max-width: 768px) {
+	// NGO
+
 	.ngoPhoto {
 		grid-column: span 6;
 	}
@@ -47,5 +89,32 @@
 
 	.ngoData {
 		grid-column: span 12;
+	}
+
+	// Program
+
+	.programPhoto {
+		grid-column: span 12;
+	}
+
+	.programContent {
+		grid-column: span 12;
+	}
+
+	.programHighlights {
+		flex-direction: column;
+		gap: calc(base.$gap / 4);
+
+		div {
+			padding-right: 0;
+			border-right: none;
+			padding-bottom: calc(base.$gap / 4);
+			border-bottom: 1px solid base.$color-secondary-red;
+		}
+
+		div:last-of-type {
+			padding-bottom: 0;
+			border-bottom: none;
+		}
 	}
 }
