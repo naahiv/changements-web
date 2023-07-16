@@ -24,7 +24,7 @@ const DonorNgoHomeSection = () => {
 						make all the difference.
 					</p>
 					<div className='buttons-row'>
-						<Button url=''>Learn More</Button>
+						<Button url='/donors-nook'>Learn More</Button>
 						<Button color='dark-red' url=''>
 							Become a Doner
 						</Button>

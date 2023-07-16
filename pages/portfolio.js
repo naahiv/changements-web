@@ -65,6 +65,7 @@ const portfolio = () => {
 					title='NonProfits'
 					content={nonProfits}
 					folder='portfolio'
+					buttonText='Learn More'
 				/>
 
 				{/* Programs Section */}
@@ -72,6 +73,7 @@ const portfolio = () => {
 					title='Programs'
 					content={programs}
 					folder='portfolio/programs'
+					buttonText='Learn More'
 				/>
 
 				{/* Contact */}

@@ -11,9 +11,11 @@ import styles from '../Portfolio.module.scss'
 import SectionContainer from '@/components/SectionContainer'
 import Contact from '@/components/Contact'
 import Image from 'next/image'
+import CardsSection from '@/components/CardsSection'
+import Button from '@/components/Button'
 
 // temp lists
-import { programs } from '@/temp/listPlaceholders'
+import { programs, donorPods } from '@/temp/listPlaceholders'
 
 const Program = () => {
 	const router = useRouter()
@@ -32,7 +34,7 @@ const Program = () => {
 			</Head>
 			<main>
 				{/* Program Detail */}
-				<SectionContainer back={true} backUrl='/portfolio' marginTop={true}>
+				<SectionContainer back={true} marginTop={true}>
 					{program && (
 						<>
 							<div className='titleContainer'>
@@ -85,12 +87,54 @@ const Program = () => {
 											reach your full potential with committed partners.
 										</p>
 									</div>
-									<div className={styles.programPods}></div>
+									{/* Donor Pods Section */}
+									<h4>Our ChangeMakers</h4>
+									<div className={styles.programPods}>
+										{/* Donor Pods Section */}
+										{donorPods.map((pod, index) => (
+											<div key={index} className={styles.pod}>
+												<div className={styles.podImage}>
+													<Image
+														src={pod.photo}
+														fill
+														quality={100}
+														sizes='(max-width: 768px) 100vw, 768px'
+														style={{ objectFit: 'cover' }}
+														alt='Pod Photo'
+														priority={true}
+														as='img'
+													/>
+												</div>
+												<div>
+													<p>{pod.subtitle}</p>
+													<h5>{pod.title}</h5>
+												</div>
+												<Button
+													url={`/portfolio/donor-pods/${pod.title
+														.toLowerCase()
+														.replace(/\s+/g, '-')}`}
+													color='simple'
+												>
+													Learn More
+												</Button>
+											</div>
+										))}
+									</div>
 								</div>
 							</div>
 						</>
 					)}
 				</SectionContainer>
+
+				{/* Other Programs Section */}
+				{program && (
+					<CardsSection
+						title='Programs'
+						content={programs.filter(item => item !== program)}
+						folder='portfolio/programs'
+						buttonText='Learn More'
+					/>
+				)}
 
 				{/* Contact */}
 				<Contact />

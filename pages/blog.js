@@ -36,8 +36,8 @@ const blog = () => {
 					</p>
 				</PagesHero>
 
-				{/* NonProfits Section */}
-				<CardsSection content={articles} folder='blog' />
+				{/* Articles Section */}
+				<CardsSection content={articles} folder='blog' buttonText='Read More' />
 
 				{/* Contact */}
 				<Contact />

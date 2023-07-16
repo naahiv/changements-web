@@ -2,7 +2,7 @@
 import SectionTitle from './SectionTitle'
 import Card from './Card'
 
-const CardsSection = ({ title, content, folder }) => {
+const CardsSection = ({ title, content, folder, buttonText }) => {
 	return (
 		<section>
 			{title && (
@@ -19,7 +19,7 @@ const CardsSection = ({ title, content, folder }) => {
 							subtitle={item.subtitle}
 							text={item.text}
 							photo={item.photo}
-							buttonText={item.buttonText}
+							buttonText={buttonText}
 							buttonUrl={`/${folder}/${item.title
 								.toLowerCase()
 								.replace(/\s+/g, '-')}`}

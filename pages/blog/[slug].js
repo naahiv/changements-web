@@ -11,6 +11,7 @@ import styles from './Blog.module.scss'
 import SectionContainer from '@/components/SectionContainer'
 import Contact from '@/components/Contact'
 import Image from 'next/image'
+import CardsSection from '@/components/CardsSection'
 
 // temp lists
 import { articles } from '@/temp/listPlaceholders'
@@ -32,7 +33,7 @@ const Article = () => {
 			</Head>
 			<main>
 				{/* Article content */}
-				<SectionContainer back={true} backUrl='/blog' marginTop={true}>
+				<SectionContainer back={true} marginTop={true}>
 					{article && (
 						<div className='sectionContainer'>
 							<div className={styles.blogPhoto}>
@@ -55,6 +56,16 @@ const Article = () => {
 						</div>
 					)}
 				</SectionContainer>
+
+				{/* Other articles Section */}
+				{article && (
+					<CardsSection
+						title='Recent Posts'
+						content={articles.filter(item => item !== article).slice(0, 4)}
+						folder='blog'
+						buttonText='Read More'
+					/>
+				)}
 
 				{/* Contact */}
 				<Contact />

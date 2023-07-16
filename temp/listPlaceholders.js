@@ -126,3 +126,34 @@ export const articles = [
 		buttonUrl: ''
 	}
 ]
+
+export const donorPods = [
+	{
+		title: 'Payir WaterShed',
+		subtitle: 'REC Trichy MCA Class of 1991',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Payir WaterShed',
+		subtitle: 'REC Trichy MCA Class of 1991',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Payir WaterShed',
+		subtitle: 'REC Trichy MCA Class of 1991',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	},
+	{
+		title: 'Payir WaterShed',
+		subtitle: 'REC Trichy MCA Class of 1991',
+		photo: '/indian-girl.jpg',
+		buttonText: 'Read More',
+		buttonUrl: ''
+	}
+]

@@ -34,7 +34,7 @@ const NonProfit = () => {
 			</Head>
 			<main>
 				{/* NGO Detail */}
-				<SectionContainer back={true} backUrl='/portfolio' marginTop={true}>
+				<SectionContainer back={true} marginTop={true}>
 					{nonProfit && (
 						<div className='sectionContainer'>
 							<div className={styles.ngoPhoto}>
@@ -122,7 +122,12 @@ const NonProfit = () => {
 				</SectionContainer>
 
 				{/* Programs Section */}
-				<CardsSection title='Programs' content={programs} folder='programs' />
+				<CardsSection
+					title='Programs'
+					content={programs}
+					folder='portfolio/programs'
+					buttonText='Learn More'
+				/>
 
 				{/* Contact */}
 				<Contact />

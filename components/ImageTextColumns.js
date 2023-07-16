@@ -32,7 +32,7 @@ const ImageTextColumns = ({
 					{children}
 
 					{buttonText && (
-						<div className='buttons'>
+						<div className='buttons-row'>
 							<Button color='orange' url={url}>
 								{buttonText}
 							</Button>
