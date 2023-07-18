@@ -35,7 +35,7 @@ const Article = () => {
 				{/* Article content */}
 				<SectionContainer back={true} marginTop={true}>
 					{article && (
-						<div className='sectionContainer'>
+						<>
 							<div className={styles.blogPhoto}>
 								<Image
 									src={article.photo}
@@ -53,7 +53,7 @@ const Article = () => {
 								<h3>{article.title}</h3>
 								<p>{article.text}</p>
 							</div>
-						</div>
+						</>
 					)}
 				</SectionContainer>
 

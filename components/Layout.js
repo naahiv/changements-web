@@ -8,7 +8,15 @@ import Footer from './Footer'
 
 const Layout = ({ children }) => {
 	return (
-		<main className={lora.className}>
+		<main
+			style={{
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'space-between',
+				minHeight: '100vh'
+			}}
+			className={lora.className}
+		>
 			<Header />
 			{children}
 			<Footer />

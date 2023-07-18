@@ -64,7 +64,7 @@ const portfolio = () => {
 				<CardsSection
 					title='NonProfits'
 					content={nonProfits}
-					folder='portfolio'
+					folder='portfolio/non-profits'
 					buttonText='Learn More'
 				/>
 

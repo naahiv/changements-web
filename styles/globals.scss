@@ -85,6 +85,18 @@ select {
 	padding: calc(base.$gap / 6) calc(base.$gap / 4);
 }
 
+input[type='file'] {
+	border: 0;
+	padding: 0;
+	font-size: 0.8rem;
+}
+
+input[type='file']::-webkit-file-upload-button {
+	font-size: 0.8rem;
+	border: 0;
+	cursor: pointer;
+}
+
 // cards
 
 .card {

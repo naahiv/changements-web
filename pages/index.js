@@ -34,7 +34,7 @@ export default function Home() {
 				<ImageTextColumns
 					direction='row'
 					buttonText='Learn More'
-					url=''
+					url='/about'
 					photoUrl='/indian-girl.jpg'
 				>
 					<SectionTitle color='black'>

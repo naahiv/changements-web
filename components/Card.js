@@ -13,8 +13,7 @@ const Card = ({ title, subtitle, text, photo, buttonText, buttonUrl }) => {
 					sizes='(max-width: 768px) 100vw, 768px'
 					style={{ objectFit: 'cover' }}
 					alt='Section Image'
-					priority={false}
-					loading='lazy'
+					priority={true}
 					as='img'
 				/>
 			</div>

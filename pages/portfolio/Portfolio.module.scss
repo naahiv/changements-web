@@ -35,6 +35,7 @@
 
 .programTitle {
 	margin-bottom: calc(base.$gap / 2);
+	grid-column: span 12;
 }
 
 .programPhoto {

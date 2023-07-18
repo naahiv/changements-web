@@ -1,7 +1,10 @@
 // router
 import { useRouter } from 'next/router'
 
-const SectionContainer = ({ children, back, marginTop }) => {
+// components
+import SectionTitle from './SectionTitle'
+
+const SectionContainer = ({ children, back, marginTop, title }) => {
 	const router = useRouter()
 
 	return (
@@ -14,7 +17,13 @@ const SectionContainer = ({ children, back, marginTop }) => {
 					</button>
 				</div>
 			)}
-			{children}
+
+			{title && (
+				<div className='titleContainer'>
+					<SectionTitle>{title}</SectionTitle>
+				</div>
+			)}
+			<div className='sectionContainer'>{children}</div>
 		</section>
 	)
 }

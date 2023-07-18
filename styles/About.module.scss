@@ -1,0 +1,75 @@
+@use 'base';
+
+.mission,
+.howItWorks {
+	grid-column: span 6;
+}
+
+.howItWorks {
+	ol {
+		padding-left: 1.2rem;
+		column-count: 2;
+		column-gap: base.$gap;
+
+		li {
+			color: base.$color-primary-red;
+			margin-bottom: calc(base.$gap / 3);
+			span {
+				color: black;
+			}
+		}
+
+		li:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.causes {
+	display: flex;
+	overflow-x: scroll;
+	padding-bottom: calc(base.$gap / 6);
+}
+
+.causes::-webkit-scrollbar {
+	background-color: white;
+	height: 6px;
+}
+
+.causes::-webkit-scrollbar-thumb {
+	background-color: base.$color-primary-gray;
+	border-radius: 3px;
+}
+
+.causeImage {
+	flex-grow: 0;
+	flex-shrink: 0;
+	width: 15%;
+	aspect-ratio: 1 / 1;
+	position: relative;
+}
+
+// tablet
+
+@media screen and (max-width: 1024px) {
+	.causeImage {
+		width: 25%;
+	}
+}
+
+// mobile
+
+@media screen and (max-width: 768px) {
+	.mission,
+	.howItWorks {
+		grid-column: span 12;
+
+		ol {
+			column-count: 1;
+		}
+	}
+
+	.causeImage {
+		width: 100%;
+	}
+}

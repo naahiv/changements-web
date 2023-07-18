@@ -84,10 +84,14 @@ const Header = () => {
 				</nav>
 
 				<div className={`${menuOpen ? '' : styles.hidden} ${styles.auth}`}>
-					<button onClick={() => closeMenu()} className='button-orange'>
-						Login
-					</button>
-					<button onClick={() => closeMenu()}>Register</button>
+					<Link href='/login'>
+						<button onClick={() => closeMenu()} className='button-orange'>
+							Login
+						</button>
+					</Link>
+					<Link href='/register'>
+						<button onClick={() => closeMenu()}>Register</button>
+					</Link>
 				</div>
 			</div>
 		</header>

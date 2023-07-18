@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 // styles
-import styles from './Portfolio.module.scss'
+import styles from '../Portfolio.module.scss'
 
 // components
 import SectionContainer from '@/components/SectionContainer'
@@ -36,7 +36,7 @@ const NonProfit = () => {
 				{/* NGO Detail */}
 				<SectionContainer back={true} marginTop={true}>
 					{nonProfit && (
-						<div className='sectionContainer'>
+						<>
 							<div className={styles.ngoPhoto}>
 								<Image
 									src={nonProfit.photo}
@@ -117,7 +117,7 @@ const NonProfit = () => {
 							</div>
 
 							<div className={styles.ngoData}></div>
-						</div>
+						</>
 					)}
 				</SectionContainer>
 
