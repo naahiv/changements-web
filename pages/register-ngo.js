@@ -34,61 +34,78 @@ const register = () => {
 						</p>
 
 						{/* Registration step 1 */}
-						{registrationStep == 1 && (
-							<form className={styles.form}>
-								<input type='text' placeholder='Non-Profit Name*' required />
-								<input type='email' placeholder='Email*' required />
-								<input type='phone' placeholder='Phone*' required />
-								<input type='password' placeholder='Password*' required />
-								<input type='text' placeholder='Operating Currency*' required />
+						<form className={styles.form}>
+							{registrationStep == 1 ? (
+								<>
+									{/* Registration step 1 */}
+									<input type='text' placeholder='Non-Profit Name*' required />
+									<input type='email' placeholder='Email*' required />
+									<input type='phone' placeholder='Phone*' required />
+									<input type='password' placeholder='Password*' required />
+									<input
+										type='text'
+										placeholder='Operating Currency*'
+										required
+									/>
 
-								<input type='text' placeholder='Donation Currency*' required />
-								<input
-									className={styles.twoColumnInput}
-									type='text'
-									placeholder='Business Address'
-								/>
+									<input
+										type='text'
+										placeholder='Donation Currency*'
+										required
+									/>
+									<input
+										className={styles.twoColumnInput}
+										type='text'
+										placeholder='Business Address'
+									/>
 
-								<textarea placeholder='Description' required />
+									<textarea placeholder='Description' required />
 
-								<button
-									className='button-orange'
-									onClick={() => setRegistrationStep(2)}
-								>
-									Next
-								</button>
-							</form>
-						)}
+									<button
+										className='button-orange'
+										onClick={() => setRegistrationStep(2)}
+									>
+										Next
+									</button>
+								</>
+							) : (
+								<>
+									{/* Registration step 2 */}
+									<input type='text' placeholder='Non-Profit ID*' required />
+									<input
+										type='date'
+										placeholder='Date of Formation*'
+										required
+									/>
+									<input
+										type='text'
+										placeholder='Name of Primary Contact*'
+										required
+									/>
+									<input
+										type='text'
+										placeholder='Non Profit Website*'
+										required
+									/>
 
-						{/* Registration step 2 */}
-						{registrationStep == 2 && (
-							<form className={styles.form}>
-								<input type='text' placeholder='Non-Profit ID*' required />
-								<input type='date' placeholder='Date of Formation*' required />
-								<input
-									type='text'
-									placeholder='Name of Primary Contact*'
-									required
-								/>
-								<input type='text' placeholder='Non Profit Website*' required />
+									<textarea
+										className={styles.twoColumnInput}
+										placeholder='Description'
+										required
+									/>
 
-								<textarea
-									className={styles.twoColumnInput}
-									placeholder='Description'
-									required
-								/>
+									<div className={styles.uploadFile}>
+										<p>Upload Photo</p>
+										<input type='file' accept='image/png, image/jpeg' />
+									</div>
 
-								<div className={styles.uploadFile}>
-									<p>Upload Photo</p>
-									<input type='file' accept='image/png, image/jpeg' />
-								</div>
-
-								<div className={`${styles.twoColumnInput} buttons-row`}>
-									<button onClick={() => setRegistrationStep(1)}>Back</button>
-									<button className={'button-orange'}>Next</button>
-								</div>
-							</form>
-						)}
+									<div className={`${styles.twoColumnInput} buttons-row`}>
+										<button onClick={() => setRegistrationStep(1)}>Back</button>
+										<button className={'button-orange'}>Next</button>
+									</div>
+								</>
+							)}
+						</form>
 					</SectionContainer>
 				</section>
 			</main>

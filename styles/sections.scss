@@ -129,14 +129,4 @@ section {
 	.columnText {
 		padding: calc(base.$gap / 2);
 	}
-
-	.authContainer {
-		grid-column: span 12;
-
-		form {
-			input {
-				grid-column: span 2;
-			}
-		}
-	}
 }

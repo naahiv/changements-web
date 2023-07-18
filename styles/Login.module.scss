@@ -91,6 +91,16 @@
 // mobile
 
 @media screen and (max-width: 768px) {
+	.authContainer {
+		grid-column: span 12;
+
+		form {
+			input {
+				grid-column: span 2;
+			}
+		}
+	}
+
 	.form {
 		input,
 		.twoColumnInput {
