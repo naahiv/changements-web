@@ -7,6 +7,10 @@ import styles from '@/styles/Header.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import Hamburger from './Hamburger'
+import LogOutButton from './LogOutButton'
+
+// hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 // Menu
 export const menu = [
@@ -33,6 +37,9 @@ export const menu = [
 ]
 
 const Header = () => {
+	// context
+	const { user } = useAuthContext()
+
 	// Mobile Menu
 
 	const [menuOpen, setMenuOpen] = useState(false)
@@ -73,6 +80,13 @@ const Header = () => {
 
 				<nav className={menuOpen ? '' : styles.hidden}>
 					<ul>
+						{user && (
+							<Link href='/dashboard'>
+								<li onClick={() => closeMenu()} className='nav-li'>
+									Dashboard
+								</li>
+							</Link>
+						)}
 						{menu.map(mapItem => (
 							<Link key={mapItem.url} href={mapItem.url}>
 								<li onClick={() => closeMenu()} className='nav-li'>
@@ -84,14 +98,20 @@ const Header = () => {
 				</nav>
 
 				<div className={`${menuOpen ? '' : styles.hidden} ${styles.auth}`}>
-					<Link href='/login'>
-						<button onClick={() => closeMenu()} className='button-orange'>
-							Login
-						</button>
-					</Link>
-					<Link href='/register'>
-						<button onClick={() => closeMenu()}>Register</button>
-					</Link>
+					{!user ? (
+						<>
+							<Link href='/login'>
+								<button onClick={() => closeMenu()} className='button-orange'>
+									Login
+								</button>
+							</Link>
+							<Link href='/register'>
+								<button onClick={() => closeMenu()}>Register</button>
+							</Link>
+						</>
+					) : (
+						<LogOutButton close={closeMenu} />
+					)}
 				</div>
 			</div>
 		</header>

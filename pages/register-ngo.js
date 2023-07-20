@@ -13,6 +13,12 @@ import { useState } from 'react'
 const register = () => {
 	const [registrationStep, setRegistrationStep] = useState(1)
 
+	const regStepOne = e => {
+		e.preventDefault()
+
+		setRegistrationStep(2)
+	}
+
 	return (
 		<>
 			<Head>
@@ -34,7 +40,7 @@ const register = () => {
 						</p>
 
 						{/* Registration step 1 */}
-						<form className={styles.form}>
+						<form className={styles.form} onSubmit={regStepOne}>
 							{registrationStep == 1 ? (
 								<>
 									{/* Registration step 1 */}
@@ -61,12 +67,7 @@ const register = () => {
 
 									<textarea placeholder='Description' required />
 
-									<button
-										className='button-orange'
-										onClick={() => setRegistrationStep(2)}
-									>
-										Next
-									</button>
+									<button className='button-orange'>Next</button>
 								</>
 							) : (
 								<>

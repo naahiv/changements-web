@@ -32,6 +32,11 @@
 	}
 }
 
+.error {
+	grid-column: span 2;
+	color: base.$color-primary-red;
+}
+
 // Donor & NGO Registration
 .description {
 	grid-column: span 12;
@@ -59,6 +64,7 @@
 
 	button {
 		width: fit-content;
+		grid-column: span 12;
 	}
 }
 

@@ -6,7 +6,12 @@ const lora = Lora({ subsets: ['latin'] })
 import Header from './Header'
 import Footer from './Footer'
 
+// hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
+
 const Layout = ({ children }) => {
+	const { user, authIsReady } = useAuthContext()
+
 	return (
 		<main
 			style={{
@@ -17,9 +22,13 @@ const Layout = ({ children }) => {
 			}}
 			className={lora.className}
 		>
-			<Header />
-			{children}
-			<Footer />
+			{authIsReady && (
+				<>
+					<Header />
+					{children}
+					<Footer />
+				</>
+			)}
 		</main>
 	)
 }

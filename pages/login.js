@@ -7,9 +7,24 @@ import styles from '@/styles/Login.module.scss'
 // components
 import SectionContainer from '@/components/SectionContainer'
 import SectionTitle from '@/components/SectionTitle'
-import Button from '@/components/Button'
+import LoginRegisterForm from '@/components/forms/LoginRegisterForm'
+
+// hooks
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 const login = () => {
+	// context
+	const { user } = useAuthContext()
+
+	// router
+	const router = useRouter()
+
+	useEffect(() => {
+		user && router.push('/dashboard')
+	}, [user])
+
 	return (
 		<>
 			<Head>
@@ -27,30 +42,8 @@ const login = () => {
 					<SectionContainer marginTop={true}>
 						<div className={styles.authContainer}>
 							<SectionTitle>Login</SectionTitle>
-							<form>
-								<input
-									type='email'
-									id='emailAddress'
-									name='emailAddress'
-									placeholder='Email Address'
-									required
-								/>
 
-								<input
-									type='password'
-									id='password'
-									name='password'
-									placeholder='Password'
-									required
-								/>
-
-								<div className={styles.loginButtons}>
-									<button className='button-orange'>Login</button>
-									<Button url='/register' color='simple'>
-										Register
-									</Button>
-								</div>
-							</form>
+							<LoginRegisterForm type='Login' />
 						</div>
 					</SectionContainer>
 				</section>

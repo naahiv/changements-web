@@ -6,9 +6,61 @@ import styles from '@/styles/Login.module.scss'
 
 // components
 import SectionContainer from '@/components/SectionContainer'
-import Button from '@/components/Button'
+
+// hooks
+import { useState } from 'react'
+import { useSignup } from '@/hooks/useSignup'
 
 const register = () => {
+	const { signup, error, isPending } = useSignup()
+
+	// form values
+	const [name, setName] = useState('')
+	const [email, setEmail] = useState('')
+	const [phone, setPhone] = useState('')
+	const [password, setPassword] = useState('')
+	const [operatingCurrency, setOperatingCurrency] = useState('')
+	const [address, setAddress] = useState('')
+	const [photo, setPhoto] = useState(null)
+	const [photoError, setPhotoError] = useState(null)
+
+	// form submission
+	const handleSubmit = async e => {
+		e.preventDefault()
+		signup(email, password, name, photo, {
+			type: 'donor',
+			phone: phone,
+			operatingCurrency: operatingCurrency,
+			address: address
+		})
+	}
+
+	// validating profile image
+	const handleFileChange = e => {
+		setPhoto(null)
+		let selected = e.target.files[0]
+		console.log(selected)
+
+		if (!selected) {
+			setPhotoError('Please select a file.')
+			return
+		}
+
+		if (!selected.type.includes('image')) {
+			setPhotoError('Selected file must be an image.')
+			return
+		}
+
+		if (selected.size > 1000000) {
+			setPhotoError('Image file size must be lesst than a 1000kb')
+			return
+		}
+
+		setPhotoError(null)
+		setPhoto(selected)
+		console.log('Photo updated.')
+	}
+
 	return (
 		<>
 			<Head>
@@ -29,24 +81,65 @@ const register = () => {
 							favorite Non-profit and begin the journey of change.
 						</p>
 
-						<form className={styles.form}>
-							<input type='text' placeholder='Name*' required />
-							<input type='email' placeholder='Email*' required />
-							<input type='phone' placeholder='Phone*' required />
-							<input type='password' placeholder='Password*' required />
-							<input type='text' placeholder='Operating Currency*' required />
+						{/* {error && <p>{error}</p>} */}
+
+						<form className={styles.form} onSubmit={handleSubmit}>
+							<input
+								type='text'
+								placeholder='Name*'
+								required
+								onChange={e => setName(e.target.value)}
+								value={name}
+							/>
+							<input
+								type='email'
+								placeholder='Email*'
+								required
+								onChange={e => setEmail(e.target.value)}
+								value={email}
+							/>
+							<input
+								type='phone'
+								placeholder='Phone*'
+								required
+								onChange={e => setPhone(e.target.value)}
+								value={phone}
+							/>
+							<input
+								type='password'
+								placeholder='Password*'
+								required
+								onChange={e => setPassword(e.target.value)}
+								value={password}
+							/>
+							<input
+								type='text'
+								placeholder='Operating Currency*'
+								required
+								onChange={e => setOperatingCurrency(e.target.value)}
+								value={operatingCurrency}
+							/>
 							<input
 								className={styles.twoColumnInput}
 								type='text'
 								placeholder='Donor Address'
+								onChange={e => setAddress(e.target.value)}
+								value={address}
 							/>
 
 							<div className={styles.uploadFile}>
 								<p>Upload Photo</p>
-								<input type='file' accept='image/png, image/jpeg' />
+								<input
+									type='file'
+									accept='image/png, image/jpeg'
+									required
+									onChange={handleFileChange}
+								/>
 							</div>
 
-							<button className='button-orange'>Register</button>
+							<button className='button-orange'>
+								{isPending ? 'Loading' : 'Register'}
+							</button>
 						</form>
 					</SectionContainer>
 				</section>

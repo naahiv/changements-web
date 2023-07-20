@@ -7,10 +7,10 @@ import styles from '@/styles/Login.module.scss'
 // components
 import SectionContainer from '@/components/SectionContainer'
 import SectionTitle from '@/components/SectionTitle'
-import LoginRegisterForm from '@/components/forms/LoginRegisterForm'
+import Button from '@/components/Button'
 
 // hooks
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
@@ -43,7 +43,17 @@ const register = () => {
 						<div className={styles.authContainer}>
 							<SectionTitle>Register</SectionTitle>
 
-							<LoginRegisterForm type='Register' />
+							<div className={styles.registerButtons}>
+								<Button url='/register-ngo' color='orange'>
+									Register a NGO
+								</Button>
+
+								<Button url='/register-donor'>Become a Doner</Button>
+							</div>
+
+							<Button url='/login' color='simple'>
+								Login
+							</Button>
 						</div>
 					</SectionContainer>
 				</section>
