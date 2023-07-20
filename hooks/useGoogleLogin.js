@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 
 // firebase imports
 import { auth, provider, db } from '@/firebase/config'
 import { signInWithPopup } from 'firebase/auth'
-import { doc, updateDoc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 
 export const useGoogleLogin = () => {
 	const [error, setError] = useState(null)

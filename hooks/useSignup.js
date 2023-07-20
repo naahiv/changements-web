@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 
 // firebase imports
-import { auth } from '@/firebase/config'
+import { auth, db } from '@/firebase/config'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
 
 export const useSignup = () => {
 	const [error, setError] = useState(null)
