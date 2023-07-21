@@ -1,14 +1,11 @@
 // styles
 import styles from '@/styles/Login.module.scss'
 
-// components
-import SectionTitle from '../SectionTitle'
-
 // hooks
 import { useFirestore } from '@/hooks/useFirestore'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
-const UserTypeSelection = () => {
+const UserTypeSelection = ({ setUserType }) => {
 	const { user } = useAuthContext()
 	const { updateDocument } = useFirestore('users')
 
@@ -19,12 +16,22 @@ const UserTypeSelection = () => {
 			<div className={styles.registerButtons}>
 				<button
 					className='button-orange'
-					onClick={() => updateDocument(user.uid, { type: 'ngo' })}
+					onClick={
+						!user
+							? () => setUserType('ngo')
+							: () => updateDocument(user.uid, { type: 'ngo' })
+					}
 				>
 					Register a NGO
 				</button>
 
-				<button onClick={() => updateDocument(user.uid, { type: 'donor' })}>
+				<button
+					onClick={
+						!user
+							? () => setUserType('donor')
+							: () => updateDocument(user.uid, { type: 'donor' })
+					}
+				>
 					Become a Doner
 				</button>
 			</div>

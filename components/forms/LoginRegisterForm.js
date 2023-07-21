@@ -5,9 +5,10 @@ import styles from '@/styles/Login.module.scss'
 import { useState } from 'react'
 import { useLogin } from '@/hooks/useLogin'
 import { useGoogleLogin } from '@/hooks/useGoogleLogin'
+import { useGoogleSignup } from '@/hooks/useGoogleSignup'
 import { useSignup } from '@/hooks/useSignup'
 
-const LoginRegisterForm = ({ type }) => {
+const LoginRegisterForm = ({ type, userType }) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const { login, isPending: loginPending, error: loginError } = useLogin()
@@ -22,11 +23,12 @@ const LoginRegisterForm = ({ type }) => {
 	// login form submission
 	const handleSignupSubmit = e => {
 		e.preventDefault()
-		signup(email, password)
+		signup(email, password, userType)
 	}
 
 	// google login
 	const { googleLogin } = useGoogleLogin()
+	const { googleSignup } = useGoogleSignup()
 
 	return (
 		<form onSubmit={type == 'Login' ? handleLoginSubmit : handleSignupSubmit}>
@@ -63,7 +65,13 @@ const LoginRegisterForm = ({ type }) => {
 					{loginPending || signupPending ? 'Loading...' : type}
 				</button>
 
-				<button onClick={googleLogin}>{type} with Google</button>
+				<button
+					onClick={
+						type == 'Register' ? () => googleSignup(userType) : googleLogin
+					}
+				>
+					{type} with Google
+				</button>
 			</div>
 		</form>
 	)

@@ -37,7 +37,7 @@ const NGOSquare = () => {
 				<ImageTextColumns
 					direction='row'
 					buttonText='Register a NGO'
-					url='/register-ngo'
+					url='/register'
 					photoUrl='/about-ngo.jpg'
 				>
 					<p>
@@ -56,7 +56,7 @@ const NGOSquare = () => {
 				<ImageTextColumns
 					direction='row-reverse'
 					buttonText='Create a Program'
-					url='/register-ngo'
+					url='/register'
 					photoUrl='/indian-old-woman.jpg'
 				>
 					<SectionTitle color='black'>

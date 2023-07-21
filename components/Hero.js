@@ -31,10 +31,10 @@ const Hero = () => {
 					</p>
 
 					<div className='buttons-row'>
-						<Button color='orange' url='/register-ngo'>
+						<Button color='orange' url='/register'>
 							Register a NGO
 						</Button>
-						<Button color='red' url='/register-donor'>
+						<Button color='red' url='/register'>
 							Become a Donor
 						</Button>
 					</div>

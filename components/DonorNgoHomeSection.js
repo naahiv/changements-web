@@ -25,7 +25,7 @@ const DonorNgoHomeSection = () => {
 					</p>
 					<div className='buttons-row'>
 						<Button url='/donors-nook'>Learn More</Button>
-						<Button color='dark-red' url='/register-donor'>
+						<Button color='dark-red' url='/register'>
 							Become a Doner
 						</Button>
 					</div>
@@ -45,7 +45,7 @@ const DonorNgoHomeSection = () => {
 						<Button url='/ngo-square' color='white'>
 							Learn More
 						</Button>
-						<Button color='orange' url='/register-ngo'>
+						<Button color='orange' url='/register'>
 							Register a NGO
 						</Button>
 					</div>

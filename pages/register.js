@@ -8,9 +8,10 @@ import styles from '@/styles/Login.module.scss'
 import SectionContainer from '@/components/SectionContainer'
 import SectionTitle from '@/components/SectionTitle'
 import LoginRegisterForm from '@/components/forms/LoginRegisterForm'
+import UserTypeSelection from '@/components/forms/UserTypeSelection'
 
 // hooks
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
@@ -24,6 +25,8 @@ const register = () => {
 	useEffect(() => {
 		user && router.push('/dashboard')
 	}, [user])
+
+	const [userType, setUserType] = useState(null)
 
 	return (
 		<>
@@ -43,7 +46,11 @@ const register = () => {
 						<div className={styles.authContainer}>
 							<SectionTitle>Register</SectionTitle>
 
-							<LoginRegisterForm type='Register' />
+							{userType ? (
+								<LoginRegisterForm type='Register' userType={userType} />
+							) : (
+								<UserTypeSelection setUserType={setUserType} />
+							)}
 						</div>
 					</SectionContainer>
 				</section>

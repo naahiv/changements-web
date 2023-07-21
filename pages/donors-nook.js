@@ -56,7 +56,7 @@ const DonorsNook = () => {
 								initiate or join Donor Pods.
 							</p>
 
-							<Button url='/register-donor' color='orange'>
+							<Button url='/register' color='orange'>
 								Become a Donor
 							</Button>
 						</div>
@@ -67,7 +67,7 @@ const DonorsNook = () => {
 				<ImageTextColumns
 					direction='row-reverse'
 					buttonText='Make a Pledge'
-					url='/register-donor'
+					url='/register'
 					photoUrl='/indian-old-woman.jpg'
 				>
 					<SectionTitle color='black'>

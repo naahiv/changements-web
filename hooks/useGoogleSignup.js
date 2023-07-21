@@ -2,27 +2,23 @@ import { useState } from 'react'
 import { useAuthContext } from './useAuthContext'
 
 // firebase imports
-import { auth, db } from '@/firebase/config'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { auth, provider, db } from '@/firebase/config'
+import { signInWithPopup } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 
-export const useSignup = () => {
+export const useGoogleSignup = () => {
 	const [error, setError] = useState(null)
 	const { dispatch } = useAuthContext()
 
-	const signup = async (email, password, userType) => {
+	const googleSignup = async userType => {
 		setError(null)
-		createUserWithEmailAndPassword(auth, email, password)
+		signInWithPopup(auth, provider)
 			.then(res => {
 				// create a user document
-				setDoc(
-					doc(db, 'users', res.user.uid),
-					{
-						email: res.user.email,
-						type: userType
-					},
-					{ merge: true }
-				)
+				setDoc(doc(db, 'users', res.user.uid), {
+					email: res.user.email,
+					type: userType
+				})
 
 				dispatch({ type: 'LOGIN', payload: res.user })
 			})
@@ -31,5 +27,5 @@ export const useSignup = () => {
 			})
 	}
 
-	return { signup, error }
+	return { googleSignup, error }
 }
