@@ -11,7 +11,7 @@ const nextConfig = {
 		measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
 	},
 	images: {
-		domains: ['images.ctfassets.net']
+		domains: ['images.ctfassets.net', 'firebasestorage.googleapis.com']
 	}
 }
 

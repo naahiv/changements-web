@@ -19,6 +19,7 @@ export const useSignup = () => {
 					doc(db, 'users', res.user.uid),
 					{
 						email: res.user.email,
+						online: true,
 						type: userType
 					},
 					{ merge: true }

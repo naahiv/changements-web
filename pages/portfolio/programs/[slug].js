@@ -15,15 +15,18 @@ import CardsSection from '@/components/CardsSection'
 import Button from '@/components/Button'
 
 // temp lists
-import { programs, donorPods } from '@/temp/listPlaceholders'
+import { donorPods } from '@/temp/listPlaceholders'
+
+// hooks
+import { useCollection } from '@/hooks/useCollection'
+import { useDocument } from '@/hooks/useDocument'
 
 const Program = () => {
 	const router = useRouter()
 	const { slug } = router.query
+	const { documents: programs } = useCollection('programs')
 
-	const program = programs.find(
-		program => program.title.toLowerCase().replace(/\s+/g, '-') === slug
-	)
+	const program = programs && programs.find(program => program.id === slug)
 
 	return (
 		<>
@@ -43,7 +46,7 @@ const Program = () => {
 						<>
 							<div className={styles.programPhoto}>
 								<Image
-									src={program.photo}
+									src={program.photoUrl}
 									fill
 									quality={100}
 									sizes='(max-width: 768px) 100vw, 768px'
@@ -58,34 +61,35 @@ const Program = () => {
 								<div className={styles.programInfo}>
 									<div className={styles.programHighlights}>
 										<div>
-											<h2 className='dark-orange'>40</h2>
-											<p>Total Pledge</p>
+											<h2 className='dark-orange'>
+												{program.fundsRequired}
+												<span style={{ fontSize: '1rem' }}>
+													{program.currency}
+												</span>
+											</h2>
+											<p>Funds Required</p>
 										</div>
 										<div>
-											<h2 className='orange'>40</h2>
-											<p>Fullfiled Pledge</p>
+											<h2 className='orange'>
+												{program.fundsFulfilled}
+												<span style={{ fontSize: '1rem' }}>
+													{program.currency}
+												</span>
+											</h2>
+											<p>Funds Fulfilled</p>
 										</div>
 										<div>
-											<h2 className='red'>40</h2>
-											<p>Total Pending Pledge</p>
+											<h2 className='red'>
+												{program.fundsRequired - program.fundsFulfilled}
+												<span style={{ fontSize: '1rem' }}>
+													{program.currency}
+												</span>
+											</h2>
+											<p>Funds Fulfilled</p>
 										</div>
 									</div>
 
-									<p>
-										Thank you for being true change makers in our communities
-										that need it most. We can help you reach your full potential
-										with committed partners. Thank you for being true change
-										makers in our communities that need it most. We can help you
-										reach your full potential with committed partners. Thank you
-										for being true change makers in our communities that need it
-										most. We can help you reach your full potential with
-										committed partners. Thank you for being true change makers
-										in our communities that need it most. We can help you reach
-										your full potential with committed partners. Thank you for
-										being true change makers in our communities that need it
-										most. We can help you reach your full potential with
-										committed partners.
-									</p>
+									<p>{program.description}</p>
 								</div>
 								{/* Donor Pods Section */}
 								<h4>Our ChangeMakers</h4>
@@ -95,7 +99,7 @@ const Program = () => {
 										<div key={index} className={styles.pod}>
 											<div className={styles.podImage}>
 												<Image
-													src={pod.photo}
+													src={pod.photoUrl}
 													fill
 													quality={100}
 													sizes='(max-width: 768px) 100vw, 768px'
@@ -110,9 +114,7 @@ const Program = () => {
 												<h5>{pod.title}</h5>
 											</div>
 											<Button
-												url={`/portfolio/donor-pods/${pod.title
-													.toLowerCase()
-													.replace(/\s+/g, '-')}`}
+												url={`/portfolio/donor-pods/${pod.id}`}
 												color='simple'
 											>
 												Learn More

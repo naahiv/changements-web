@@ -2,7 +2,16 @@
 import Image from 'next/image'
 import Button from './Button'
 
-const Card = ({ title, subtitle, text, photo, buttonText, buttonUrl }) => {
+const Card = ({
+	title,
+	name,
+	subtitle,
+	owner,
+	text,
+	photo,
+	buttonText,
+	buttonUrl
+}) => {
 	return (
 		<div className='card'>
 			<div className='card-photo'>
@@ -20,9 +29,11 @@ const Card = ({ title, subtitle, text, photo, buttonText, buttonUrl }) => {
 			<div className='card-text'>
 				<div>
 					{subtitle && <p className='subtitle'>{subtitle}</p>}
-					<h4>{title}</h4>
+					{owner && <p className='subtitle'>{owner}</p>}
+					{title && <h4>{title}</h4>}
+					{name && <h4>{name}</h4>}
 				</div>
-				{text && <p>{text.slice(0, 130)}</p>}
+				{text && <p>{text.slice(0, 30)}...</p>}
 			</div>
 			<Button url={buttonUrl} color='simple'>
 				{buttonText}

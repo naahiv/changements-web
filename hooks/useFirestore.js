@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useState } from 'react'
-import { db } from '@/firebase/config'
+import { db, storage } from '@/firebase/config'
 import {
 	collection,
 	addDoc,
@@ -8,6 +8,7 @@ import {
 	doc,
 	serverTimestamp
 } from 'firebase/firestore'
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 
 let intialState = {
 	document: null,
@@ -58,7 +59,7 @@ export const useFirestore = data => {
 	const [isCancelled, setIsCancelled] = useState(false)
 
 	// collection ref
-	const ref = collection(db, data)
+	const collectionRef = collection(db, data)
 
 	// dispatch if note cancelled
 	const dispatchIfNotCancelled = action => {
@@ -68,12 +69,23 @@ export const useFirestore = data => {
 	}
 
 	// add a document
-	const addDocument = async doc => {
+	const addDocument = async (doc, photo, photoPath) => {
 		dispatch({ type: 'IS_PENDING' })
 
 		try {
 			const createdAt = serverTimestamp()
-			const addedDocument = await addDoc(ref, { ...doc, createdAt })
+
+			// Uploading photo
+			const uploadPath = `${photoPath}/${photo.name}`
+			const photoRef = ref(storage, uploadPath)
+			await uploadBytes(photoRef, photo)
+			const photoUrl = await getDownloadURL(photoRef)
+
+			const addedDocument = await addDoc(collectionRef, {
+				...doc,
+				createdAt,
+				photoUrl: photoUrl
+			})
 			dispatchIfNotCancelled({
 				type: 'ADDED_DOCUMENT',
 				payload: addedDocument
@@ -96,11 +108,28 @@ export const useFirestore = data => {
 	}
 
 	// update a document
-	const updateDocument = async (id, updates) => {
+	const updateDocument = async (id, updates, photo, photoPath) => {
 		dispatch({ type: 'IS_PENDING' })
 
 		try {
-			const updatedDocument = await updateDoc(doc(db, data, id), updates)
+			// Uploading photo
+			let photoUrl
+			if (photo) {
+				const uploadPath = `${photoPath}/${photo.name}`
+				const photoRef = ref(storage, uploadPath)
+				await uploadBytes(photoRef, photo)
+				photoUrl = await getDownloadURL(photoRef)
+			}
+
+			const updatedDocument = photo
+				? await updateDoc(doc(db, data, id), {
+						...updates,
+						photoUrl: photoUrl
+				  })
+				: await updateDoc(doc(db, data, id), {
+						...updates
+				  })
+
 			dispatchIfNotCancelled({
 				type: 'UPDATED_DOCUMENT',
 				payload: updatedDocument

@@ -102,6 +102,33 @@
 	.pod {
 		grid-column: span 6;
 	}
+
+	// Program
+
+	.programPhoto {
+		grid-column: span 4;
+	}
+
+	.programContent {
+		grid-column: span 8;
+	}
+
+	.programHighlights {
+		flex-direction: column;
+		gap: calc(base.$gap / 4);
+
+		div {
+			padding-right: 0;
+			border-right: none;
+			padding-bottom: calc(base.$gap / 4);
+			border-bottom: 1px solid base.$color-secondary-red;
+		}
+
+		div:last-of-type {
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+	}
 }
 
 // mobile
@@ -129,23 +156,6 @@
 
 	.programContent {
 		grid-column: span 12;
-	}
-
-	.programHighlights {
-		flex-direction: column;
-		gap: calc(base.$gap / 4);
-
-		div {
-			padding-right: 0;
-			border-right: none;
-			padding-bottom: calc(base.$gap / 4);
-			border-bottom: 1px solid base.$color-secondary-red;
-		}
-
-		div:last-of-type {
-			padding-bottom: 0;
-			border-bottom: none;
-		}
 	}
 
 	.pod {

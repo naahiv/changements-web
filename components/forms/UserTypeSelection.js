@@ -32,7 +32,7 @@ const UserTypeSelection = ({ setUserType }) => {
 							: () => updateDocument(user.uid, { type: 'donor' })
 					}
 				>
-					Become a Doner
+					Become a Donor
 				</button>
 			</div>
 		</div>

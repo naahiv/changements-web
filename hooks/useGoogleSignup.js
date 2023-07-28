@@ -17,6 +17,7 @@ export const useGoogleSignup = () => {
 				// create a user document
 				setDoc(doc(db, 'users', res.user.uid), {
 					email: res.user.email,
+					online: true,
 					type: userType
 				})
 

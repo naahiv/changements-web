@@ -2,6 +2,9 @@
 import SectionTitle from './SectionTitle'
 import Card from './Card'
 
+// hooks
+import { useDocument } from '@/hooks/useDocument'
+
 const CardsSection = ({ title, content, folder, buttonText }) => {
 	return (
 		<section>
@@ -14,15 +17,16 @@ const CardsSection = ({ title, content, folder, buttonText }) => {
 				{content &&
 					content.map((item, index) => (
 						<Card
+							// key={item.id}
 							key={index}
+							name={item.name}
 							title={item.title}
 							subtitle={item.subtitle}
-							text={item.text}
-							photo={item.photo}
+							owner={item.owner}
+							text={item.description}
+							photo={item.photoUrl}
 							buttonText={buttonText}
-							buttonUrl={`/${folder}/${item.title
-								.toLowerCase()
-								.replace(/\s+/g, '-')}`}
+							buttonUrl={`/${folder}/${item.id}`}
 						/>
 					))}
 			</div>

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 // components
 import SectionTitle from './SectionTitle'
 
-const SectionContainer = ({ children, back, marginTop, title }) => {
+const SectionContainer = ({ children, back, marginTop, title, noGap }) => {
 	const router = useRouter()
 
 	return (
@@ -23,7 +23,9 @@ const SectionContainer = ({ children, back, marginTop, title }) => {
 					<SectionTitle>{title}</SectionTitle>
 				</div>
 			)}
-			<div className='sectionContainer'>{children}</div>
+			<div className='sectionContainer' style={noGap && { gridGap: '0' }}>
+				{children}
+			</div>
 		</section>
 	)
 }

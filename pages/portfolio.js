@@ -11,16 +11,21 @@ import CardsSection from '@/components/CardsSection'
 import Contact from '@/components/Contact'
 
 // temp lists
-import { nonProfits, programs } from '@/temp/listPlaceholders'
+import { nonProfits } from '@/temp/listPlaceholders'
+
+// hooks
+import { useCollection } from '@/hooks/useCollection'
 
 const portfolio = () => {
+	const { documents: programs } = useCollection('programs')
+
 	return (
 		<>
 			<Head>
 				<title>Changements | Our Portfolio</title>
 				<meta
 					name='description'
-					content='JThe NGOs listed here are fully operational, approved with a TaxID. Come together as a group to compound change. You might find more than one cause that interest you and your family and friends. You can belong to more than one group or Pod. Be sure to check the progress, get involved, visit and post your experiences on our blog/vlog. Enjoy the change you are making. '
+					content='The NGOs listed here are fully operational, approved with a TaxID. Come together as a group to compound change. You might find more than one cause that interest you and your family and friends. You can belong to more than one group or Pod. Be sure to check the progress, get involved, visit and post your experiences on our blog/vlog. Enjoy the change you are making. '
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
@@ -69,12 +74,14 @@ const portfolio = () => {
 				/>
 
 				{/* Programs Section */}
-				<CardsSection
-					title='Programs'
-					content={programs}
-					folder='portfolio/programs'
-					buttonText='Learn More'
-				/>
+				{programs && (
+					<CardsSection
+						title='Programs'
+						content={programs}
+						folder='portfolio/programs'
+						buttonText='Learn More'
+					/>
+				)}
 
 				{/* Contact */}
 				<Contact />

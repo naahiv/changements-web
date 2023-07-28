@@ -2,12 +2,18 @@
 import styles from '@/styles/Login.module.scss'
 
 // hooks
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
+import { useStorage } from '@/hooks/useStorage'
+
+// currencies
+const BASE_URL =
+	'http://api.exchangeratesapi.io/v1/latest?access_key=1bc0b9b89f46f8b00412ef839178199d&symbols=USD,INR,GBP'
 
 const NgoInfoForm = ({ data }) => {
 	// firestore
 	const { updateDocument } = useFirestore('users')
+	const { uploadFile } = useStorage('photos')
 
 	// form values
 	const [name, setName] = useState('')
@@ -78,7 +84,18 @@ const NgoInfoForm = ({ data }) => {
 		setPhotoError(null)
 		setPhoto(selected)
 		console.log('Photo updated.')
+
+		uploadFile(photo)
 	}
+
+	// currencies
+	const [currencies, setCurrencies] = useState([])
+
+	useEffect(() => {
+		fetch(BASE_URL)
+			.then(res => res.json())
+			.then(data => setCurrencies([data.base, ...Object.keys(data.rates)]))
+	}, [])
 
 	return (
 		<>
@@ -104,21 +121,34 @@ const NgoInfoForm = ({ data }) => {
 						onChange={e => setPhone(e.target.value)}
 						value={phone}
 					/>
-					<input
-						type='text'
-						placeholder='Operating Currency*'
-						required
-						onChange={e => setOperatingCurrency(e.target.value)}
-						value={operatingCurrency}
-					/>
 
-					<input
-						type='text'
-						placeholder='Donation Currency*'
+					<select
+						onChange={e => setOperatingCurrency(e.target.value)}
 						required
+						defaultValue='defaultOption'
+					>
+						<option disabled hidden value='defaultOption'>
+							Operating Currency*
+						</option>
+						{currencies &&
+							currencies.map(currency => (
+								<option value={currency}>{currency}</option>
+							))}
+					</select>
+
+					<select
 						onChange={e => setDonationCurrency(e.target.value)}
-						value={donationCurrency}
-					/>
+						required
+						defaultValue='defaultOption'
+					>
+						<option disabled hidden value='defaultOption'>
+							Donation Currency*
+						</option>
+						{currencies &&
+							currencies.map(currency => (
+								<option value={currency}>{currency}</option>
+							))}
+					</select>
 
 					<textarea
 						placeholder='Description'
@@ -172,7 +202,7 @@ const NgoInfoForm = ({ data }) => {
 					/>
 
 					<div className={styles.uploadFile}>
-						<p>Upload Photo</p>
+						{photoError ? <p>{photoError}</p> : <p>Upload Photo</p>}
 						<input
 							type='file'
 							accept='image/png, image/jpeg'

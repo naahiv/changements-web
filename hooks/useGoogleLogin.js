@@ -18,7 +18,8 @@ export const useGoogleLogin = () => {
 				setDoc(
 					doc(db, 'users', res.user.uid),
 					{
-						email: res.user.email
+						email: res.user.email,
+						online: true
 					},
 					{ merge: true }
 				)

@@ -1,0 +1,127 @@
+@use 'base';
+
+.dashboardHeader {
+	grid-column: span 12;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.cardsContainer {
+	grid-column: span 12;
+	display: flex;
+	flex-direction: column;
+	gap: calc(base.$gap / 2);
+}
+
+.card {
+	display: grid;
+	grid-column: span 12;
+	grid-template-columns: repeat(12, 1fr);
+	background-color: base.$color-primary-gray;
+}
+
+.cardPhoto {
+	grid-column: span 3;
+	height: 100%;
+	position: relative;
+	cursor: pointer;
+}
+
+.cardContent {
+	grid-column: span 9;
+	padding: base.$gap;
+}
+
+.cardTitle {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: calc(base.$gap / 2);
+
+	h4 {
+		cursor: pointer;
+	}
+
+	h4:hover {
+		color: base.$color-primary-orange;
+	}
+}
+
+.cardButtons {
+	display: flex;
+	gap: calc(base.$gap / 3);
+}
+
+.cardText {
+	display: flex;
+	flex-direction: column;
+	gap: calc(base.$gap / 3);
+}
+
+.projectHighlights {
+	grid-column: span 8;
+	display: flex;
+	flex-wrap: wrap;
+	gap: base.$gap;
+	align-items: flex-start;
+}
+
+// open project
+.openProject {
+	grid-column: span 12;
+}
+
+.openProjectTitle {
+	margin-bottom: calc(base.$gap / 2);
+	display: flex;
+	justify-content: space-between;
+}
+
+.openProjectContent {
+	grid-column: span 12;
+	width: 100%;
+	max-width: 100%;
+}
+
+// tablet
+
+@media screen and (max-width: 1024px) {
+	.cardPhoto {
+		grid-column: span 12;
+		aspect-ratio: 16/9;
+	}
+
+	.cardContent {
+		grid-column: span 12;
+		padding: calc(base.$gap / 2);
+	}
+}
+
+// mobile
+
+@media screen and (max-width: 768px) {
+	.dashboardHeader {
+		flex-direction: column;
+		justify-content: baseline;
+		gap: calc(base.$gap / 3);
+
+		* {
+			width: fit-content;
+		}
+	}
+
+	.cardTitle {
+		flex-direction: column-reverse;
+		gap: calc(base.$gap / 4);
+	}
+
+	.projectHighlights {
+		flex-direction: column;
+		gap: calc(base.$gap / 3);
+	}
+
+	.openProjectTitle {
+		flex-direction: column-reverse;
+		gap: calc(base.$gap / 4);
+	}
+}

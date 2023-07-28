@@ -21,9 +21,7 @@ const NonProfit = () => {
 	const router = useRouter()
 	const { slug } = router.query
 
-	const nonProfit = nonProfits.find(
-		nonProfit => nonProfit.title.toLowerCase().replace(/\s+/g, '-') === slug
-	)
+	const nonProfit = nonProfits.find(nonProfit => nonProfit.id === slug)
 
 	return (
 		<>
@@ -39,7 +37,7 @@ const NonProfit = () => {
 						<>
 							<div className={styles.ngoPhoto}>
 								<Image
-									src={nonProfit.photo}
+									src={nonProfit.photoUrl}
 									fill
 									quality={100}
 									sizes='(max-width: 768px) 100vw, 768px'
