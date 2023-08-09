@@ -35,8 +35,8 @@ const CreateProgramForm = ({ setOpenForm }) => {
 				description: description,
 				createdBy: user.uid,
 				owner: owner.name,
-				currency: owner.donationCurrency
-				// photoUrl: photoUrl ? photoUrl : null
+				currency: owner.donationCurrency,
+				pledges: []
 			},
 			photo,
 			'photos'

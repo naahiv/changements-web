@@ -2,9 +2,10 @@
 import styles from '@/styles/Login.module.scss'
 
 // hooks
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useStorage } from '@/hooks/useStorage'
+import { useCurrency } from '@/hooks/useCurrency'
 
 // currencies
 const BASE_URL =
@@ -50,14 +51,19 @@ const NgoInfoForm = ({ data }) => {
 	const handleForm2 = async e => {
 		e.preventDefault()
 
-		updateDocument(data.id, {
-			ngoId: ngoId,
-			primaryContactName: primaryContactName,
-			website: website,
-			address: address,
-			donationInformation: donationInformation,
-			registered: true
-		})
+		updateDocument(
+			data.id,
+			{
+				ngoId: ngoId,
+				primaryContactName: primaryContactName,
+				website: website,
+				address: address,
+				donationInformation: donationInformation,
+				registered: true
+			},
+			photo,
+			'photos'
+		)
 	}
 
 	// validating profile image
@@ -84,18 +90,10 @@ const NgoInfoForm = ({ data }) => {
 		setPhotoError(null)
 		setPhoto(selected)
 		console.log('Photo updated.')
-
-		uploadFile(photo)
 	}
 
 	// currencies
-	const [currencies, setCurrencies] = useState([])
-
-	useEffect(() => {
-		fetch(BASE_URL)
-			.then(res => res.json())
-			.then(data => setCurrencies([data.base, ...Object.keys(data.rates)]))
-	}, [])
+	const { currencies } = useCurrency()
 
 	return (
 		<>
@@ -132,7 +130,9 @@ const NgoInfoForm = ({ data }) => {
 						</option>
 						{currencies &&
 							currencies.map(currency => (
-								<option value={currency}>{currency}</option>
+								<option key={currency} value={currency}>
+									{currency}
+								</option>
 							))}
 					</select>
 

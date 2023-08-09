@@ -10,7 +10,8 @@ const Card = ({
 	text,
 	photo,
 	buttonText,
-	buttonUrl
+	buttonUrl,
+	buttonFunction
 }) => {
 	return (
 		<div className='card'>
@@ -35,7 +36,8 @@ const Card = ({
 				</div>
 				{text && <p>{text.slice(0, 30)}...</p>}
 			</div>
-			<Button url={buttonUrl} color='simple'>
+
+			<Button buttonFunction={buttonFunction} url={buttonUrl} color='simple'>
 				{buttonText}
 			</Button>
 		</div>

@@ -2,9 +2,6 @@
 import SectionTitle from './SectionTitle'
 import Card from './Card'
 
-// hooks
-import { useDocument } from '@/hooks/useDocument'
-
 const CardsSection = ({ title, content, folder, buttonText }) => {
 	return (
 		<section>

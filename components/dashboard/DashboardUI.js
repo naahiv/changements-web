@@ -1,6 +1,8 @@
 // components
 import Registration from '@/components/Registration'
 import NgoDashboard from './NgoDashboard'
+import DonorDashboard from './DonorDashboard'
+import Verification from './Verification'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -17,9 +19,21 @@ const DashboardUI = () => {
 					{/* Registration process */}
 					{document.online && !document.registered && <Registration />}
 
-					{/* NGO Dashboard */}
-					{document.registered && document.type == 'ngo' && (
-						<NgoDashboard user={user} />
+					{/* Verification */}
+					{document.registered && !user.emailVerified ? (
+						<Verification />
+					) : (
+						<>
+							{/* NGO Dashboard */}
+							{document.registered && document.type == 'ngo' && (
+								<NgoDashboard user={document} />
+							)}
+
+							{/* Donor Dashboard */}
+							{document.registered && document.type == 'donor' && (
+								<DonorDashboard user={document} />
+							)}
+						</>
 					)}
 				</>
 			)}

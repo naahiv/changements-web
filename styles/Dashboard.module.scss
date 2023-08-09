@@ -83,6 +83,38 @@
 	max-width: 100%;
 }
 
+.donorsList {
+	display: flex;
+	flex-direction: column;
+	gap: calc(base.$gap / 2);
+}
+
+.donorCard {
+	display: flex;
+	gap: base.$gap;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.donorCardHeader {
+	display: flex;
+	align-items: center;
+	gap: calc(base.$gap / 3);
+}
+
+.donorCardPhoto {
+	position: relative;
+	border-radius: 50%;
+	overflow: hidden;
+	width: base.$gap;
+	aspect-ratio: 1 / 1;
+}
+
+.donorCardPledges {
+	display: flex;
+	gap: calc(base.$gap / 2);
+}
+
 // tablet
 
 @media screen and (max-width: 1024px) {
@@ -94,6 +126,10 @@
 	.cardContent {
 		grid-column: span 12;
 		padding: calc(base.$gap / 2);
+	}
+
+	.donorCardPledges {
+		display: none;
 	}
 }
 

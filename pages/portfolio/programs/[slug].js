@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 // styles
-import styles from '../Portfolio.module.scss'
+import styles from '@/styles/Portfolio.module.scss'
 
 // components
 import SectionContainer from '@/components/SectionContainer'
@@ -31,101 +31,95 @@ const Program = () => {
 	return (
 		<>
 			<Head>
-				<title>{program && `Changements | ${program.title}`}</title>
+				<title>{program && `Changements | ${program.name}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
 			<main>
 				{/* Program Detail */}
-				<SectionContainer
-					back={true}
-					marginTop={true}
-					title={program && program.title}
-				>
-					{program && (
-						<>
-							<div className={styles.programPhoto}>
-								<Image
-									src={program.photoUrl}
-									fill
-									quality={100}
-									sizes='(max-width: 768px) 100vw, 768px'
-									style={{ objectFit: 'cover' }}
-									alt='Section Image'
-									priority={true}
-									as='img'
-								/>
-							</div>
+				{program && (
+					<SectionContainer back={true} marginTop={true} title={program.name}>
+						<div className={styles.programPhoto}>
+							<Image
+								src={program.photoUrl}
+								fill
+								quality={100}
+								sizes='(max-width: 768px) 100vw, 768px'
+								style={{ objectFit: 'cover' }}
+								alt='Section Image'
+								priority={true}
+								as='img'
+							/>
+						</div>
 
-							<div className={styles.programContent}>
-								<div className={styles.programInfo}>
-									<div className={styles.programHighlights}>
-										<div>
-											<h2 className='dark-orange'>
-												{program.fundsRequired}
-												<span style={{ fontSize: '1rem' }}>
-													{program.currency}
-												</span>
-											</h2>
-											<p>Funds Required</p>
-										</div>
-										<div>
-											<h2 className='orange'>
-												{program.fundsFulfilled}
-												<span style={{ fontSize: '1rem' }}>
-													{program.currency}
-												</span>
-											</h2>
-											<p>Funds Fulfilled</p>
-										</div>
-										<div>
-											<h2 className='red'>
-												{program.fundsRequired - program.fundsFulfilled}
-												<span style={{ fontSize: '1rem' }}>
-													{program.currency}
-												</span>
-											</h2>
-											<p>Funds Fulfilled</p>
-										</div>
+						<div className={styles.programContent}>
+							<div className={styles.programInfo}>
+								<div className={styles.programHighlights}>
+									<div>
+										<h2 className='dark-orange'>
+											{program.fundsRequired}
+											<span style={{ fontSize: '1rem' }}>
+												{program.currency}
+											</span>
+										</h2>
+										<p>Funds Required</p>
 									</div>
+									<div>
+										<h2 className='orange'>
+											{program.fundsFulfilled}
+											<span style={{ fontSize: '1rem' }}>
+												{program.currency}
+											</span>
+										</h2>
+										<p>Funds Fulfilled</p>
+									</div>
+									<div>
+										<h2 className='red'>
+											{program.fundsRequired - program.fundsFulfilled}
+											<span style={{ fontSize: '1rem' }}>
+												{program.currency}
+											</span>
+										</h2>
+										<p>Funds Fulfilled</p>
+									</div>
+								</div>
 
-									<p>{program.description}</p>
-								</div>
-								{/* Donor Pods Section */}
-								<h4>Our ChangeMakers</h4>
-								<div className={styles.programPods}>
-									{/* Donor Pods Section */}
-									{donorPods.map((pod, index) => (
-										<div key={index} className={styles.pod}>
-											<div className={styles.podImage}>
-												<Image
-													src={pod.photoUrl}
-													fill
-													quality={100}
-													sizes='(max-width: 768px) 100vw, 768px'
-													style={{ objectFit: 'cover' }}
-													alt='Pod Photo'
-													priority={true}
-													as='img'
-												/>
-											</div>
-											<div>
-												<p>{pod.subtitle}</p>
-												<h5>{pod.title}</h5>
-											</div>
-											<Button
-												url={`/portfolio/donor-pods/${pod.id}`}
-												color='simple'
-											>
-												Learn More
-											</Button>
-										</div>
-									))}
-								</div>
+								<p>{program.description}</p>
 							</div>
-						</>
-					)}
-				</SectionContainer>
+							{/* Donor Pods Section */}
+							<h4>Our ChangeMakers</h4>
+							<div className={styles.programPods}>
+								{/* Donor Pods Section */}
+								{donorPods.map((pod, index) => (
+									<div key={index} className={styles.pod}>
+										<div className={styles.podImage}>
+											<Image
+												src={pod.photoUrl}
+												fill
+												quality={100}
+												sizes='(max-width: 768px) 100vw, 768px'
+												style={{ objectFit: 'cover' }}
+												alt='Pod Photo'
+												priority={true}
+												as='img'
+											/>
+										</div>
+										<div>
+											<p>{pod.subtitle}</p>
+											<h5>{pod.title}</h5>
+										</div>
+										<Button
+											url={`/portfolio/donor-pods/${pod.id}`}
+											color='simple'
+										>
+											Learn More
+										</Button>
+									</div>
+								))}
+							</div>
+						</div>
+					</SectionContainer>
+				)}
 
 				{/* Other Programs Section */}
 				{program && (

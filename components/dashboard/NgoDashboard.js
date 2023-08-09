@@ -12,10 +12,9 @@ import NgoProgram from './NgoProgram'
 // hooks
 import { useState } from 'react'
 import { useCollection } from '@/hooks/useCollection'
-import { useAuthContext } from '@/hooks/useAuthContext'
 import { useFirestore } from '@/hooks/useFirestore'
 
-const NgoDashboard = () => {
+const NgoDashboard = ({ user }) => {
 	const { deleteDocument } = useFirestore('programs')
 	const [openForm, setOpenForm] = useState(false)
 	const [openProgram, setOpenProgram] = useState(false)
@@ -23,11 +22,10 @@ const NgoDashboard = () => {
 	const [activeProgram, setActiveProgram] = useState()
 
 	// firebase
-	const { user } = useAuthContext()
 	const { documents: programs } = useCollection('programs', [
 		'createdBy',
 		'==',
-		user.uid
+		user.id
 	])
 
 	// create form
@@ -96,6 +94,7 @@ const NgoDashboard = () => {
 						activeProgram={activeProgram}
 						openEditForm={openEditForm}
 						deleteOpenProgram={deleteOpenProgram}
+						user={user}
 					/>
 				</SectionContainer>
 			)}

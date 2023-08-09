@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 // styles
-import styles from '../Portfolio.module.scss'
+import styles from '@/styles/Portfolio.module.scss'
 
 // components
 import SectionContainer from '@/components/SectionContainer'

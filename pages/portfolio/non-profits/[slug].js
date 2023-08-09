@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 // styles
-import styles from '../Portfolio.module.scss'
+import styles from '@/styles/Portfolio.module.scss'
 
 // components
 import SectionContainer from '@/components/SectionContainer'
@@ -14,19 +14,22 @@ import Contact from '@/components/Contact'
 import Image from 'next/image'
 import Button from '@/components/Button'
 
-// temp lists
-import { nonProfits, programs } from '@/temp/listPlaceholders'
+// hooks
+import { useCollection } from '@/hooks/useCollection'
 
 const NonProfit = () => {
 	const router = useRouter()
 	const { slug } = router.query
+	const { documents: programs } = useCollection('programs')
+	const { documents: nonProfits } = useCollection('users')
 
-	const nonProfit = nonProfits.find(nonProfit => nonProfit.id === slug)
+	const nonProfit =
+		nonProfits && nonProfits.find(nonProfit => nonProfit.id === slug)
 
 	return (
 		<>
 			<Head>
-				<title>{nonProfit && `Changements | ${nonProfit.title}`}</title>
+				<title>{nonProfit && `Changements | ${nonProfit.name}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
@@ -49,8 +52,8 @@ const NonProfit = () => {
 							</div>
 
 							<div className={styles.ngoInfo}>
-								<h3>{nonProfit.title}</h3>
-								<p>{nonProfit.text}</p>
+								<h3>{nonProfit.name}</h3>
+								<p>{nonProfit.description}</p>
 
 								<div className='buttons-row'>
 									<Button color='orange' url=''>
@@ -63,31 +66,23 @@ const NonProfit = () => {
 
 							<div className={styles.ngoData}>
 								<div className={styles.ngoDataContainer}>
-									<h5>Contact Info</h5>
-									<p>
-										12A: 9SDFKIUJ32
-										<br />
-										50G: JHSDF942389778DSF
-										<br />
-										30C: JK78DFSKJH
-										<br />
-										40D: SDF877834JHF87293
-									</p>
+									<h5>NGO ID</h5>
+									<p>{nonProfit.ngoId}</p>
 
-									<p>Funded: 12/4/2016</p>
+									{/* <p>Funded: 12/4/2016</p> */}
 									<p>
-										Operating Currency: INR
+										Operating Currency: {nonProfit.operatingCurrency}
 										<br />
-										Donation Currencies: INR
+										Donation Currencies: {nonProfit.donationCurrency}
 									</p>
 								</div>
 								<div className={styles.ngoDataContainer}>
-									<h5>NGO ID Info</h5>
-									<p>Bhavana Chiranjay</p>
+									<h5>Contact Info</h5>
+									<p>{nonProfit.primaryContactName}</p>
 									<div>
-										<p>+919686661097</p>
-										<p>ushatrao@yahoo.com</p>
-										<p>www.swakshatra.in</p>
+										<p>{nonProfit.phone}</p>
+										<p>{nonProfit.email}</p>
+										<p>{nonProfit.website}</p>
 									</div>
 								</div>
 							</div>
@@ -95,22 +90,11 @@ const NonProfit = () => {
 							<div className={styles.ngoData}>
 								<div className={styles.ngoDataContainer}>
 									<h5>Address</h5>
-									<p>
-										No 61, 3rd cross, Raghavendra colony, 5th Main, Chamarajpet,
-										Bangalore 560018
-									</p>
+									<p>{nonProfit.address}</p>
 								</div>
 								<div className={styles.ngoDataContainer}>
 									<h5>Payment Info</h5>
-									<p>
-										12A: 9SDFKIUJ32
-										<br />
-										50G: JHSDF942389778DSF
-										<br />
-										30C: JK78DFSKJH
-										<br />
-										40D: SDF877834JHF87293
-									</p>
+									<p>{nonProfit.donationInformation}</p>
 								</div>
 							</div>
 
@@ -120,12 +104,16 @@ const NonProfit = () => {
 				</SectionContainer>
 
 				{/* Programs Section */}
-				<CardsSection
-					title='Programs'
-					content={programs}
-					folder='portfolio/programs'
-					buttonText='Learn More'
-				/>
+				{programs && nonProfit && (
+					<CardsSection
+						title='Programs'
+						content={programs.filter(
+							program => program.createdBy == nonProfit.id
+						)}
+						folder='portfolio/programs'
+						buttonText='Learn More'
+					/>
+				)}
 
 				{/* Contact */}
 				<Contact />

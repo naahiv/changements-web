@@ -4,6 +4,7 @@ import styles from '@/styles/Login.module.scss'
 // hooks
 import { useState } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
+import { useCurrency } from '@/hooks/useCurrency'
 
 const DonorInfoForm = ({ data }) => {
 	// firestore
@@ -21,13 +22,18 @@ const DonorInfoForm = ({ data }) => {
 	const handleSubmit = async e => {
 		e.preventDefault()
 
-		updateDocument(data.id, {
-			name: name,
-			phone: phone,
-			operatingCurrency: operatingCurrency,
-			address: address,
-			registered: true
-		})
+		updateDocument(
+			data.id,
+			{
+				name: name,
+				phone: phone,
+				operatingCurrency: operatingCurrency,
+				address: address,
+				registered: true
+			},
+			photo,
+			'photos'
+		)
 	}
 
 	// validating profile image
@@ -56,6 +62,9 @@ const DonorInfoForm = ({ data }) => {
 		console.log('Photo updated.')
 	}
 
+	// currencies
+	const { currencies } = useCurrency()
+
 	return (
 		<>
 			<p className={styles.description}>
@@ -79,13 +88,22 @@ const DonorInfoForm = ({ data }) => {
 					value={phone}
 				/>
 
-				<input
-					type='text'
-					placeholder='Operating Currency*'
-					required
+				<select
 					onChange={e => setOperatingCurrency(e.target.value)}
-					value={operatingCurrency}
-				/>
+					required
+					defaultValue='defaultOption'
+				>
+					<option disabled hidden value='defaultOption'>
+						Operating Currency*
+					</option>
+					{currencies &&
+						currencies.map(currency => (
+							<option key={currency} value={currency}>
+								{currency}
+							</option>
+						))}
+				</select>
+
 				<input
 					type='text'
 					placeholder='Donor Address'
@@ -94,7 +112,7 @@ const DonorInfoForm = ({ data }) => {
 				/>
 
 				<div className={styles.uploadFile}>
-					<p>Upload Photo</p>
+					{photoError ? <p>{photoError}</p> : <p>Upload Photo</p>}
 					<input
 						type='file'
 						accept='image/png, image/jpeg'

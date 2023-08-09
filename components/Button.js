@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const Button = ({ children, color, url }) => {
+const Button = ({ children, color, url, buttonFunction }) => {
 	let btnColor
 
 	if (color == 'orange') {
@@ -16,12 +16,22 @@ const Button = ({ children, color, url }) => {
 	}
 
 	return (
-		<Link href={url}>
-			<button className={btnColor}>
-				{children}
-				<div className='button-arrow'></div>
-			</button>
-		</Link>
+		<>
+			{url && (
+				<Link href={url}>
+					<button className={btnColor}>
+						{children}
+						<div className='button-arrow'></div>
+					</button>
+				</Link>
+			)}
+			{buttonFunction && (
+				<button className={btnColor} onClick={buttonFunction}>
+					{children}
+					<div className='button-arrow'></div>
+				</button>
+			)}
+		</>
 	)
 }
 

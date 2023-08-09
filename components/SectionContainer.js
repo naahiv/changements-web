@@ -4,14 +4,24 @@ import { useRouter } from 'next/router'
 // components
 import SectionTitle from './SectionTitle'
 
-const SectionContainer = ({ children, back, marginTop, title, noGap }) => {
+const SectionContainer = ({
+	children,
+	back,
+	backFunction,
+	marginTop,
+	title,
+	noGap
+}) => {
 	const router = useRouter()
 
 	return (
 		<section className={marginTop && 'section-margin-top'}>
 			{back && (
 				<div className='backButtonContainer'>
-					<button className='button-back' onClick={() => router.back()}>
+					<button
+						className='button-back'
+						onClick={backFunction ? backFunction : () => router.back()}
+					>
 						<div className='button-arrow'></div>
 						Back
 					</button>

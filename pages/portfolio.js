@@ -10,14 +10,12 @@ import CardsSection from '@/components/CardsSection'
 // sections
 import Contact from '@/components/Contact'
 
-// temp lists
-import { nonProfits } from '@/temp/listPlaceholders'
-
 // hooks
 import { useCollection } from '@/hooks/useCollection'
 
 const portfolio = () => {
 	const { documents: programs } = useCollection('programs')
+	const { documents: nonProfits } = useCollection('users')
 
 	return (
 		<>
@@ -66,12 +64,14 @@ const portfolio = () => {
 				</ImageTextColumns>
 
 				{/* NonProfits Section */}
-				<CardsSection
-					title='NonProfits'
-					content={nonProfits}
-					folder='portfolio/non-profits'
-					buttonText='Learn More'
-				/>
+				{nonProfits && (
+					<CardsSection
+						title='NonProfits'
+						content={nonProfits.filter(user => user.type == 'ngo')}
+						folder='portfolio/non-profits'
+						buttonText='Learn More'
+					/>
+				)}
 
 				{/* Programs Section */}
 				{programs && (
