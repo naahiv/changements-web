@@ -6,7 +6,13 @@ import portfolioStyles from '@/styles/Portfolio.module.scss'
 
 import Image from 'next/image'
 
-const DonorProgram = ({ activeProgram: program }) => {
+// hooks
+import { useCurrency } from '@/hooks/useCurrency'
+
+const DonorProgram = ({ activeProgram: program, user }) => {
+	// Currencies
+	const { convert } = useCurrency()
+
 	return (
 		<>
 			{program && (
@@ -30,28 +36,31 @@ const DonorProgram = ({ activeProgram: program }) => {
 								<div className={portfolioStyles.programHighlights}>
 									<div>
 										<h2 className='dark-orange'>
-											{program.fundsRequired}
-											<span style={{ fontSize: '1rem' }}>
-												{program.currency}
-											</span>
+											{convert(
+												program.currency,
+												user.operatingCurrency,
+												program.fundsRequired
+											)}
 										</h2>
 										<p>Funds Required</p>
 									</div>
 									<div>
 										<h2 className='orange'>
-											{program.fundsFulfilled}
-											<span style={{ fontSize: '1rem' }}>
-												{program.currency}
-											</span>
+											{convert(
+												program.currency,
+												user.operatingCurrency,
+												program.fundsFulfilled
+											)}
 										</h2>
 										<p>Funds Fulfilled</p>
 									</div>
 									<div>
 										<h2 className='red'>
-											{program.fundsRequired - program.fundsFulfilled}
-											<span style={{ fontSize: '1rem' }}>
-												{program.currency}
-											</span>
+											{convert(
+												program.currency,
+												user.operatingCurrency,
+												program.fundsRequired - program.fundsFulfilled
+											)}
 										</h2>
 										<p>Funds Fulfilled</p>
 									</div>

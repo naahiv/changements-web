@@ -32,8 +32,8 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 			{
 				name: name,
 				fundsRequired: fundsRequired,
-				fundsFulfilled: fundsFulfilled,
-				fundsSeeking: fundsSeeking,
+				// fundsFulfilled: fundsFulfilled,
+				// fundsSeeking: fundsSeeking,
 				description: description
 			},
 			photo,
@@ -87,7 +87,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 				value={fundsRequired}
 			/>
 
-			<input
+			{/* <input
 				type='number'
 				placeholder='Funds Fulfilled'
 				required
@@ -101,7 +101,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 				required
 				onChange={e => setFundsSeeking(e.target.value)}
 				value={fundsSeeking}
-			/>
+			/> */}
 
 			<textarea
 				placeholder='Description'

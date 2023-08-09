@@ -30,12 +30,13 @@ const CreateProgramForm = ({ setOpenForm }) => {
 			{
 				name: name,
 				fundsRequired: fundsRequired,
-				fundsFulfilled: fundsFulfilled,
-				fundsSeeking: fundsSeeking,
+				fundsFulfilled: 0,
+				// fundsFulfilled: fundsFulfilled,
+				// fundsSeeking: fundsSeeking,
 				description: description,
 				createdBy: user.uid,
 				owner: owner.name,
-				currency: owner.donationCurrency,
+				currency: owner.operatingCurrency,
 				pledges: []
 			},
 			photo,
@@ -89,7 +90,7 @@ const CreateProgramForm = ({ setOpenForm }) => {
 				value={fundsRequired}
 			/>
 
-			<input
+			{/* <input
 				type='number'
 				placeholder='Funds Fulfilled'
 				required
@@ -103,7 +104,7 @@ const CreateProgramForm = ({ setOpenForm }) => {
 				required
 				onChange={e => setFundsSeeking(e.target.value)}
 				value={fundsSeeking}
-			/>
+			/> */}
 
 			<textarea
 				placeholder='Description'

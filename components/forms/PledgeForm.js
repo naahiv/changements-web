@@ -5,7 +5,13 @@ import styles from '@/styles/Login.module.scss'
 import { useState } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 
-const PledgeForm = ({ activeProgram, user }) => {
+const PledgeForm = ({
+	activeProgram,
+	user,
+	setOpenForm,
+	setActiveProgram,
+	setOpenSearch
+}) => {
 	// firestore
 	const { updateDocument } = useFirestore('programs')
 
@@ -22,6 +28,7 @@ const PledgeForm = ({ activeProgram, user }) => {
 				...activeProgram.pledges,
 				{
 					amount: amount,
+					fulfilledAmount: 0,
 					frequency: frequency,
 					donorId: user.id,
 					donorName: user.name,
@@ -30,28 +37,14 @@ const PledgeForm = ({ activeProgram, user }) => {
 				}
 			]
 		})
-	}
 
-	// const ratio = (1 / from) * to
+		setOpenForm(false)
+		setActiveProgram(null)
+		setOpenSearch(false)
+	}
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			{/* <select
-				required
-				defaultValue='defaultOption'
-				onChange={e => setDonationCurrency(e.target.value)}
-			>
-				<option disabled hidden value='defaultOption'>
-					Operating Currency*
-				</option>
-				{currencies &&
-					currencies.map(currency => (
-						<option key={currency} value={currency}>
-							{currency}
-						</option>
-					))}
-			</select> */}
-
 			<input
 				type='number'
 				placeholder='Amount'

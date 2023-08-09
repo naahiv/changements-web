@@ -68,22 +68,34 @@ const NgoProgramCard = ({
 					<div className={styles.projectHighlights}>
 						<div className={styles.projectHighlight}>
 							<h2 style={{ color: '#FB8B24' }}>
-								{fundsRequired}
-								<span style={{ fontSize: '1rem' }}>{currency}</span>
+								{Number(fundsRequired)
+									.toLocaleString('en-US', {
+										style: 'currency',
+										currency: currency
+									})
+									.slice(0, -3)}
 							</h2>
 							<p>Funds Required</p>
 						</div>
 						<div className={styles.projectHighlight}>
 							<h2 style={{ color: '#E36414' }}>
-								{fundsFulfilled}
-								<span style={{ fontSize: '1rem' }}>{currency}</span>
+								{Number(fundsFulfilled)
+									.toLocaleString('en-US', {
+										style: 'currency',
+										currency: currency
+									})
+									.slice(0, -3)}
 							</h2>
 							<p>Funds Fulfilled</p>
 						</div>
 						<div className={styles.projectHighlight}>
 							<h2 style={{ color: '#9A031E' }}>
-								{fundsRequired - fundsFulfilled}
-								<span style={{ fontSize: '1rem' }}>{currency}</span>
+								{Number(fundsRequired - fundsFulfilled)
+									.toLocaleString('en-US', {
+										style: 'currency',
+										currency: currency
+									})
+									.slice(0, -3)}
 							</h2>
 							<p>Funds Fulfilled</p>
 						</div>

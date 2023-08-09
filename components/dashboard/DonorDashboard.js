@@ -8,6 +8,7 @@ import Card from '../Card'
 import DonorProgram from './DonorProgram'
 import Button from '../Button'
 import PledgeForm from '../forms/PledgeForm'
+import DonorPledgeCard from './DonorPledgeCard'
 
 // hooks
 import { useState } from 'react'
@@ -22,8 +23,6 @@ const DonorDashboard = ({ user }) => {
 	// firebase
 	const { documents: programs } = useCollection('programs')
 
-	console.log(searchFilter)
-
 	return (
 		<section>
 			{/* My Pledges */}
@@ -37,6 +36,25 @@ const DonorDashboard = ({ user }) => {
 						>
 							Make a Pledge
 						</button>
+					</div>
+					<div className={styles.cardsContainer}>
+						{programs &&
+							programs
+								.filter(program =>
+									program.pledges.find(pledge => pledge.donorId == user.id)
+								)
+								.map((filteredProgram, index) => (
+									<DonorPledgeCard
+										key={index}
+										name={filteredProgram.name}
+										photoUrl={filteredProgram.photoUrl}
+										fundsRequired={filteredProgram.fundsRequired}
+										fundsFulfilled={filteredProgram.fundsFulfilled}
+										pledges={filteredProgram.pledges}
+										user={user}
+										currency={filteredProgram.currency}
+									/>
+								))}
 					</div>
 				</SectionContainer>
 			)}
@@ -101,7 +119,7 @@ const DonorDashboard = ({ user }) => {
 							</Button>
 						</div>
 					</div>
-					<DonorProgram activeProgram={activeProgram} />
+					<DonorProgram activeProgram={activeProgram} user={user} />
 				</SectionContainer>
 			)}
 
@@ -113,7 +131,13 @@ const DonorDashboard = ({ user }) => {
 					backFunction={() => setOpenForm(false)}
 					title='Make a Pledge'
 				>
-					<PledgeForm activeProgram={activeProgram} user={user} />
+					<PledgeForm
+						activeProgram={activeProgram}
+						user={user}
+						setOpenForm={setOpenForm}
+						setActiveProgram={setActiveProgram}
+						setOpenSearch={setOpenSearch}
+					/>
 				</SectionContainer>
 			)}
 		</section>

@@ -8,6 +8,7 @@ import CreateProgramForm from '../forms/CreateProgramForm'
 import EditProgramForm from '../forms/EditProgramForm'
 import SectionTitle from '../SectionTitle'
 import NgoProgram from './NgoProgram'
+import DonorProfile from './DonorProfile'
 
 // hooks
 import { useState } from 'react'
@@ -18,8 +19,10 @@ const NgoDashboard = ({ user }) => {
 	const { deleteDocument } = useFirestore('programs')
 	const [openForm, setOpenForm] = useState(false)
 	const [openProgram, setOpenProgram] = useState(false)
+	const [openDonor, setOpenDonor] = useState(false)
 	const [formType, setFormType] = useState('create')
 	const [activeProgram, setActiveProgram] = useState()
+	const [activeDonor, setActiveDonor] = useState()
 
 	// firebase
 	const { documents: programs } = useCollection('programs', [
@@ -52,6 +55,12 @@ const NgoDashboard = ({ user }) => {
 	const deleteOpenProgram = () => {
 		deleteDocument(activeProgram.id)
 		setOpenProgram(false)
+	}
+
+	// show Donor
+	const showDonor = donorId => {
+		setActiveDonor(donorId)
+		setOpenDonor(true)
 	}
 
 	return (
@@ -87,7 +96,7 @@ const NgoDashboard = ({ user }) => {
 				</SectionContainer>
 			)}
 
-			{openProgram && (
+			{openProgram && !openDonor && (
 				<SectionContainer marginTop={true}>
 					<NgoProgram
 						setOpenProgram={setOpenProgram}
@@ -95,6 +104,7 @@ const NgoDashboard = ({ user }) => {
 						openEditForm={openEditForm}
 						deleteOpenProgram={deleteOpenProgram}
 						user={user}
+						showDonor={showDonor}
 					/>
 				</SectionContainer>
 			)}
@@ -114,6 +124,20 @@ const NgoDashboard = ({ user }) => {
 							activeProgram={activeProgram}
 						/>
 					)}
+				</SectionContainer>
+			)}
+
+			{openDonor && activeDonor && (
+				<SectionContainer marginTop={true}>
+					<button
+						style={{ gridColumn: 'span 12' }}
+						className='button-back'
+						onClick={() => setOpenDonor(false)}
+					>
+						<div className='button-arrow'></div>
+						Back
+					</button>
+					<DonorProfile activeDonor={activeDonor} />
 				</SectionContainer>
 			)}
 		</section>

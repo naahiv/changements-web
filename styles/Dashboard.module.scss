@@ -115,6 +115,33 @@
 	gap: calc(base.$gap / 2);
 }
 
+// Pledge card specific
+.pledges {
+	display: flex;
+	gap: calc(base.$gap / 2);
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	div {
+		h4 {
+			color: base.$color-primary-orange;
+		}
+	}
+}
+
+// Donor's Profile
+.donorProfileTitle {
+	grid-column: span 12;
+}
+
+.donorPhoto {
+	position: relative;
+	width: 100px;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
 // tablet
 
 @media screen and (max-width: 1024px) {

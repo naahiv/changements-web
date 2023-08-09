@@ -57,30 +57,36 @@ const Program = () => {
 								<div className={styles.programHighlights}>
 									<div>
 										<h2 className='dark-orange'>
-											{program.fundsRequired}
-											<span style={{ fontSize: '1rem' }}>
-												{program.currency}
-											</span>
+											{Number(program.fundsRequired)
+												.toLocaleString('en-US', {
+													style: 'currency',
+													currency: program.currency
+												})
+												.slice(0, -3)}
 										</h2>
 										<p>Funds Required</p>
 									</div>
 									<div>
 										<h2 className='orange'>
-											{program.fundsFulfilled}
-											<span style={{ fontSize: '1rem' }}>
-												{program.currency}
-											</span>
+											{Number(program.fundsFulfilled)
+												.toLocaleString('en-US', {
+													style: 'currency',
+													currency: program.currency
+												})
+												.slice(0, -3)}
 										</h2>
 										<p>Funds Fulfilled</p>
 									</div>
 									<div>
 										<h2 className='red'>
-											{program.fundsRequired - program.fundsFulfilled}
-											<span style={{ fontSize: '1rem' }}>
-												{program.currency}
-											</span>
+											{Number(program.fundsRequired - program.fundsFulfilled)
+												.toLocaleString('en-US', {
+													style: 'currency',
+													currency: program.currency
+												})
+												.slice(0, -3)}
 										</h2>
-										<p>Funds Fulfilled</p>
+										<p>Funds Seeking</p>
 									</div>
 								</div>
 

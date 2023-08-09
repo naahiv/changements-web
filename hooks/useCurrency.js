@@ -8,13 +8,22 @@ export const useCurrency = () => {
 	const [currencies, setCurrencies] = useState([])
 	const [data, setData] = useState()
 
-	const convert = (fromValue, toValue) => {
+	const convert = (fromValue, toValue, amount) => {
 		const from =
 			data && Object.entries(data).filter(([key, value]) => key == fromValue)
 		const to =
 			data && Object.entries(data).filter(([key, value]) => key == toValue)
 
-		return from && to && (1 / from[0][1]) * to[0][1]
+		return (
+			from &&
+			to &&
+			((1 / from[0][1]) * to[0][1] * amount)
+				.toLocaleString('en-US', {
+					style: 'currency',
+					currency: toValue
+				})
+				.slice(0, -3)
+		)
 	}
 
 	useEffect(() => {
