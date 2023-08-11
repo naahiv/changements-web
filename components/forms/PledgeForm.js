@@ -14,6 +14,7 @@ const PledgeForm = ({
 }) => {
 	// firestore
 	const { updateDocument } = useFirestore('programs')
+	const { addDocument } = useFirestore(`programs/${activeProgram.id}/pledges`)
 
 	// form values
 	const [amount, setAmount] = useState('')
@@ -27,15 +28,26 @@ const PledgeForm = ({
 			pledges: [
 				...activeProgram.pledges,
 				{
-					amount: amount,
-					fulfilledAmount: 0,
-					frequency: frequency,
-					donorId: user.id,
-					donorName: user.name,
-					donorCurrency: user.operatingCurrency,
-					donorPhoto: user.photoUrl
+					// amount: amount,
+					// fulfilledAmount: 0,
+					// frequency: frequency,
+					donorId: user.id
+					// donorName: user.name,
+					// donorCurrency: user.operatingCurrency,
+					// donorPhoto: user.photoUrl
 				}
 			]
+		})
+
+		addDocument({
+			// programId: activeProgram.id,
+			amount: amount,
+			fulfilledAmount: 0,
+			frequency: frequency,
+			donorId: user.id,
+			donorName: user.name,
+			donorCurrency: user.operatingCurrency,
+			donorPhoto: user.photoUrl
 		})
 
 		setOpenForm(false)

@@ -130,16 +130,36 @@
 }
 
 // Donor's Profile
-.donorProfileTitle {
+.donorProfileTitleSection {
 	grid-column: span 12;
+	display: flex;
+	grid-template-columns: repeat(12, 1fr);
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: base.$gap;
+}
+
+.donorTitle {
+	display: flex;
+	align-items: center;
+	gap: calc(base.$gap / 2);
 }
 
 .donorPhoto {
 	position: relative;
-	width: 100px;
+	width: 8rem;
 	aspect-ratio: 1 / 1;
 	border-radius: 50%;
 	overflow: hidden;
+}
+
+.donorProfileColumn {
+	grid-column: span 4;
+	margin-bottom: base.$gap;
+
+	h5 {
+		margin-bottom: calc(base.$gap / 3);
+	}
 }
 
 // tablet
@@ -186,5 +206,23 @@
 	.openProjectTitle {
 		flex-direction: column-reverse;
 		gap: calc(base.$gap / 4);
+	}
+
+	.donorProfileTitleSection {
+		align-items: start;
+	}
+
+	.donorTitle {
+		h3 {
+			font-size: 1.4rem;
+		}
+	}
+
+	.profileTitleButtons {
+		display: none;
+	}
+
+	.donorProfileColumn {
+		grid-column: span 12;
 	}
 }

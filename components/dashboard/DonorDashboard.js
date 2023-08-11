@@ -43,9 +43,10 @@ const DonorDashboard = ({ user }) => {
 								.filter(program =>
 									program.pledges.find(pledge => pledge.donorId == user.id)
 								)
-								.map((filteredProgram, index) => (
+								.map(filteredProgram => (
 									<DonorPledgeCard
-										key={index}
+										key={filteredProgram.id}
+										id={filteredProgram.id}
 										name={filteredProgram.name}
 										photoUrl={filteredProgram.photoUrl}
 										fundsRequired={filteredProgram.fundsRequired}

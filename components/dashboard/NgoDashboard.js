@@ -82,7 +82,7 @@ const NgoDashboard = ({ user }) => {
 									id={program.id}
 									name={program.name}
 									fundsRequired={program.fundsRequired}
-									fundsFulfilled={program.fundsFulfilled}
+									// fundsFulfilled={program.fundsFulfilled}
 									fundsSeeking={program.fundsSeeking}
 									currency={program.currency}
 									description={program.description}
@@ -128,7 +128,7 @@ const NgoDashboard = ({ user }) => {
 			)}
 
 			{openDonor && activeDonor && (
-				<SectionContainer marginTop={true}>
+				<SectionContainer marginTop={true} noGap={true}>
 					<button
 						style={{ gridColumn: 'span 12' }}
 						className='button-back'
@@ -137,7 +137,12 @@ const NgoDashboard = ({ user }) => {
 						<div className='button-arrow'></div>
 						Back
 					</button>
-					<DonorProfile activeDonor={activeDonor} />
+					<DonorProfile
+						activeDonor={activeDonor}
+						activeProgram={activeProgram}
+						setOpenDonor={setOpenDonor}
+						user={user}
+					/>
 				</SectionContainer>
 			)}
 		</section>

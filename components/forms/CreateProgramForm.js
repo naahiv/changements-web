@@ -9,7 +9,7 @@ import { useDocument } from '@/hooks/useDocument'
 
 const CreateProgramForm = ({ setOpenForm }) => {
 	// firestore
-	const { addDocument } = useFirestore('programs')
+	const { addDocumentWithPhoto } = useFirestore('programs')
 	const { user } = useAuthContext()
 	const { document: owner } = useDocument('users', user.uid)
 
@@ -26,7 +26,7 @@ const CreateProgramForm = ({ setOpenForm }) => {
 	const handleSubmit = e => {
 		e.preventDefault()
 
-		addDocument(
+		addDocumentWithPhoto(
 			{
 				name: name,
 				fundsRequired: fundsRequired,

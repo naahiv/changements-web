@@ -69,7 +69,27 @@ export const useFirestore = data => {
 	}
 
 	// add a document
-	const addDocument = async (doc, photo, photoPath) => {
+	const addDocument = async doc => {
+		dispatch({ type: 'IS_PENDING' })
+
+		try {
+			const createdAt = serverTimestamp()
+
+			const addedDocument = await addDoc(collectionRef, {
+				...doc,
+				createdAt
+			})
+			dispatchIfNotCancelled({
+				type: 'ADDED_DOCUMENT',
+				payload: addedDocument
+			})
+		} catch (err) {
+			dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })
+		}
+	}
+
+	// add a document
+	const addDocumentWithPhoto = async (doc, photo, photoPath) => {
 		dispatch({ type: 'IS_PENDING' })
 
 		try {
@@ -144,5 +164,11 @@ export const useFirestore = data => {
 		return () => setIsCancelled(true)
 	}, [])
 
-	return { addDocument, deleteDocument, updateDocument, response }
+	return {
+		addDocument,
+		deleteDocument,
+		updateDocument,
+		addDocumentWithPhoto,
+		response
+	}
 }

@@ -7,6 +7,7 @@ import Image from 'next/image'
 
 // hooks
 import { useCurrency } from '@/hooks/useCurrency'
+import { useCollection } from '@/hooks/useCollection'
 
 const NgoProgram = ({
 	setOpenProgram,
@@ -17,6 +18,17 @@ const NgoProgram = ({
 }) => {
 	// Currencies
 	const { convert } = useCurrency()
+
+	// Pledges
+	const { documents: pledges } = useCollection(`programs/${program.id}/pledges`)
+
+	// Calculating all fulfilled pledges from all donors to get a total funds fullfiled
+	const fundsFulfilled =
+		pledges &&
+		pledges.reduce(
+			(accumulator, pledge) => accumulator + pledge.fulfilledAmount,
+			0
+		)
 
 	return (
 		<>
@@ -75,7 +87,7 @@ const NgoProgram = ({
 									</div>
 									<div>
 										<h2 className='orange'>
-											{Number(program.fundsFulfilled)
+											{Number(fundsFulfilled)
 												.toLocaleString('en-US', {
 													style: 'currency',
 													currency: program.currency
@@ -86,7 +98,7 @@ const NgoProgram = ({
 									</div>
 									<div>
 										<h2 className='red'>
-											{Number(program.fundsRequired - program.fundsFulfilled)
+											{Number(program.fundsRequired - fundsFulfilled)
 												.toLocaleString('en-US', {
 													style: 'currency',
 													currency: program.currency
@@ -99,11 +111,11 @@ const NgoProgram = ({
 
 								<p>{program.description}</p>
 
-								{program.pledges.length > 0 && (
+								{pledges && pledges.length > 0 && (
 									<>
 										<h4>Donors</h4>
 										<div className={styles.donorsList}>
-											{program.pledges.map(pledge => (
+											{pledges.map(pledge => (
 												<div className={styles.donorCard} key={pledge.donorId}>
 													<div className={styles.donorCardHeader}>
 														<div className={styles.donorCardPhoto}>

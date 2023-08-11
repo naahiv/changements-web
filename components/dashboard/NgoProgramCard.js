@@ -6,12 +6,13 @@ import Image from 'next/image'
 
 // hooks
 import { useDocument } from '@/hooks/useDocument'
+import { useCollection } from '@/hooks/useCollection'
 import { useFirestore } from '@/hooks/useFirestore'
 
 const NgoProgramCard = ({
 	name,
 	fundsRequired,
-	fundsFulfilled,
+	// fundsFulfilled,
 	fundsSeeking,
 	description,
 	user,
@@ -23,6 +24,17 @@ const NgoProgramCard = ({
 }) => {
 	const { document: activeProgram } = useDocument('programs', id)
 	const { deleteDocument } = useFirestore('programs')
+
+	// Pledges
+	const { documents: pledges } = useCollection(`programs/${id}/pledges`)
+
+	// Calculating all fulfilled pledges from all donors to get a total funds fullfiled
+	const fundsFulfilled =
+		pledges &&
+		pledges.reduce(
+			(accumulator, pledge) => accumulator + pledge.fulfilledAmount,
+			0
+		)
 
 	return (
 		<div className={styles.card}>

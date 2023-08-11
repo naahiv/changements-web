@@ -1,3 +1,9 @@
+// styles
+import styles from '@/styles/Header.module.scss'
+
+// components
+import Link from 'next/link'
+
 // hooks
 import { useLogout } from '@/hooks/useLogout'
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -17,7 +23,9 @@ const LogOutButton = ({ close }) => {
 
 	return (
 		<>
-			<p>{document && document.name}</p>
+			<Link href='/profile'>
+				<p className={styles.profileButton}>{document && document.name}</p>
+			</Link>
 			<button className='button-orange' onClick={() => handleLogOut()}>
 				Log Out
 			</button>
