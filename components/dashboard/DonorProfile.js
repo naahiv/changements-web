@@ -83,18 +83,16 @@ const DonorProfile = ({
 							</div>
 							<h3>{displayedUser.name}</h3>
 						</div>
-						{user.type == 'ngo' && (
-							<div className={`buttons-row ${styles.profileTitleButtons}`}>
-								<Link href={'mailto:' + donor.email}>
-									<button className='button-orange'>Contact Donor</button>
-								</Link>
-								<button onClick={removeDonor}>Remove Donor</button>
-							</div>
-						)}
+						<div className={`buttons-row ${styles.profileTitleButtons}`}>
+							<Link href={'mailto:' + donor.email}>
+								<button className='button-orange'>Contact Donor</button>
+							</Link>
+							<button onClick={removeDonor}>Remove Donor</button>
+						</div>
 					</div>
 
 					{/* Pledges */}
-					{user.type == 'ngo' && pledge && (
+					{pledge && (
 						<>
 							<div className={styles.donorProfileColumn}>
 								<h2 className='dark-orange'>

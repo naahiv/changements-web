@@ -2,22 +2,19 @@
 import Head from 'next/head'
 
 // components
-import SectionContainer from '@/components/SectionContainer'
-import DonorProfile from '@/components/dashboard/DonorProfile'
+import ProfileUI from '@/components/profile/ProfileUI'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { useDocument } from '@/hooks/useDocument'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
-const Profile = () => {
-	const { user: loggedIn } = useAuthContext()
+const profile = () => {
+	const { user } = useAuthContext()
 
 	// router
 	const router = useRouter()
 
-	!loggedIn && router.push('/')
+	!user && router.push('/')
 
 	return (
 		<>
@@ -27,15 +24,13 @@ const Profile = () => {
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
 
-			{loggedIn && (
+			{user && (
 				<main>
-					{loggedIn.type == 'donor' && (
-						<SectionContainer marginTop={true}>test</SectionContainer>
-					)}
+					<ProfileUI />
 				</main>
 			)}
 		</>
 	)
 }
 
-export default Profile
+export default profile

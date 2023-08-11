@@ -6,9 +6,7 @@ import DashboardUI from '@/components/dashboard/DashboardUI'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
-import { useDocument } from '@/hooks/useDocument'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 
 const dashboard = () => {
 	const { user } = useAuthContext()
