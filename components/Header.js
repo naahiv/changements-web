@@ -7,34 +7,11 @@ import styles from '@/styles/Header.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
 import Hamburger from './Hamburger'
+import Menu from './Menu'
 import LogOutButton from './LogOutButton'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
-
-// Menu
-export const menu = [
-	{
-		url: '/about',
-		text: 'About Us'
-	},
-	{
-		url: '/ngo-square',
-		text: 'NGO Square'
-	},
-	{
-		url: '/donors-nook',
-		text: `Donor's Nook`
-	},
-	{
-		url: '/portfolio',
-		text: 'Portfolio'
-	},
-	{
-		url: '/blog',
-		text: 'Change Buzz'
-	}
-]
 
 const Header = () => {
 	// context
@@ -87,13 +64,41 @@ const Header = () => {
 								</li>
 							</Link>
 						)}
-						{menu.map(mapItem => (
-							<Link key={mapItem.url} href={mapItem.url}>
+
+						<Link href='/about'>
+							<li onClick={() => closeMenu()} className='nav-li'>
+								About Us
+							</li>
+						</Link>
+
+						{!user && (
+							<Link href='/ngo-square'>
 								<li onClick={() => closeMenu()} className='nav-li'>
-									{mapItem.text}
+									NGO Square
 								</li>
 							</Link>
-						))}
+						)}
+
+						{!user && (
+							<Link href='/donors-nook'>
+								<li onClick={() => closeMenu()} className='nav-li'>
+									Donor's Nook
+								</li>
+							</Link>
+						)}
+
+						{user && <Menu closeMenu={closeMenu} />}
+
+						<Link href='/portfolio'>
+							<li onClick={() => closeMenu()} className='nav-li'>
+								Portfolio
+							</li>
+						</Link>
+						<Link href='/blog'>
+							<li onClick={() => closeMenu()} className='nav-li'>
+								Change Buzz
+							</li>
+						</Link>
 					</ul>
 				</nav>
 

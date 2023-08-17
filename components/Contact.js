@@ -37,11 +37,21 @@ const Contact = () => {
 					</ul>
 
 					<ul className={styles.contactMenu}>
-						{menu.map(mapItem => (
-							<Link key={mapItem.url} href={mapItem.url}>
-								<li>{mapItem.text}</li>
-							</Link>
-						))}
+						<Link href='/about'>
+							<li>About Us</li>
+						</Link>
+						<Link href='/ngo-square'>
+							<li>NGO Square</li>
+						</Link>
+						<Link href='/donors-nook'>
+							<li>Donor's Nook</li>
+						</Link>
+						<Link href='/portfolio'>
+							<li>Portfolio</li>
+						</Link>
+						<Link href='/blog'>
+							<li>Change Buzz</li>
+						</Link>
 					</ul>
 				</div>
 			</div>
