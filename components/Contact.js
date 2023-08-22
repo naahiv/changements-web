@@ -6,10 +6,13 @@ import SectionTitle from './SectionTitle'
 import ContactForm from './ContactForm'
 import Link from 'next/link'
 
-// menu
-import { menu } from './Header'
+// hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 const Contact = () => {
+	// context
+	const { user } = useAuthContext()
+
 	return (
 		<section>
 			<div className='titleContainer'>
@@ -40,12 +43,16 @@ const Contact = () => {
 						<Link href='/about'>
 							<li>About Us</li>
 						</Link>
-						<Link href='/ngo-square'>
-							<li>NGO Square</li>
-						</Link>
-						<Link href='/donors-nook'>
-							<li>Donor's Nook</li>
-						</Link>
+						{!user && (
+							<>
+								<Link href='/ngo-square'>
+									<li>NGO Square</li>
+								</Link>
+								<Link href='/donors-nook'>
+									<li>Donor's Nook</li>
+								</Link>
+							</>
+						)}
 						<Link href='/portfolio'>
 							<li>Portfolio</li>
 						</Link>

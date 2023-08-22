@@ -74,14 +74,14 @@ const portfolio = () => {
 				)}
 
 				{/* Programs Section */}
-				{programs && (
+				{/* {programs && (
 					<CardsSection
 						title='Programs'
 						content={programs}
 						folder='portfolio/programs'
 						buttonText='Learn More'
 					/>
-				)}
+				)} */}
 
 				{/* Contact */}
 				<Contact />

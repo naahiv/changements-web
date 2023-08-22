@@ -9,6 +9,9 @@ import DonorProgram from './DonorProgram'
 import Button from '../Button'
 import PledgeForm from '../forms/PledgeForm'
 import DonorPledgeCard from './DonorPledgeCard'
+import ProfileUI from '../profile/ProfileUI'
+import PodCard from './PodCard'
+import CreatePodForm from '../forms/CreatePodForm'
 
 // hooks
 import { useState } from 'react'
@@ -17,14 +20,19 @@ import { useCollection } from '@/hooks/useCollection'
 const DonorDashboard = ({ user }) => {
 	const [openSearch, setOpenSearch] = useState(false)
 	const [openForm, setOpenForm] = useState(false)
+	const [openPodForm, setOpenPodForm] = useState(false)
 	const [searchFilter, setSearchFilter] = useState('')
 	const [activeProgram, setActiveProgram] = useState(null)
 
 	// firebase
 	const { documents: programs } = useCollection('programs')
+	const { documents: pods } = useCollection('pods')
 
 	return (
 		<section>
+			{/* Profile Info */}
+			<ProfileUI />
+
 			{/* My Pledges */}
 			{!openSearch && (
 				<SectionContainer marginTop={true}>
@@ -113,9 +121,7 @@ const DonorDashboard = ({ user }) => {
 							>
 								Make a Pledge
 							</button>
-							<Button
-								url={`portfolio/non-profits/$}${activeProgram.createdBy}`}
-							>
+							<Button url={`/portfolio/non-profits/${activeProgram.createdBy}`}>
 								Visit NGO Page
 							</Button>
 						</div>
@@ -139,6 +145,52 @@ const DonorDashboard = ({ user }) => {
 						setActiveProgram={setActiveProgram}
 						setOpenSearch={setOpenSearch}
 					/>
+				</SectionContainer>
+			)}
+
+			{/* My Pods */}
+			{!openPodForm && (
+				<SectionContainer marginTop={true}>
+					<div className={styles.dashboardHeader}>
+						<SectionTitle>My Pods</SectionTitle>
+						<div className='buttons-row'>
+							<button
+								className='button-orange'
+								onClick={() => setOpenPodForm(true)}
+							>
+								Create a Pod
+							</button>
+							<button>Join a Pod</button>
+						</div>
+					</div>
+					<div className={styles.cardsContainer}>
+						{pods &&
+							pods
+								.filter(pod => pod.createdBy == user.id)
+								.map(pod => (
+									<PodCard
+										key={pod.id}
+										name={pod.name}
+										programName={pod.programName}
+										programId={pod.programId}
+										user={user}
+										id={pod.id}
+										photoUrl={pod.photoUrl}
+									/>
+								))}
+					</div>
+				</SectionContainer>
+			)}
+
+			{/* Create a Pod Form */}
+			{openPodForm && (
+				<SectionContainer
+					marginTop={true}
+					back={true}
+					backFunction={() => setOpenPodForm(false)}
+					title='Create a Pod'
+				>
+					<CreatePodForm setOpenPodForm={setOpenPodForm} />
 				</SectionContainer>
 			)}
 		</section>

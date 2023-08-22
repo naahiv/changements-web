@@ -8,10 +8,16 @@ import Highlights from '@/components/Highlights'
 import ImageTextColumns from '@/components/ImageTextColumns'
 import DonorNgoHomeSection from '@/components/DonorNgoHomeSection'
 
+// hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
+
 // components
 import SectionTitle from '@/components/SectionTitle'
 
 export default function Home() {
+	// context
+	const { user } = useAuthContext()
+
 	return (
 		<>
 			<Head>
@@ -25,7 +31,7 @@ export default function Home() {
 			</Head>
 			<main>
 				{/* Hero Section */}
-				<Hero />
+				<Hero user={user} />
 
 				{/* Highlights Section */}
 				<Highlights />
@@ -71,7 +77,7 @@ export default function Home() {
 				</ImageTextColumns>
 
 				{/* Donor & NGO Section */}
-				<DonorNgoHomeSection />
+				{!user && <DonorNgoHomeSection />}
 
 				{/* Donor Impact Section */}
 				<ImageTextColumns direction='row' photoUrl='/donor-impact.jpg'>

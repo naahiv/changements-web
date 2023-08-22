@@ -9,6 +9,7 @@ import EditProgramForm from '../forms/EditProgramForm'
 import SectionTitle from '../SectionTitle'
 import NgoProgram from './NgoProgram'
 import DonorProfile from './DonorProfile'
+import ProfileUI from '../profile/ProfileUI'
 
 // hooks
 import { useState } from 'react'
@@ -65,6 +66,8 @@ const NgoDashboard = ({ user }) => {
 
 	return (
 		<section>
+			{/* Profile Info */}
+			<ProfileUI />
 			{!openForm && !openProgram && (
 				<SectionContainer marginTop={true}>
 					<div className={styles.dashboardHeader}>

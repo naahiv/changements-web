@@ -138,6 +138,25 @@
 
 @media screen and (max-width: 1024px) {
 	.header {
+		ul {
+			gap: calc(base.$gap / 3);
+
+			li {
+				font-size: 0.8rem;
+			}
+		}
+	}
+
+	.auth {
+		button {
+			font-size: 0.8rem;
+			padding: 0.6rem;
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.header {
 		.headerElements {
 			flex-direction: column;
 			justify-content: start;
@@ -148,6 +167,17 @@
 			flex-direction: column;
 			align-items: center;
 			gap: calc(base.$gap / 4);
+
+			li {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	.auth {
+		button {
+			font-size: 1rem;
+			padding: 0.625rem 1.25rem;
 		}
 	}
 
@@ -174,7 +204,4 @@
 	%menuBtnDefault {
 		display: flex !important;
 	}
-}
-
-@media screen and (max-width: 768px) {
 }

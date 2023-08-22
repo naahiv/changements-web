@@ -12,10 +12,16 @@ import ImageTextColumns from '@/components/ImageTextColumns'
 import SectionTitle from '@/components/SectionTitle'
 import CardsSection from '@/components/CardsSection'
 
+// hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
+
 // temp lists
 import { donorPods } from '@/temp/listPlaceholders'
 
 const DonorsNook = () => {
+	// context
+	const { user } = useAuthContext()
+
 	return (
 		<>
 			<Head>
@@ -56,9 +62,11 @@ const DonorsNook = () => {
 								initiate or join Donor Pods.
 							</p>
 
-							<Button url='/register' color='orange'>
-								Become a Donor
-							</Button>
+							{!user && (
+								<Button url='/register' color='orange'>
+									Become a Donor
+								</Button>
+							)}
 						</div>
 					</div>
 				</section>
@@ -67,7 +75,7 @@ const DonorsNook = () => {
 				<ImageTextColumns
 					direction='row-reverse'
 					buttonText='Make a Pledge'
-					url='/register'
+					url={!user ? '/register' : 'dashboard'}
 					photoUrl='/indian-old-woman.jpg'
 				>
 					<SectionTitle color='black'>

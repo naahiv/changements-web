@@ -5,11 +5,17 @@ import Head from 'next/head'
 import PagesHero from '@/components/PagesHero'
 import SectionTitle from '@/components/SectionTitle'
 
+// hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
+
 // sections
 import ImageTextColumns from '@/components/ImageTextColumns'
 import Contact from '@/components/Contact'
 
 const NGOSquare = () => {
+	// context
+	const { user } = useAuthContext()
+
 	return (
 		<>
 			<Head>
@@ -36,8 +42,8 @@ const NGOSquare = () => {
 				{/* About NGO Square */}
 				<ImageTextColumns
 					direction='row'
-					buttonText='Register a NGO'
-					url='/register'
+					buttonText={!user ? 'Register a NGO' : 'Go to Dashboard'}
+					url={!user ? '/register' : '/dashboard'}
 					photoUrl='/about-ngo.jpg'
 				>
 					<p>
@@ -56,7 +62,7 @@ const NGOSquare = () => {
 				<ImageTextColumns
 					direction='row-reverse'
 					buttonText='Create a Program'
-					url='/register'
+					url={!user ? '/register' : '/dashboard'}
 					photoUrl='/indian-old-woman.jpg'
 				>
 					<SectionTitle color='black'>

@@ -5,7 +5,7 @@ import styles from '@/styles/Homepage.module.scss'
 import Image from 'next/image'
 import Button from './Button'
 
-const Hero = () => {
+const Hero = ({ user }) => {
 	return (
 		<section className={styles.hero}>
 			<Image
@@ -30,14 +30,16 @@ const Hero = () => {
 						impact.
 					</p>
 
-					<div className='buttons-row'>
-						<Button color='orange' url='/register'>
-							Register a NGO
-						</Button>
-						<Button color='red' url='/register'>
-							Become a Donor
-						</Button>
-					</div>
+					{!user && (
+						<div className='buttons-row'>
+							<Button color='orange' url='/register'>
+								Register a NGO
+							</Button>
+							<Button color='red' url='/register'>
+								Become a Donor
+							</Button>
+						</div>
+					)}
 				</div>
 			</div>
 		</section>

@@ -8,12 +8,15 @@ import styles from '@/styles/About.module.scss'
 import Contact from '@/components/Contact'
 import PagesHero from '@/components/PagesHero'
 import SectionTitle from '@/components/SectionTitle'
+import CardsSection from '@/components/CardsSection'
 import Image from 'next/image'
 
-// temp lists
-import { programs } from '@/temp/listPlaceholders'
+// hooks
+import { useCollection } from '@/hooks/useCollection'
 
 const about = () => {
+	const { documents: programs } = useCollection('programs')
+
 	return (
 		<>
 			<Head>
@@ -115,32 +118,14 @@ const about = () => {
 				</section>
 
 				{/* Programs List */}
-				<section>
-					<div className='titleContainer'>
-						<SectionTitle>
-							The <span className='red'>Causes</span>
-						</SectionTitle>
-					</div>
-
-					<div className={styles.causes}>
-						{programs &&
-							programs.map((program, index) => (
-								<div key={index} className={styles.causeImage}>
-									<Image
-										src={program.photo}
-										fill
-										quality={80}
-										sizes='(max-width: 768px) 100vw, 768px'
-										style={{ objectFit: 'cover' }}
-										alt='Section Image'
-										priority={false}
-										loading='lazy'
-										as='img'
-									/>
-								</div>
-							))}
-					</div>
-				</section>
+				{programs && (
+					<CardsSection
+						title='The Causes'
+						content={programs}
+						folder='portfolio/programs'
+						buttonText='Learn More'
+					/>
+				)}
 
 				{/* Contact */}
 				<Contact />
