@@ -14,13 +14,12 @@ import CardsSection from '@/components/CardsSection'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
-
-// temp lists
-import { donorPods } from '@/temp/listPlaceholders'
+import { useCollection } from '@/hooks/useCollection'
 
 const DonorsNook = () => {
 	// context
 	const { user } = useAuthContext()
+	const { documents: donorPods } = useCollection('pods')
 
 	return (
 		<>

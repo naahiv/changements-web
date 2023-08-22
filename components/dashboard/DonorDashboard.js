@@ -12,21 +12,32 @@ import DonorPledgeCard from './DonorPledgeCard'
 import ProfileUI from '../profile/ProfileUI'
 import PodCard from './PodCard'
 import CreatePodForm from '../forms/CreatePodForm'
+import PodSection from '../PodSection'
 
 // hooks
 import { useState } from 'react'
 import { useCollection } from '@/hooks/useCollection'
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 const DonorDashboard = ({ user }) => {
 	const [openSearch, setOpenSearch] = useState(false)
+	const [openPodsSearch, setOpenPodsSearch] = useState(false)
 	const [openForm, setOpenForm] = useState(false)
 	const [openPodForm, setOpenPodForm] = useState(false)
 	const [searchFilter, setSearchFilter] = useState('')
+	const [searchPodsFilter, setSearchPodsFilter] = useState('')
 	const [activeProgram, setActiveProgram] = useState(null)
+	const [activePod, setActivePod] = useState(null)
 
 	// firebase
 	const { documents: programs } = useCollection('programs')
 	const { documents: pods } = useCollection('pods')
+	const { user: activeUser } = useAuthContext()
+
+	const podProgram =
+		programs &&
+		activePod &&
+		programs.find(item => item.id == activePod.programId)
 
 	return (
 		<section>
@@ -149,7 +160,7 @@ const DonorDashboard = ({ user }) => {
 			)}
 
 			{/* My Pods */}
-			{!openPodForm && (
+			{!openPodForm && !openPodsSearch && !activePod && (
 				<SectionContainer marginTop={true}>
 					<div className={styles.dashboardHeader}>
 						<SectionTitle>My Pods</SectionTitle>
@@ -160,7 +171,9 @@ const DonorDashboard = ({ user }) => {
 							>
 								Create a Pod
 							</button>
-							<button>Join a Pod</button>
+							<button onClick={() => setOpenPodsSearch(true)}>
+								Join a Pod
+							</button>
 						</div>
 					</div>
 					<div className={styles.cardsContainer}>
@@ -192,6 +205,53 @@ const DonorDashboard = ({ user }) => {
 				>
 					<CreatePodForm setOpenPodForm={setOpenPodForm} />
 				</SectionContainer>
+			)}
+
+			{/* Search Pods */}
+			{openPodsSearch && !activePod && (
+				<SectionContainer
+					marginTop={true}
+					back={true}
+					backFunction={() => setOpenPodsSearch(false)}
+				>
+					<div className={styles.dashboardHeader}>
+						<SectionTitle>Search Pods</SectionTitle>
+						<input
+							type='text'
+							placeholder='Search'
+							value={searchPodsFilter}
+							onChange={e => setSearchPodsFilter(e.target.value)}
+						/>
+					</div>
+
+					{pods &&
+						pods
+							.filter(pod =>
+								pod.name.toLowerCase().includes(searchPodsFilter.toLowerCase())
+							)
+							.map(pod => (
+								<Card
+									key={pod.id}
+									id={pod.id}
+									name={pod.name}
+									photo={pod.photoUrl}
+									subtitle={pod.owner}
+									text={pod.description}
+									buttonText='Learn More'
+									buttonFunction={() => setActivePod(pod)}
+								/>
+							))}
+				</SectionContainer>
+			)}
+
+			{/* Open Pod */}
+			{activePod && (
+				<PodSection
+					pod={activePod}
+					podProgram={podProgram}
+					user={activeUser}
+					backFunction={() => setActivePod(false)}
+				/>
 			)}
 		</section>
 	)
