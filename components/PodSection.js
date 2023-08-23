@@ -41,6 +41,11 @@ const PodSection = ({ pod, podProgram, user, backFunction }) => {
 			{podProgram && (
 				<div className={styles.programContent}>
 					<div className={styles.programInfo}>
+						<div className='buttons-row'>
+							<button>Join</button>
+							<button>Join</button>
+							<button>Join</button>
+						</div>
 						<div className={styles.programHighlights}>
 							<div>
 								<h2 className='dark-orange'>

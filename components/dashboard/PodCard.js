@@ -9,7 +9,7 @@ import { useCurrency } from '@/hooks/useCurrency'
 import { useCollection } from '@/hooks/useCollection'
 import { useDocument } from '@/hooks/useDocument'
 
-const PodCard = ({ name, photoUrl, user, programId }) => {
+const PodCard = ({ name, photoUrl, user, programId, setActivePod }) => {
 	const { documents: programs } = useCollection('programs')
 	const podProgram = programs && programs.find(item => item.id == programId)
 	const { documents: pledges } = useCollection(`programs/${programId}/pledges`)
@@ -48,7 +48,7 @@ const PodCard = ({ name, photoUrl, user, programId }) => {
 					</div>
 
 					<div className={styles.cardContent}>
-						<div className={styles.cardTitle}>
+						<div onClick={setActivePod} className={styles.cardTitle}>
 							<h4>{name}</h4>
 						</div>
 
