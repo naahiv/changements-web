@@ -66,8 +66,6 @@ const NgoDashboard = ({ user }) => {
 
 	return (
 		<section>
-			{/* Profile Info */}
-			<ProfileUI />
 			{!openForm && !openProgram && (
 				<SectionContainer marginTop={true}>
 					<div className={styles.dashboardHeader}>

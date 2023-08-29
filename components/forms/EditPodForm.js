@@ -8,9 +8,10 @@ import { useAuthContext } from '@/hooks/useAuthContext'
 import { useDocument } from '@/hooks/useDocument'
 import { useCollection } from '@/hooks/useCollection'
 
-const CreatePodForm = ({ setOpenPodForm }) => {
+const EditPodForm = ({ setOpenPodForm, activePod }) => {
 	// firestore
 	const { addDocumentWithPhoto } = useFirestore('pods')
+	const { updateDocument } = useFirestore('pods')
 	const { user } = useAuthContext()
 	const { document: owner } = useDocument('users', user.uid)
 	const { documents: programs } = useCollection('programs')
@@ -20,11 +21,11 @@ const CreatePodForm = ({ setOpenPodForm }) => {
 	const [addProgramForm, setAddProgramForm] = useState(false)
 
 	// form values
-	const [name, setName] = useState('')
+	const [name, setName] = useState(activePod.name)
 	const [ngoName, setNgoName] = useState('')
-	const [podPrograms, setPodPrograms] = useState([])
+	const [podPrograms, setPodPrograms] = useState(activePod.programs)
 	const [programName, setProgramName] = useState('')
-	const [description, setDescription] = useState('')
+	const [description, setDescription] = useState(activePod.description)
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
 
@@ -61,14 +62,12 @@ const CreatePodForm = ({ setOpenPodForm }) => {
 	const handleSubmit = e => {
 		e.preventDefault()
 
-		addDocumentWithPhoto(
+		updateDocument(
+			activePod.id,
 			{
 				name: name,
 				programs: podPrograms,
-				description: description,
-				createdBy: user.uid,
-				owner: owner.name,
-				members: [owner.id]
+				description: description
 			},
 			photo,
 			'photos'
@@ -210,7 +209,6 @@ const CreatePodForm = ({ setOpenPodForm }) => {
 					type='file'
 					accept='image/png, image/jpeg'
 					onChange={handleFileChange}
-					required
 				/>
 			</div>
 
@@ -226,4 +224,4 @@ const CreatePodForm = ({ setOpenPodForm }) => {
 	)
 }
 
-export default CreatePodForm
+export default EditPodForm
