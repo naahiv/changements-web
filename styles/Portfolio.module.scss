@@ -96,6 +96,16 @@
 	position: relative;
 }
 
+// Program inside the pod on the dashboard page
+.dashboardPodProgram {
+	padding: calc(base.$gap / 3) 0;
+	border-top: 1px solid;
+
+	.ngoName {
+		margin-bottom: calc(base.$gap / 6);
+	}
+}
+
 // tablet
 
 @media screen and (max-width: 1024px) {

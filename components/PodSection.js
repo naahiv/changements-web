@@ -115,12 +115,21 @@ const PodSection = ({ pod, user, backFunction, setOpenEditForm }) => {
 
 					<p>{pod.description}</p>
 
-					{programs &&
-						programs
-							.filter(item =>
-								pod.programs.some(item2 => item2.programName == item.name)
-							)
-							.map(program => <div key={program.id}>{program.name}</div>)}
+					<div>
+						{programs &&
+							programs
+								.filter(item =>
+									pod.programs.some(item2 => item2.programName == item.name)
+								)
+								.map(program => (
+									<div className={styles.dashboardPodProgram} key={program.id}>
+										<p className={styles.ngoName}>NGO: {program.owner}</p>
+										<h4>{program.name}</h4>
+
+										<div className={styles.programHighlights}></div>
+									</div>
+								))}
+					</div>
 				</div>
 				{/* <div className={styles.programPods}></div> */}
 			</div>

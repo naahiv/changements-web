@@ -25,6 +25,7 @@ const Program = () => {
 	const router = useRouter()
 	const { slug } = router.query
 	const { documents: programs } = useCollection('programs')
+	const { documents: pods } = useCollection('pods')
 
 	const program = programs && programs.find(program => program.id === slug)
 
@@ -96,32 +97,38 @@ const Program = () => {
 							<h4>Our ChangeMakers</h4>
 							<div className={styles.programPods}>
 								{/* Donor Pods Section */}
-								{donorPods.map((pod, index) => (
-									<div key={index} className={styles.pod}>
-										<div className={styles.podImage}>
-											<Image
-												src={pod.photoUrl}
-												fill
-												quality={100}
-												sizes='(max-width: 768px) 100vw, 768px'
-												style={{ objectFit: 'cover' }}
-												alt='Pod Photo'
-												priority={true}
-												as='img'
-											/>
-										</div>
-										<div>
-											<p>{pod.subtitle}</p>
-											<h5>{pod.title}</h5>
-										</div>
-										<Button
+								{pods
+									.filter(item =>
+										item.programs.some(
+											item2 => item2.programName == program.name
+										)
+									)
+									.map(pod => (
+										<div key={pod.id} className={styles.pod}>
+											<div className={styles.podImage}>
+												<Image
+													src={pod.photoUrl}
+													fill
+													quality={100}
+													sizes='(max-width: 768px) 100vw, 768px'
+													style={{ objectFit: 'cover' }}
+													alt='Pod Photo'
+													priority={true}
+													as='img'
+												/>
+											</div>
+											<div>
+												<h5>{pod.name}</h5>
+												<p>{pod.description}</p>
+											</div>
+											{/* <Button
 											url={`/portfolio/donor-pods/${pod.id}`}
 											color='simple'
 										>
 											Learn More
-										</Button>
-									</div>
-								))}
+										</Button> */}
+										</div>
+									))}
 							</div>
 						</div>
 					</SectionContainer>
