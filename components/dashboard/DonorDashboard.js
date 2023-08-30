@@ -249,7 +249,7 @@ const DonorDashboard = ({ user }) => {
 			)}
 
 			{/* Open Program */}
-			{activeProgram && !openForm && (
+			{/* {activeProgram && !openForm && (
 				<SectionContainer
 					marginTop={true}
 					back={true}
@@ -271,7 +271,7 @@ const DonorDashboard = ({ user }) => {
 					</div>
 					<DonorProgram activeProgram={activeProgram} user={user} />
 				</SectionContainer>
-			)}
+			)} */}
 		</section>
 	)
 }
