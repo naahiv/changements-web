@@ -5,13 +5,24 @@ import styles from '@/styles/Portfolio.module.scss'
 import SectionContainer from '@/components/SectionContainer'
 import Contact from '@/components/Contact'
 import Image from 'next/image'
+import PodProgramCard from './dashboard/PodProgramCard'
 
 // hooks
 import { useDocument } from '@/hooks/useDocument'
 import { useCollection } from '@/hooks/useCollection'
+import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
+import { useState } from 'react'
 
-const PodSection = ({ pod, user, backFunction, setOpenEditForm }) => {
+const PodSection = ({
+	pod,
+	user,
+	backFunction,
+	setOpenEditForm,
+	openPledgeForm,
+	setActivePod,
+	setOpenPodsSearch
+}) => {
 	const { document: activeUser } = user
 		? useDocument('users', user.uid)
 		: useDocument('users', '123')
@@ -20,6 +31,17 @@ const PodSection = ({ pod, user, backFunction, setOpenEditForm }) => {
 
 	// Currencies
 	const { convert } = useCurrency()
+
+	// join a pod
+	const { updateDocument } = useFirestore('pods')
+
+	const joinPod = async () => {
+		await updateDocument(pod.id, {
+			members: [...pod.members, activeUser.id]
+		})
+		setActivePod(null)
+		setOpenPodsSearch(false)
+	}
 
 	return (
 		<SectionContainer
@@ -46,10 +68,12 @@ const PodSection = ({ pod, user, backFunction, setOpenEditForm }) => {
 					{activeUser && (
 						<div className='buttons-row'>
 							{pod.members.includes(activeUser.id) || (
-								<button className='button-orange'>Join</button>
+								<button onClick={joinPod} className='button-orange'>
+									Join Pod
+								</button>
 							)}
 
-							{pod.owner == activeUser.name && (
+							{pod.ownerId == activeUser.id && (
 								<>
 									<button className='button-orange'>Invite</button>
 									<button onClick={() => setOpenEditForm(true)}>
@@ -59,59 +83,6 @@ const PodSection = ({ pod, user, backFunction, setOpenEditForm }) => {
 							)}
 						</div>
 					)}
-					{/* <div className={styles.programHighlights}>
-						<div>
-							<h2 className='dark-orange'>
-								{activeUser
-									? convert(
-											podProgram.currency,
-											activeUser.operatingCurrency,
-											podProgram.fundsRequired
-									  )
-									: Number(podProgram.fundsRequired)
-											.toLocaleString('en-US', {
-												style: 'currency',
-												currency: podProgram.currency
-											})
-											.slice(0, -3)}
-							</h2>
-							<p>Funds Required</p>
-						</div>
-						<div>
-							<h2 className='orange'>
-								{activeUser
-									? convert(
-											podProgram.currency,
-											activeUser.operatingCurrency,
-											podProgram.fundsFulfilled
-									  )
-									: Number(podProgram.fundsFulfilled)
-											.toLocaleString('en-US', {
-												style: 'currency',
-												currency: podProgram.currency
-											})
-											.slice(0, -3)}
-							</h2>
-							<p>Funds Fullfiled</p>
-						</div>
-						<div>
-							<h2 className='red'>
-								{activeUser
-									? convert(
-											podProgram.currency,
-											activeUser.operatingCurrency,
-											podProgram.fundsRequired - podProgram.fundsFulfilled
-									  )
-									: Number(podProgram.fundsRequired - podProgram.fundsFulfilled)
-											.toLocaleString('en-US', {
-												style: 'currency',
-												currency: podProgram.currency
-											})
-											.slice(0, -3)}
-							</h2>
-							<p>Funds Seeking</p>
-						</div>
-					</div> */}
 
 					<p>{pod.description}</p>
 
@@ -122,12 +93,14 @@ const PodSection = ({ pod, user, backFunction, setOpenEditForm }) => {
 									pod.programs.some(item2 => item2.programName == item.name)
 								)
 								.map(program => (
-									<div className={styles.dashboardPodProgram} key={program.id}>
-										<p className={styles.ngoName}>NGO: {program.owner}</p>
-										<h4>{program.name}</h4>
-
-										<div className={styles.programHighlights}></div>
-									</div>
+									<PodProgramCard
+										key={program.id}
+										program={program}
+										activeUser={activeUser}
+										openPledgeForm={openPledgeForm}
+										pod={pod}
+										// members={members}
+									/>
 								))}
 					</div>
 				</div>

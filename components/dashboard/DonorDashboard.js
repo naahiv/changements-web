@@ -36,6 +36,14 @@ const DonorDashboard = ({ user }) => {
 	const { documents: pods } = useCollection('pods')
 	const { user: activeUser } = useAuthContext()
 
+	// Open Pledge form
+	const openPledgeForm = program => {
+		setActiveProgram(program)
+		setOpenForm(true)
+	}
+
+	pods && console.log(pods.filter(item => item.members.includes(user.id)))
+
 	return (
 		<section>
 			{/* My Pods */}
@@ -58,7 +66,7 @@ const DonorDashboard = ({ user }) => {
 					<div className={styles.cardsContainer}>
 						{pods &&
 							pods
-								.filter(pod => pod.createdBy == user.id)
+								.filter(item => item.members.includes(user.id))
 								.map(pod => (
 									<PodCard
 										key={pod.id}
@@ -138,13 +146,34 @@ const DonorDashboard = ({ user }) => {
 			)}
 
 			{/* Open Pod */}
-			{activePod && !openEditForm && (
+			{activePod && !openEditForm && !openForm && (
 				<PodSection
 					pod={activePod}
 					user={activeUser}
 					backFunction={() => setActivePod(false)}
 					setOpenEditForm={setOpenEditForm}
+					openPledgeForm={openPledgeForm}
+					setActivePod={setActivePod}
+					setOpenPodsSearch={setOpenPodsSearch}
 				/>
+			)}
+
+			{/* Make a Pledge Form */}
+			{openForm && (
+				<SectionContainer
+					marginTop={true}
+					back={true}
+					backFunction={() => setOpenForm(false)}
+					title='Make a Pledge'
+				>
+					<PledgeForm
+						activeProgram={activeProgram}
+						user={user}
+						setOpenForm={setOpenForm}
+						setActiveProgram={setActiveProgram}
+						setOpenSearch={setOpenSearch}
+					/>
+				</SectionContainer>
 			)}
 
 			{/* My Pledges */}
@@ -241,24 +270,6 @@ const DonorDashboard = ({ user }) => {
 						</div>
 					</div>
 					<DonorProgram activeProgram={activeProgram} user={user} />
-				</SectionContainer>
-			)}
-
-			{/* Make a Pledge Form */}
-			{openForm && (
-				<SectionContainer
-					marginTop={true}
-					back={true}
-					backFunction={() => setOpenForm(false)}
-					title='Make a Pledge'
-				>
-					<PledgeForm
-						activeProgram={activeProgram}
-						user={user}
-						setOpenForm={setOpenForm}
-						setActiveProgram={setActiveProgram}
-						setOpenSearch={setOpenSearch}
-					/>
 				</SectionContainer>
 			)}
 		</section>

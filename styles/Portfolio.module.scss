@@ -60,6 +60,7 @@
 
 .programHighlights {
 	display: flex;
+	flex-wrap: wrap;
 	gap: base.$gap;
 
 	div {
@@ -98,11 +99,24 @@
 
 // Program inside the pod on the dashboard page
 .dashboardPodProgram {
-	padding: calc(base.$gap / 3) 0;
-	border-top: 1px solid;
+	padding: calc(base.$gap / 2) 0;
+	border-bottom: 1px solid;
 
 	.ngoName {
-		margin-bottom: calc(base.$gap / 6);
+		margin-bottom: calc(base.$gap / 8);
+	}
+
+	div h5 {
+		color: base.$color-primary-orange;
+	}
+
+	.cardTitle {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: calc(base.$gap / 3);
+		margin-bottom: calc(base.$gap / 2);
 	}
 }
 

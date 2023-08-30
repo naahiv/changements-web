@@ -4,6 +4,7 @@ import styles from '@/styles/Login.module.scss'
 // hooks
 import { useState } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
+import { useCurrency } from '@/hooks/useCurrency'
 
 const PledgeForm = ({
 	activeProgram,
@@ -19,6 +20,9 @@ const PledgeForm = ({
 	// form values
 	const [amount, setAmount] = useState('')
 	const [frequency, setFrequency] = useState('')
+	const [donationCurrency, setDonationCurrency] = useState(
+		user.operatingCurrency
+	)
 
 	// form submission
 	const handleSubmit = async e => {
@@ -46,7 +50,7 @@ const PledgeForm = ({
 			frequency: frequency,
 			donorId: user.id,
 			donorName: user.name,
-			donorCurrency: user.operatingCurrency,
+			donorCurrency: donationCurrency,
 			donorPhoto: user.photoUrl
 		})
 
@@ -54,6 +58,9 @@ const PledgeForm = ({
 		setActiveProgram(null)
 		setOpenSearch(false)
 	}
+
+	// currencies
+	const { currencies } = useCurrency()
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
@@ -64,6 +71,24 @@ const PledgeForm = ({
 				onChange={e => setAmount(e.target.value)}
 				value={amount}
 			/>
+
+			<select
+				onChange={e => setDonationCurrency(e.target.value)}
+				required
+				defaultValue='defaultOption'
+			>
+				<option value='defaultOption'>{user.operatingCurrency}</option>
+				{currencies &&
+					currencies
+						.filter(
+							filteredCurrency => filteredCurrency != user.operatingCurrency
+						)
+						.map(currency => (
+							<option key={currency} value={currency}>
+								{currency}
+							</option>
+						))}
+			</select>
 
 			<select
 				required

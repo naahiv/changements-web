@@ -31,6 +31,7 @@ export const useCollection = (c, _query, _order) => {
 			ref,
 			snapshot => {
 				let results = []
+
 				snapshot.docs.forEach(doc => {
 					results.push({ ...doc.data(), id: doc.id })
 				})

@@ -68,6 +68,7 @@ const CreatePodForm = ({ setOpenPodForm }) => {
 				description: description,
 				createdBy: user.uid,
 				owner: owner.name,
+				ownerId: owner.id,
 				members: [owner.id]
 			},
 			photo,
