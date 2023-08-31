@@ -58,9 +58,9 @@ const DonorDashboard = ({ user }) => {
 							>
 								Create a Pod
 							</button>
-							<button onClick={() => setOpenPodsSearch(true)}>
+							{/* <button onClick={() => setOpenPodsSearch(true)}>
 								Join a Pod
-							</button>
+							</button> */}
 						</div>
 					</div>
 					<div className={styles.cardsContainer}>

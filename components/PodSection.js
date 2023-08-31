@@ -43,6 +43,15 @@ const PodSection = ({
 		setOpenPodsSearch(false)
 	}
 
+	// inviting to a pod
+	const [showInviteForm, setShowInviteForm] = useState(false)
+	const [inviteEmail, setInviteEmail] = useState('')
+
+	const sendInvite = () => {
+		setShowInviteForm(false)
+		setInviteEmail('')
+	}
+
 	return (
 		<SectionContainer
 			back={true}
@@ -75,10 +84,41 @@ const PodSection = ({
 
 							{pod.ownerId == activeUser.id && (
 								<>
-									<button className='button-orange'>Invite</button>
-									<button onClick={() => setOpenEditForm(true)}>
-										Edit Pod
-									</button>
+									{/* Sending Invitation */}
+									{showInviteForm && (
+										<>
+											<input type='email' placeholder='Email Address' />
+											<button
+												className='button-orange'
+												value={inviteEmail}
+												onClick={sendInvite}
+												onChange={e => setInviteEmail(e.target.value)}
+												required
+											>
+												Send
+											</button>
+											<button
+												className='button-gray'
+												onClick={() => setShowInviteForm(false)}
+											>
+												Cancel
+											</button>
+										</>
+									)}
+									{!showInviteForm && (
+										<>
+											<button
+												className='button-orange'
+												onClick={() => setShowInviteForm(true)}
+											>
+												Invite
+											</button>
+
+											<button onClick={() => setOpenEditForm(true)}>
+												Edit Pod
+											</button>
+										</>
+									)}
 								</>
 							)}
 						</div>
