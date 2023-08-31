@@ -12,8 +12,10 @@ import { useDocument } from '@/hooks/useDocument'
 import { useCollection } from '@/hooks/useCollection'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
-import { useState } from 'react'
-import { ST } from 'next/dist/shared/lib/utils'
+import { useState, useRef } from 'react'
+
+// email
+import emailjs from '@emailjs/browser'
 
 const PodSection = ({
 	pod,
@@ -53,6 +55,7 @@ const PodSection = ({
 	// inviting to a pod
 	const [showInviteForm, setShowInviteForm] = useState(false)
 	const [inviteEmail, setInviteEmail] = useState('')
+	const form = useRef()
 
 	const sendInvite = async e => {
 		e.preventDefault()
@@ -62,6 +65,22 @@ const PodSection = ({
 		})
 		setShowInviteForm(false)
 		setInviteEmail('')
+
+		emailjs
+			.sendForm(
+				'service_7h7nkgq',
+				'template_fb9ozya',
+				form.current,
+				'Lt_F4u0p31faEVI5y'
+			)
+			.then(
+				result => {
+					console.log(result.text)
+				},
+				error => {
+					console.log(error.text)
+				}
+			)
 	}
 
 	return (
@@ -99,12 +118,25 @@ const PodSection = ({
 									{/* Sending Invitation */}
 									{showInviteForm && (
 										<>
-											<form className={styles.inviteForm} onSubmit={sendInvite}>
+											<form
+												ref={form}
+												className={styles.inviteForm}
+												onSubmit={sendInvite}
+											>
 												<input
 													type='email'
 													placeholder='Email Address'
 													onChange={e => setInviteEmail(e.target.value)}
 													required
+													name='email'
+												/>
+
+												<input
+													type='text'
+													placeholder='Email Address'
+													value={`You have been invited to join the ${pod.name} pod by ${activeUser.name}. Please register at changements.org to accept the invite.`}
+													name='message'
+													style={{ display: 'none' }}
 												/>
 												<button className='button-orange' value={inviteEmail}>
 													Send
