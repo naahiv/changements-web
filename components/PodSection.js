@@ -13,6 +13,7 @@ import { useCollection } from '@/hooks/useCollection'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
 import { useState } from 'react'
+import { ST } from 'next/dist/shared/lib/utils'
 
 const PodSection = ({
 	pod,
@@ -28,6 +29,11 @@ const PodSection = ({
 		: useDocument('users', '123')
 
 	const { documents: programs } = useCollection('programs')
+	const { documents: users } = useCollection('users')
+
+	const result = users && users.filter(({ id }) => pod.members.includes(id))
+
+	console.log(result)
 
 	// Currencies
 	const { convert } = useCurrency()
@@ -150,8 +156,31 @@ const PodSection = ({
 									/>
 								))}
 					</div>
+
+					<h4>Members:</h4>
+					<div className={styles.members}>
+						{users &&
+							users
+								.filter(({ id }) => pod.members.includes(id))
+								.map(user => (
+									<div className={styles.memberCard} key={user.id}>
+										<div className={styles.memberPhoto}>
+											<Image
+												src={user.photoUrl}
+												fill
+												quality={100}
+												sizes='(max-width: 768px) 100vw, 768px'
+												style={{ objectFit: 'cover' }}
+												alt='Section Image'
+												priority={true}
+												as='img'
+											/>
+										</div>
+										<p>{user.name}</p>
+									</div>
+								))}
+					</div>
 				</div>
-				{/* <div className={styles.programPods}></div> */}
 			</div>
 		</SectionContainer>
 	)

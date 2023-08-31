@@ -103,6 +103,27 @@
 	flex-wrap: wrap;
 }
 
+.members {
+	display: flex;
+	gap: base.$gap;
+	flex-wrap: wrap;
+}
+
+.memberCard {
+	padding: calc(base.$gap / 4) 0;
+	display: flex;
+	gap: calc(base.$gap / 3);
+	align-items: center;
+}
+
+.memberPhoto {
+	position: relative;
+	aspect-ratio: 1 / 1;
+	border-radius: 50%;
+	overflow: hidden;
+	width: base.$gap;
+}
+
 // Program inside the pod on the dashboard page
 .dashboardPodProgram {
 	padding: calc(base.$gap / 2) 0;
