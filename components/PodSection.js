@@ -37,7 +37,8 @@ const PodSection = ({
 
 	const joinPod = async () => {
 		await updateDocument(pod.id, {
-			members: [...pod.members, activeUser.id]
+			members: [...pod.members, activeUser.id],
+			invites: pod.invites.filter(invite => invite != activeUser.email)
 		})
 		setActivePod(null)
 		setOpenPodsSearch(false)
@@ -47,7 +48,12 @@ const PodSection = ({
 	const [showInviteForm, setShowInviteForm] = useState(false)
 	const [inviteEmail, setInviteEmail] = useState('')
 
-	const sendInvite = () => {
+	const sendInvite = async e => {
+		e.preventDefault()
+
+		await updateDocument(pod.id, {
+			invites: [...pod.invites, inviteEmail]
+		})
 		setShowInviteForm(false)
 		setInviteEmail('')
 	}
@@ -87,16 +93,17 @@ const PodSection = ({
 									{/* Sending Invitation */}
 									{showInviteForm && (
 										<>
-											<input type='email' placeholder='Email Address' />
-											<button
-												className='button-orange'
-												value={inviteEmail}
-												onClick={sendInvite}
-												onChange={e => setInviteEmail(e.target.value)}
-												required
-											>
-												Send
-											</button>
+											<form className={styles.inviteForm} onSubmit={sendInvite}>
+												<input
+													type='email'
+													placeholder='Email Address'
+													onChange={e => setInviteEmail(e.target.value)}
+													required
+												/>
+												<button className='button-orange' value={inviteEmail}>
+													Send
+												</button>
+											</form>
 											<button
 												className='button-gray'
 												onClick={() => setShowInviteForm(false)}

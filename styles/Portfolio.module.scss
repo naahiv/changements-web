@@ -97,6 +97,12 @@
 	position: relative;
 }
 
+.inviteForm {
+	display: flex;
+	gap: calc(base.$gap / 4);
+	flex-wrap: wrap;
+}
+
 // Program inside the pod on the dashboard page
 .dashboardPodProgram {
 	padding: calc(base.$gap / 2) 0;

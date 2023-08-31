@@ -42,7 +42,7 @@ const DonorDashboard = ({ user }) => {
 		setOpenForm(true)
 	}
 
-	pods && console.log(pods.filter(item => item.members.includes(user.id)))
+	pods && console.log(pods.filter(item => item.invites.includes(user.email)))
 
 	return (
 		<section>
@@ -67,6 +67,32 @@ const DonorDashboard = ({ user }) => {
 						{pods &&
 							pods
 								.filter(item => item.members.includes(user.id))
+								.map(pod => (
+									<PodCard
+										key={pod.id}
+										name={pod.name}
+										programs={pod.programs}
+										description={pod.description}
+										user={user}
+										id={pod.id}
+										photoUrl={pod.photoUrl}
+										setActivePod={() => setActivePod(pod)}
+									/>
+								))}
+					</div>
+				</SectionContainer>
+			)}
+
+			{/* My Invites */}
+			{!openPodForm && !openEditForm && !openPodsSearch && !activePod && (
+				<SectionContainer marginTop={true}>
+					<div className={styles.dashboardHeader}>
+						<SectionTitle>My Invites</SectionTitle>
+					</div>
+					<div className={styles.cardsContainer}>
+						{pods &&
+							pods
+								.filter(item => item.invites.includes(user.email))
 								.map(pod => (
 									<PodCard
 										key={pod.id}
