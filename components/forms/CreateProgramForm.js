@@ -72,6 +72,21 @@ const CreateProgramForm = ({ setOpenForm }) => {
 		console.log('Photo updated.')
 	}
 
+	// Function to format the amount
+	const formattedAmount = () => {
+		// Remove formatting characters like commas
+		const cleanedAmount = parseFloat(fundsRequired.replace(/,/g, ''))
+
+		// Check if cleanedAmount is a valid number
+		if (!isNaN(cleanedAmount)) {
+			// Format the cleanedAmount and return it as a string
+			return cleanedAmount.toLocaleString('en-US')
+		} else {
+			// If cleanedAmount is not a valid number, return an empty string or an error message
+			return ''
+		}
+	}
+
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
 			<input
@@ -83,11 +98,11 @@ const CreateProgramForm = ({ setOpenForm }) => {
 			/>
 
 			<input
-				type='number'
+				type='text'
 				placeholder='Funds Required'
 				required
-				onChange={e => setFundsRequired(e.target.value)}
-				value={fundsRequired}
+				onChange={e => setFundsRequired(e.target.value.replace(/,/g, ''))}
+				value={formattedAmount()}
 			/>
 
 			{/* <input

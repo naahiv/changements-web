@@ -57,6 +57,12 @@ const Header = () => {
 
 				<nav className={menuOpen ? '' : styles.hidden}>
 					<ul>
+						<Link href='/'>
+							<li onClick={() => closeMenu()} className='nav-li'>
+								Home
+							</li>
+						</Link>
+
 						{user && (
 							<Link href='/dashboard'>
 								<li onClick={() => closeMenu()} className='nav-li'>

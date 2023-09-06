@@ -62,14 +62,29 @@ const PledgeForm = ({
 	// currencies
 	const { currencies } = useCurrency()
 
+	// Function to format the amount
+	const formattedAmount = () => {
+		// Remove formatting characters like commas
+		const cleanedAmount = parseFloat(amount.replace(/,/g, ''))
+
+		// Check if cleanedAmount is a valid number
+		if (!isNaN(cleanedAmount)) {
+			// Format the cleanedAmount and return it as a string
+			return cleanedAmount.toLocaleString('en-US')
+		} else {
+			// If cleanedAmount is not a valid number, return an empty string or an error message
+			return ''
+		}
+	}
+
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
 			<input
-				type='number'
+				type='text'
 				placeholder='Amount'
 				required
-				onChange={e => setAmount(e.target.value)}
-				value={amount}
+				onChange={e => setAmount(e.target.value.replace(/,/g, ''))}
+				value={formattedAmount()}
 			/>
 
 			<select

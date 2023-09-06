@@ -1,8 +1,12 @@
 // styles
-
 import styles from '@/styles/Homepage.module.scss'
 
+// hooks
+import { useCollection } from '@/hooks/useCollection'
+
 const Highlights = () => {
+	const { documents: users } = useCollection('users')
+
 	return (
 		<section>
 			<div className='sectionContainer'>
@@ -23,7 +27,9 @@ const Highlights = () => {
 						</p>
 					</div>
 					<div>
-						<h2 style={{ color: '#9A031E' }}>140</h2>
+						<h2 style={{ color: '#9A031E' }}>
+							{users && users.filter(user => user.type == 'donor').length}
+						</h2>
 						<p>
 							Friends & Family
 							<br />
@@ -31,7 +37,9 @@ const Highlights = () => {
 						</p>
 					</div>
 					<div>
-						<h2 style={{ color: '#360C25' }}>2</h2>
+						<h2 style={{ color: '#360C25' }}>
+							{users && users.filter(user => user.type == 'ngo').length}
+						</h2>
 						<p>
 							NGO's in
 							<br />
