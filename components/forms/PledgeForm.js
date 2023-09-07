@@ -2,9 +2,11 @@
 import styles from '@/styles/Login.module.scss'
 
 // hooks
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
+import { useDocument } from '@/hooks/useDocument'
+import { useEmailJS } from '@/hooks/useEmailJS'
 
 const PledgeForm = ({
 	activeProgram,
@@ -17,12 +19,20 @@ const PledgeForm = ({
 	const { updateDocument } = useFirestore('programs')
 	const { addDocument } = useFirestore(`programs/${activeProgram.id}/pledges`)
 
+	// Email JS
+	const { sendEmail } = useEmailJS()
+
+	// Owner Email
+	const { document: owner } = useDocument('users', activeProgram.createdBy)
+
 	// form values
 	const [amount, setAmount] = useState('')
 	const [frequency, setFrequency] = useState('')
 	const [donationCurrency, setDonationCurrency] = useState(
 		user.operatingCurrency
 	)
+
+	const form = useRef()
 
 	// form submission
 	const handleSubmit = async e => {
@@ -57,6 +67,9 @@ const PledgeForm = ({
 		setOpenForm(false)
 		setActiveProgram(null)
 		setOpenSearch(false)
+
+		// sending email
+		sendEmail(form.current)
 	}
 
 	// currencies
@@ -78,7 +91,7 @@ const PledgeForm = ({
 	}
 
 	return (
-		<form className={styles.form} onSubmit={handleSubmit}>
+		<form ref={form} className={styles.form} onSubmit={handleSubmit}>
 			<input
 				type='text'
 				placeholder='Amount'
@@ -118,6 +131,26 @@ const PledgeForm = ({
 				<option value='Semi-yearly'>Semi-yearly</option>
 				<option value='Yearly'>Yearly</option>
 			</select>
+
+			{/* Sending Email fields */}
+
+			{owner && (
+				<input
+					type='email'
+					placeholder='Email Address'
+					style={{ display: 'none' }}
+					name='email'
+					value={owner.email}
+				/>
+			)}
+
+			<input
+				type='text'
+				placeholder='Email Address'
+				value={`${user.name} has pledged ${amount} ${donationCurrency} ${frequency}. Please contact ${user.name} at ${user.email} for more information.`}
+				name='message'
+				style={{ display: 'none' }}
+			/>
 
 			<button className='button-orange'>Make a pledge</button>
 		</form>

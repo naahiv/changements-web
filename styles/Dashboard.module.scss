@@ -154,7 +154,7 @@
 }
 
 .donorProfileColumn {
-	grid-column: span 4;
+	grid-column: span 2;
 	margin-bottom: base.$gap;
 
 	h5 {
@@ -179,6 +179,10 @@
 
 	.donorCardPledges {
 		display: none;
+	}
+
+	.donorProfileColumn {
+		grid-column: span 4;
 	}
 }
 

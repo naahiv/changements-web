@@ -58,13 +58,21 @@
 	gap: calc(base.$gap / 2);
 }
 
+.highlightsContainer {
+	display: flex;
+	flex-direction: column;
+	gap: calc(base.$gap / 2);
+}
+
 .programHighlights {
 	display: flex;
 	flex-wrap: wrap;
-	gap: base.$gap;
+	row-gap: base.$gap;
+	column-gap: 8%;
 
 	div {
 		padding-right: base.$gap;
+		width: 28%;
 		border-right: 1px solid base.$color-secondary-red;
 	}
 
@@ -166,7 +174,7 @@
 
 	.programHighlights {
 		flex-direction: column;
-		gap: calc(base.$gap / 4);
+		row-gap: calc(base.$gap / 4);
 
 		div {
 			padding-right: 0;

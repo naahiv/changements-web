@@ -13,9 +13,7 @@ import { useCollection } from '@/hooks/useCollection'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
 import { useState, useRef } from 'react'
-
-// email
-import emailjs from '@emailjs/browser'
+import { useEmailJS } from '@/hooks/useEmailJS'
 
 const PodSection = ({
 	pod,
@@ -34,8 +32,6 @@ const PodSection = ({
 	const { documents: users } = useCollection('users')
 
 	const result = users && users.filter(({ id }) => pod.members.includes(id))
-
-	console.log(result)
 
 	// Currencies
 	const { convert } = useCurrency()
@@ -56,6 +52,7 @@ const PodSection = ({
 	const [showInviteForm, setShowInviteForm] = useState(false)
 	const [inviteEmail, setInviteEmail] = useState('')
 	const form = useRef()
+	const { sendEmail } = useEmailJS()
 
 	const sendInvite = async e => {
 		e.preventDefault()
@@ -66,21 +63,7 @@ const PodSection = ({
 		setShowInviteForm(false)
 		setInviteEmail('')
 
-		emailjs
-			.sendForm(
-				'service_7h7nkgq',
-				'template_fb9ozya',
-				form.current,
-				'Lt_F4u0p31faEVI5y'
-			)
-			.then(
-				result => {
-					console.log(result.text)
-				},
-				error => {
-					console.log(error.text)
-				}
-			)
+		sendEmail(form.current)
 	}
 
 	return (

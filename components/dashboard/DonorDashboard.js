@@ -5,11 +5,8 @@ import styles from '@/styles/Dashboard.module.scss'
 import SectionContainer from '../SectionContainer'
 import SectionTitle from '../SectionTitle'
 import Card from '../Card'
-import DonorProgram from './DonorProgram'
-import Button from '../Button'
 import PledgeForm from '../forms/PledgeForm'
 import DonorPledgeCard from './DonorPledgeCard'
-import ProfileUI from '../profile/ProfileUI'
 import PodCard from './PodCard'
 import CreatePodForm from '../forms/CreatePodForm'
 import EditPodForm from '../forms/EditPodForm'
@@ -41,8 +38,6 @@ const DonorDashboard = ({ user }) => {
 		setActiveProgram(program)
 		setOpenForm(true)
 	}
-
-	pods && console.log(pods.filter(item => item.invites.includes(user.email)))
 
 	return (
 		<section>
