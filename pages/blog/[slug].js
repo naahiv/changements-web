@@ -16,56 +16,92 @@ import CardsSection from '@/components/CardsSection'
 // temp lists
 import { articles } from '@/temp/listPlaceholders'
 
-const Article = () => {
+// contentful
+import { createClient } from 'contentful'
+
+export async function getStaticPaths() {
+	const client = createClient({
+		space: process.env.space,
+		accessToken: process.env.accessToken
+	})
+
+	const blog = await client.getEntries({
+		content_type: 'blog'
+	})
+
+	const paths = blog.items.map(article => ({
+		params: { slug: article.fields.title.toLowerCase().replace(/\s+/g, '-') }
+	}))
+
+	return {
+		paths,
+		fallback: false
+	}
+}
+
+export async function getStaticProps({ params }) {
+	const client = createClient({
+		space: process.env.space,
+		accessToken: process.env.accessToken
+	})
+
+	const blog = await client.getEntries({
+		content_type: 'blog'
+	})
+
+	return {
+		props: {
+			blog: blog.items
+		}
+	}
+}
+
+const Article = ({ blog }) => {
 	const router = useRouter()
 	const { slug } = router.query
 
-	const article = articles.find(
-		article => article.title.toLowerCase().replace(/\s+/g, '-') === slug
+	const article = blog.find(
+		article => article.fields.title.toLowerCase().replace(/\s+/g, '-') === slug
 	)
 
 	return (
 		<>
 			<Head>
-				<title>{article && `Changements | ${article.title}`}</title>
+				<title>{`Changements | ${article.fields.title}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
 			<main>
 				{/* Article content */}
 				<SectionContainer back={true} marginTop={true}>
-					{article && (
-						<>
-							<div className={styles.blogPhoto}>
-								<Image
-									src={article.photo}
-									fill
-									quality={100}
-									sizes='(max-width: 768px) 100vw, 768px'
-									style={{ objectFit: 'cover' }}
-									alt='Section Image'
-									priority={true}
-									as='img'
-								/>
-							</div>
-							<div className={styles.blogText}>
-								<p className={styles.date}>{article.subtitle}</p>
-								<h3>{article.title}</h3>
-								<p>{article.text}</p>
-							</div>
-						</>
-					)}
+					<div className={styles.blogPhoto}>
+						<Image
+							src={'https:' + article.fields.photo.fields.file.url}
+							fill
+							quality={100}
+							sizes='(max-width: 768px) 100vw, 768px'
+							style={{ objectFit: 'cover' }}
+							alt='Section Image'
+							priority={true}
+							as='img'
+						/>
+					</div>
+					<div className={styles.blogText}>
+						<p className={styles.date}>{article.subtitle}</p>
+						<h3>{article.fields.title}</h3>
+						<p>{article.fields.text}</p>
+					</div>
 				</SectionContainer>
 
 				{/* Other articles Section */}
-				{article && (
+				{/* {article && (
 					<CardsSection
 						title='Recent Posts'
 						content={articles.filter(item => item !== article).slice(0, 4)}
 						folder='blog'
 						buttonText='Read More'
 					/>
-				)}
+				)} */}
 
 				{/* Contact */}
 				<Contact />

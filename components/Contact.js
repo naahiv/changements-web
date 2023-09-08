@@ -33,12 +33,6 @@ const Contact = () => {
 				</div>
 
 				<div className={styles.links}>
-					<ul>
-						<li>Phone: 111 222 3333</li>
-						<li>Email: office@changements.com</li>
-						<li>Office Address</li>
-					</ul>
-
 					<ul className={styles.contactMenu}>
 						<Link href='/about'>
 							<li>About Us</li>
@@ -59,6 +53,15 @@ const Contact = () => {
 						<Link href='/blog'>
 							<li>Change Buzz</li>
 						</Link>
+					</ul>
+					<ul>
+						{/* <li>Phone: 111 222 3333</li> */}
+						<li>
+							Email:
+							<br />
+							info@changements.org
+						</li>
+						{/* <li>Office Address</li> */}
 					</ul>
 				</div>
 			</div>

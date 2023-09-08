@@ -35,13 +35,8 @@ const about = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/about-hero.jpg'>
-					<h1>About Changements</h1>
-					<p>
-						We are a group of professionals committed to making a lasting impact
-						for a happier, healthier and just world.
-					</p>
-					<p>​A few cups of coffee can make all the difference.</p>
-					<p>BE THE CHANGE YOU WANT TO SEE.</p>
+					<h1>Bringing Together Change Enablers and Change Makers</h1>
+					{/* <p>Bringing Together Change Enablers and Change Makers</p> */}
 				</PagesHero>
 
 				{/* About Text */}
@@ -53,21 +48,25 @@ const about = () => {
 							</SectionTitle>
 
 							<p>
-								We create a long term partnership between NGOs and groups of
-								friends or family that are vested in joining hands to help NGOs
-								achieve scales.
+								We create lasting partnerships between Change Enablers and
+								Change Makers to achieve Impacts to scale.
 							</p>
 							<br />
 							<p>
-								Change-Enabler : You are one if you are interested in making the
-								world a better place for everybody. We bring you curated
-								non-profits that you can engage with and be part of the journey.
+								<span className='orange' style={{ fontWeight: '700' }}>
+									Change-Enabler:
+								</span>{' '}
+								You are a donor interested in making the world a better place.
+								We bring you curated non-profits (NGOs) to begin your journey.
 							</p>
 							<br />
 
 							<p>
-								Change-Makers : If you are an NGO looking to connect with the
-								right people to fulfill your dream, we'll bring them to you.
+								<span className='red' style={{ fontWeight: '700' }}>
+									Change-Makers:
+								</span>{' '}
+								You are an NGO looking for the right people to fulfill your
+								dream. We will bring you the donors to partner in your journey.
 							</p>
 						</div>
 						<div className={styles.howItWorks}>
@@ -78,38 +77,32 @@ const about = () => {
 							<ol>
 								<li>
 									<span>
-										Create Donor Pod (group) with like minded friends/family.​
+										Gather like-minded friends/family and create a Donor Pod.
 									</span>
 								</li>
 								<li>
 									<span>
-										Browse our NGO Portfolio and pick the one that appeals to
-										your group.
+										Browse our curated NGO Portfolio and pick a Program that
+										appeals to your group.
 									</span>
 								</li>
 								<li>
 									<span>
-										Each group member, pick the number of coffee cups you will
-										pledge annually.
+										Make a collective pledge to support. Each member pledges an
+										amount and periodicity that suits him/her. Individual
+										pledges are confidential.
 									</span>
 								</li>
 								<li>
 									<span>
-										Together reach the goal of a Project/Program of your chosen
-										NGO. Individual pledges will remain confidential.
+										Fulfill your pledges with the NGO. We will remind you
+										periodically about your pledges.
 									</span>
 								</li>
 								<li>
 									<span>
-										You can pick the periodicity of your contributions and we
-										will remind you when it is due.
-									</span>
-								</li>
-								<li>
-									<span>
-										If you are in the vicinity, connect with your NGO, visit and
-										write about your experience on our Blog or post a video for
-										others.
+										Visit your NGO and write/talk/video about your experience on
+										ChangeBuzz.
 									</span>
 								</li>
 							</ol>

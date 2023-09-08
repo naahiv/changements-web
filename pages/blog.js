@@ -11,7 +11,27 @@ import Contact from '@/components/Contact'
 // temp lists
 import { articles } from '@/temp/listPlaceholders'
 
-const blog = () => {
+// contentful
+import { createClient } from 'contentful'
+
+export async function getStaticProps() {
+	const client = createClient({
+		space: process.env.space,
+		accessToken: process.env.accessToken
+	})
+
+	const blog = await client.getEntries({
+		content_type: 'blog'
+	})
+
+	return {
+		props: {
+			blog: blog.items
+		}
+	}
+}
+
+const blog = ({ blog }) => {
 	return (
 		<>
 			<Head>
@@ -28,16 +48,16 @@ const blog = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/blog-hero.jpg'>
-					<h1>Change Buzz</h1>
-					<p>
+					<h1>Impact News from Our NGO Partners</h1>
+					{/* <p>
 						Read about the latest from our NGO partners.
 						<br />
 						Visit your NGO and create a post about your personal experience.
-					</p>
+					</p> */}
 				</PagesHero>
 
 				{/* Articles Section */}
-				<CardsSection content={articles} folder='blog' buttonText='Read More' />
+				<CardsSection contentful={blog} folder='blog' buttonText='Read More' />
 
 				{/* Contact */}
 				<Contact />

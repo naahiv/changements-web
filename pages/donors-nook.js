@@ -38,13 +38,13 @@ const DonorsNook = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/donors-nook-hero.jpg'>
-					<h1>Donor's Nook</h1>
-					<p>
+					<h1>The Power of Giving Together </h1>
+					{/* <p>
 						Celebrate the joy of collective giving with friends and family.
 						Partner with dedicated NGOs(non-profits) and make the reach larger
 						and the journey rewarding.
 					</p>
-					<p>Become a Changements Member to join.</p>
+					<p>Become a Changements Member to join.</p> */}
 				</PagesHero>
 
 				{/* Video Section */}
@@ -56,14 +56,22 @@ const DonorsNook = () => {
 							</video>
 						</div>
 						<div className={styles.videoText}>
+							<h3>
+								Change <span className='red'>Making</span>
+							</h3>
 							<p>
-								Create a Changements account, if you do not have one, to
-								initiate or join Donor Pods.
+								Set aside a few cups of coffee each week/month/year towards
+								change making. And do it together with friends/family. You can
+								make a huge difference.
+							</p>
+							<p>
+								First create a Changements account if you do not have one. Then
+								create or join Donor Pods.
 							</p>
 
 							{!user && (
 								<Button url='/register' color='orange'>
-									Become a Donor
+									Become a Change Enabler
 								</Button>
 							)}
 						</div>

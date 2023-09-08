@@ -15,18 +15,20 @@ const Card = ({
 }) => {
 	return (
 		<div className='card'>
-			<div className='card-photo'>
-				<Image
-					src={photo}
-					fill
-					quality={80}
-					sizes='(max-width: 768px) 100vw, 768px'
-					style={{ objectFit: 'cover' }}
-					alt='Section Image'
-					priority={true}
-					as='img'
-				/>
-			</div>
+			{photo && (
+				<div className='card-photo'>
+					<Image
+						src={photo}
+						fill
+						quality={80}
+						sizes='(max-width: 768px) 100vw, 768px'
+						style={{ objectFit: 'cover' }}
+						alt='Section Image'
+						priority={true}
+						as='img'
+					/>
+				</div>
+			)}
 			<div className='card-text'>
 				<div>
 					{subtitle && <p className='subtitle'>{subtitle}</p>}

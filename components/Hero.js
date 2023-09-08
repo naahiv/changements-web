@@ -20,10 +20,7 @@ const Hero = ({ user }) => {
 
 			<div className={styles.heroContent}>
 				<div className={styles.container}>
-					<h1>
-						Your daily Cup O'Coffee can make all the difference to change the
-						world
-					</h1>
+					<h1>Together you can make a world of difference</h1>
 
 					<p>
 						Bringing together Change Enablers and Change-Makers to multiply the

@@ -31,12 +31,8 @@ const NGOSquare = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/ngo-square-hero.jpg'>
-					<h1>NGO Square</h1>
-					<p>
-						Join our NGO portfolio to reach out to our Donor base, that will
-						<br />
-						stay for the long term in your changemaking journey.
-					</p>
+					<h1>Create Lasting Partnerships for Lasting Change</h1>
+					{/* <p>Create Lasting Partnerships for Lasting Change</p> */}
 				</PagesHero>
 
 				{/* About NGO Square */}
