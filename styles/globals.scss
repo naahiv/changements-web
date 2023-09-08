@@ -120,6 +120,12 @@ input[type='file']::-webkit-file-upload-button {
 	font-size: 0.875rem;
 }
 
+.pages-hero-content {
+	h1 {
+		color: base.$color-secondary-orange !important;
+	}
+}
+
 // tablet
 
 @media screen and (max-width: 1024px) {
