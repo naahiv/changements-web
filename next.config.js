@@ -13,7 +13,11 @@ const nextConfig = {
 		accessToken: process.env.CONTENTFUL_ACCESS_KEY
 	},
 	images: {
-		domains: ['images.ctfassets.net', 'firebasestorage.googleapis.com']
+		domains: [
+			'images.ctfassets.net',
+			'downloads.ctfassets.net',
+			'firebasestorage.googleapis.com'
+		]
 	}
 }
 

@@ -38,13 +38,9 @@ const DonorsNook = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/donors-nook-hero.jpg'>
-					<h1>The Power of Giving Together </h1>
-					{/* <p>
-						Celebrate the joy of collective giving with friends and family.
-						Partner with dedicated NGOs(non-profits) and make the reach larger
-						and the journey rewarding.
-					</p>
-					<p>Become a Changements Member to join.</p> */}
+					<h1>Donor's Nook</h1>
+
+					<p style={{ fontSize: '2rem' }}>The Power of Giving Together</p>
 				</PagesHero>
 
 				{/* Video Section */}

@@ -84,6 +84,26 @@
 	background-color: base.$color-secondary-red;
 }
 
+// gallery
+.gallery {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.galleryImageContainer {
+	position: relative;
+	width: 25%;
+	aspect-ratio: 16 / 10;
+	flex-shrink: 0;
+}
+
+.moreButton {
+	width: fit-content;
+	margin: 1rem auto 0 auto;
+	color: base.$color-primary-orange;
+	cursor: pointer;
+}
+
 @media screen and (max-width: 1024px) {
 	.donorNgoBackground {
 		flex-direction: column;
@@ -106,5 +126,9 @@
 		div:nth-of-type(2) {
 			border: 0;
 		}
+	}
+
+	.galleryImageContainer {
+		width: 50%;
 	}
 }

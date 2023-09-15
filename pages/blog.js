@@ -48,12 +48,8 @@ const blog = ({ blog }) => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/blog-hero.jpg'>
-					<h1>Impact News from Our NGO Partners</h1>
-					{/* <p>
-						Read about the latest from our NGO partners.
-						<br />
-						Visit your NGO and create a post about your personal experience.
-					</p> */}
+					<h1>Change Buzz</h1>
+					<p style={{ fontSize: '2rem' }}>Impact News from Our NGO Partners</p>
 				</PagesHero>
 
 				{/* Articles Section */}

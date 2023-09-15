@@ -7,6 +7,7 @@ import Contact from '@/components/Contact'
 import Highlights from '@/components/Highlights'
 import ImageTextColumns from '@/components/ImageTextColumns'
 import DonorNgoHomeSection from '@/components/DonorNgoHomeSection'
+import Gallery from '@/components/Gallery'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -14,7 +15,27 @@ import { useAuthContext } from '@/hooks/useAuthContext'
 // components
 import SectionTitle from '@/components/SectionTitle'
 
-export default function Home() {
+// contentful
+import { createClient } from 'contentful'
+
+export async function getStaticProps() {
+	const client = createClient({
+		space: process.env.space,
+		accessToken: process.env.accessToken
+	})
+
+	const gallery = await client.getEntries({
+		content_type: 'gallery'
+	})
+
+	return {
+		props: {
+			gallery: gallery.items[0]
+		}
+	}
+}
+
+export default function Home({ gallery }) {
 	// context
 	const { user } = useAuthContext()
 
@@ -91,6 +112,9 @@ export default function Home() {
 						stories from NGOs, donors and beneficiaries.
 					</p>
 				</ImageTextColumns>
+
+				{/* Gallery */}
+				<Gallery images={gallery.fields.photos} />
 
 				{/* Contact Section */}
 				<Contact />

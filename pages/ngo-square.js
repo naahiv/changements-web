@@ -31,8 +31,10 @@ const NGOSquare = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/ngo-square-hero.jpg'>
-					<h1>Create Lasting Partnerships for Lasting Change</h1>
-					{/* <p>Create Lasting Partnerships for Lasting Change</p> */}
+					<h1>NGO Square</h1>
+					<p style={{ fontSize: '2rem' }}>
+						Create Lasting Partnerships for Lasting Change
+					</p>
 				</PagesHero>
 
 				{/* About NGO Square */}

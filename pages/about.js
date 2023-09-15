@@ -35,8 +35,10 @@ const about = () => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/about-hero.jpg'>
-					<h1>Bringing Together Change Enablers and Change Makers</h1>
-					{/* <p>Bringing Together Change Enablers and Change Makers</p> */}
+					<h1>About Us</h1>
+					<p style={{ fontSize: '2rem' }}>
+						Bringing Together Change Enablers and Change Makers
+					</p>
 				</PagesHero>
 
 				{/* About Text */}
