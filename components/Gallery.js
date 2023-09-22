@@ -8,11 +8,50 @@ import Image from 'next/image'
 import { useState } from 'react'
 
 const Gallery = ({ images }) => {
-	const [maxPhotos, setMaxPhotos] = useState(8)
+	const [firstImage, setFirstImage] = useState(0)
+	const [lastImage, setLastImage] = useState(4)
+
+	const nextImg = () => {
+		if (images.length > lastImage) {
+			setFirstImage(prevState => prevState + 1)
+			setLastImage(prevState => prevState + 1)
+		}
+	}
+
+	const prevImg = () => {
+		if (firstImage > 0) {
+			setFirstImage(prevState => prevState - 1)
+			setLastImage(prevState => prevState - 1)
+		}
+	}
 
 	return (
 		<section className={styles.gallery}>
-			{images.slice(0, maxPhotos).map(image => (
+			<div className={styles.arrowLeft} onClick={prevImg}>
+				<Image
+					src={'./left.svg'}
+					width={15}
+					height={30}
+					sizes='(max-width: 768px) 100vw, 768px'
+					style={{ objectFit: 'cover' }}
+					alt='Arrow Left'
+					priority={false}
+					as='img'
+				/>
+			</div>
+			<div className={styles.arrowRight} onClick={nextImg}>
+				<Image
+					src={'./right.svg'}
+					width={15}
+					height={30}
+					sizes='(max-width: 768px) 100vw, 768px'
+					style={{ objectFit: 'cover' }}
+					alt='Arrow Left'
+					priority={false}
+					as='img'
+				/>
+			</div>
+			{images.slice(firstImage, lastImage).map(image => (
 				<div key={image.sys.id} className={styles.galleryImageContainer}>
 					<Image
 						src={'https:' + image.fields.file.url}
@@ -26,14 +65,6 @@ const Gallery = ({ images }) => {
 					/>
 				</div>
 			))}
-			<div style={{ width: '100%' }}>
-				<p
-					className={styles.moreButton}
-					onClick={() => setMaxPhotos(prevState => prevState + 4)}
-				>
-					Show More
-				</p>
-			</div>
 		</section>
 	)
 }

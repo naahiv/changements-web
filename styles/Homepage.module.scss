@@ -88,6 +88,7 @@
 .gallery {
 	display: flex;
 	flex-wrap: wrap;
+	position: relative;
 }
 
 .galleryImageContainer {
@@ -95,6 +96,7 @@
 	width: 25%;
 	aspect-ratio: 16 / 10;
 	flex-shrink: 0;
+	z-index: -1;
 }
 
 .moreButton {
@@ -102,6 +104,24 @@
 	margin: 1rem auto 0 auto;
 	color: base.$color-primary-orange;
 	cursor: pointer;
+}
+
+.arrowLeft {
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	filter: drop-shadow(0 0 0.75rem black);
+}
+
+.arrowRight {
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
+	filter: drop-shadow(0 0 0.75rem black);
 }
 
 @media screen and (max-width: 1024px) {

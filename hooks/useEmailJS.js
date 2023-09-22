@@ -5,10 +5,10 @@ export const useEmailJS = () => {
 	const sendEmail = formRef => {
 		emailjs
 			.sendForm(
-				'service_7h7nkgq',
-				'template_fb9ozya',
+				'changementsinfo',
+				'template_nqhoin9',
 				formRef,
-				'Lt_F4u0p31faEVI5y'
+				'm6KQHX88ImtfbCLaf'
 			)
 			.then(
 				result => {
