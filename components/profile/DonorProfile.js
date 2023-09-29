@@ -55,7 +55,7 @@ const DonorProfile = ({ user }) => {
 								<p>{document.email}</p>
 							</div>
 							<div className={styles.donorProfileColumn}>
-								<h5>Donor Address</h5>
+								<h5>Mailing Address</h5>
 								<p>{document.address}</p>
 							</div>
 							<div className={styles.donorProfileColumn}>

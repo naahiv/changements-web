@@ -106,7 +106,7 @@ const DonorInfoForm = ({ data }) => {
 
 				<input
 					type='text'
-					placeholder='Donor Address'
+					placeholder='Mailing Address'
 					onChange={e => setAddress(e.target.value)}
 					value={address}
 				/>

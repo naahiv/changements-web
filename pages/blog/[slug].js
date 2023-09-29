@@ -74,18 +74,20 @@ const Article = ({ blog }) => {
 			<main>
 				{/* Article content */}
 				<SectionContainer back={true} marginTop={true}>
-					<div className={styles.blogPhoto}>
-						<Image
-							src={'https:' + article.fields.photo.fields.file.url}
-							fill
-							quality={100}
-							sizes='(max-width: 768px) 100vw, 768px'
-							style={{ objectFit: 'cover' }}
-							alt='Section Image'
-							priority={true}
-							as='img'
-						/>
-					</div>
+					{article.fields.photo && (
+						<div className={styles.blogPhoto}>
+							<Image
+								src={'https:' + article.fields.photo.fields.file.url}
+								fill
+								quality={100}
+								sizes='(max-width: 768px) 100vw, 768px'
+								style={{ objectFit: 'cover' }}
+								alt='Section Image'
+								priority={true}
+								as='img'
+							/>
+						</div>
+					)}
 					<div className={styles.blogText}>
 						<p className={styles.date}>{article.subtitle}</p>
 						<h3>{article.fields.title}</h3>

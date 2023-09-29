@@ -33,7 +33,11 @@ const CardsSection = ({ title, content, folder, buttonText, contentful }) => {
 							key={item.sys.id}
 							title={item.fields.title}
 							subtitle={item.sys.createdAt.slice(0, -14)}
-							photo={'https:' + item.fields.photo.fields.file.url}
+							photo={
+								item.fields.photo
+									? 'https:' + item.fields.photo.fields.file.url
+									: null
+							}
 							buttonText={buttonText}
 							buttonUrl={`/${folder}/${item.fields.title
 								.toLowerCase()

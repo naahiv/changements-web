@@ -59,7 +59,7 @@ const Contact = () => {
 						<li>
 							Email:
 							<br />
-							info@changements.org
+							changementsinfo@gmail.com
 						</li>
 						{/* <li>Office Address</li> */}
 					</ul>
