@@ -33,7 +33,7 @@ const portfolio = () => {
 				{/* Hero */}
 				<PagesHero imageUrl='/portfolio-hero.jpg'>
 					<h1>Portfolio</h1>
-					<p style={{ fontSize: '2rem' }}>Where Change is Compounded.</p>
+					<p style={{ fontSize: '2rem' }}>Where Change is Compounded</p>
 				</PagesHero>
 
 				{/* About Portfolio */}

@@ -1,6 +1,9 @@
 // styles
 import styles from '@/styles/Login.module.scss'
 
+// components
+import Link from 'next/link'
+
 // hooks
 import { useState } from 'react'
 import { useLogin } from '@/hooks/useLogin'
@@ -50,7 +53,12 @@ const LoginRegisterForm = ({ type, userType }) => {
 
 			{loginError && (
 				<p className={styles.error} style={{ marginBottom: '1rem' }}>
-					Email or password is not correct.
+					{loginError.message == 'Firebase: Error (auth/user-not-found).' &&
+						`Account with that email address doesn't exist in our database. Please
+						try again.`}
+					{loginError.message == 'Firebase: Error (auth/wrong-password).' &&
+						`Password doesn't match the email address. Please
+						try again.`}
 				</p>
 			)}
 
@@ -73,6 +81,10 @@ const LoginRegisterForm = ({ type, userType }) => {
 					{type} with Google
 				</button>
 			</div>
+
+			<Link href='/reset-password'>
+				<p className='orange'>Forgot Password</p>
+			</Link>
 		</form>
 	)
 }
