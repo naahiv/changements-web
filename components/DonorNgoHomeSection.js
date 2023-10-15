@@ -26,7 +26,7 @@ const DonorNgoHomeSection = () => {
 					<div className='buttons-row'>
 						<Button url='/donors-nook'>Learn More</Button>
 						<Button color='dark-red' url='/register'>
-							Become a Doner
+							Become a Donor
 						</Button>
 					</div>
 				</div>
