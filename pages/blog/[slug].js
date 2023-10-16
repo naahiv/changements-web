@@ -74,10 +74,10 @@ const Article = ({ blog }) => {
 			<main>
 				{/* Article content */}
 				<SectionContainer back={true} marginTop={true}>
-					{article.fields.photo && (
+					{article.fields.image && (
 						<div className={styles.blogPhoto}>
 							<Image
-								src={'https:' + article.fields.photo.fields.file.url}
+								src={'https:' + article.fields.image.fields.file.url}
 								fill
 								quality={100}
 								sizes='(max-width: 768px) 100vw, 768px'
@@ -89,9 +89,9 @@ const Article = ({ blog }) => {
 						</div>
 					)}
 					<div className={styles.blogText}>
-						<p className={styles.date}>{article.subtitle}</p>
+						<p className={styles.date}>{article.shortDescription}</p>
 						<h3>{article.fields.title}</h3>
-						<p>{article.fields.text}</p>
+						<p>{article.fields.body}</p>
 					</div>
 				</SectionContainer>
 
