@@ -89,7 +89,7 @@ const Article = ({ blog }) => {
 						</div>
 					)}
 					<div className={styles.blogText}>
-						<p className={styles.date}>{article.fields.shortDescription}</p>
+						<p className={styles.date}>{article.subtitle}</p>
 						<h3>{article.fields.title}</h3>
 						<p>{article.fields.body}</p>
 					</div>
