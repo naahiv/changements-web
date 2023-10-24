@@ -3,13 +3,14 @@ import styles from '@/styles/Dashboard.module.scss'
 
 // components
 import Image from 'next/image'
+import Button from '../Button'
 
 // hooks
 import { useCurrency } from '@/hooks/useCurrency'
 import { useCollection } from '@/hooks/useCollection'
 import { useDocument } from '@/hooks/useDocument'
 
-const PodCard = ({ name, photoUrl, description, setActivePod }) => {
+const PodCard = ({ name, photoUrl, description, setActivePod, pod, user }) => {
 	const { documents: programs } = useCollection('programs')
 
 	// documents && console.log(documents.find(pledge => pledge.donorId == user.id))
@@ -134,7 +135,19 @@ const PodCard = ({ name, photoUrl, description, setActivePod }) => {
 							</div>
 						</div> */}
 
-					<p>{description}</p>
+					<p style={{ marginBottom: '1rem' }}>{description}</p>
+
+					<div className='buttons-row'>
+						{pod.ownerId == user.id && (
+							<Button color='orange' buttonFunction={setActivePod}>
+								Invite Members
+							</Button>
+						)}
+
+						<Button color='orange' buttonFunction={setActivePod}>
+							Make a Pledge
+						</Button>
+					</div>
 				</div>
 			</div>
 		</>

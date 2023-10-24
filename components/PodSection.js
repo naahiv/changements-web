@@ -22,7 +22,8 @@ const PodSection = ({
 	setOpenEditForm,
 	openPledgeForm,
 	setActivePod,
-	setOpenPodsSearch
+	setOpenPodsSearch,
+	hideMembers
 }) => {
 	const { document: activeUser } = user
 		? useDocument('users', user.uid)
@@ -117,7 +118,7 @@ const PodSection = ({
 												<input
 													type='text'
 													placeholder='Email Address'
-													value={`You have been invited to join the ${pod.name} pod by ${activeUser.name}. Please register at changements.org to accept the invite.`}
+													value={`You have been invited to join the ${pod.name} pod by ${activeUser.name}. Please register as a Donor at changements.org to accept the invite.`}
 													name='message'
 													style={{ display: 'none' }}
 												/>
@@ -172,29 +173,38 @@ const PodSection = ({
 								))}
 					</div>
 
-					<h4>Members:</h4>
-					<div className={styles.members}>
-						{users &&
-							users
-								.filter(({ id }) => pod.members.includes(id))
-								.map(user => (
-									<div className={styles.memberCard} key={user.id}>
-										<div className={styles.memberPhoto}>
-											<Image
-												src={user.photoUrl}
-												fill
-												quality={100}
-												sizes='(max-width: 768px) 100vw, 768px'
-												style={{ objectFit: 'cover' }}
-												alt='Section Image'
-												priority={true}
-												as='img'
-											/>
-										</div>
-										<p>{user.name}</p>
-									</div>
-								))}
-					</div>
+					{/* Members */}
+					{!hideMembers && (
+						<>
+							<h4>Members:</h4>
+							<div className={styles.members}>
+								{users &&
+									users
+										.filter(({ id }) => pod.members.includes(id))
+										.map(user => (
+											<div className={styles.memberCard} key={user.id}>
+												<div className={styles.memberPhoto}>
+													<Image
+														src={user.photoUrl}
+														fill
+														quality={100}
+														sizes='(max-width: 768px) 100vw, 768px'
+														style={{ objectFit: 'cover' }}
+														alt='Section Image'
+														priority={true}
+														as='img'
+													/>
+												</div>
+												<p>
+													{user.id == pod.ownerId
+														? `Pod Captain: ${user.name}`
+														: user.name}
+												</p>
+											</div>
+										))}
+							</div>
+						</>
+					)}
 				</div>
 			</div>
 		</SectionContainer>
