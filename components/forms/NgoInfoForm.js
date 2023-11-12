@@ -21,6 +21,7 @@ const NgoInfoForm = ({ data }) => {
 	const [primaryContactName, setPrimaryContactName] = useState('')
 	const [phone, setPhone] = useState('')
 	const [operatingCurrency, setOperatingCurrency] = useState('')
+	const [otherCurrencies, setOtherCurrencies] = useState('')
 	const [donationCurrency, setDonationCurrency] = useState('')
 	const [description, setDescription] = useState('')
 	const [donationInformation, setDonationInformation] = useState('')
@@ -41,6 +42,7 @@ const NgoInfoForm = ({ data }) => {
 			name: name,
 			phone: phone,
 			operatingCurrency: operatingCurrency,
+			otherCurrencies: otherCurrencies,
 			donationCurrency: donationCurrency,
 			description: description
 		})
@@ -113,8 +115,8 @@ const NgoInfoForm = ({ data }) => {
 						value={name}
 					/>
 					<input
-						type='phone'
-						placeholder='Phone*'
+						type='text'
+						placeholder='Phone* (+1 1234567890)'
 						required
 						onChange={e => setPhone(e.target.value)}
 						value={phone}
@@ -126,7 +128,7 @@ const NgoInfoForm = ({ data }) => {
 						defaultValue='defaultOption'
 					>
 						<option disabled hidden value='defaultOption'>
-							Operating Currency*
+							Primary Operating Currency*
 						</option>
 						{currencies &&
 							currencies.map(currency => (
@@ -135,6 +137,13 @@ const NgoInfoForm = ({ data }) => {
 								</option>
 							))}
 					</select>
+
+					<input
+						type='text'
+						placeholder='Other Operating Currencies*'
+						onChange={e => setOtherCurrencies(e.target.value)}
+						value={otherCurrencies}
+					/>
 
 					<select
 						onChange={e => setDonationCurrency(e.target.value)}

@@ -72,6 +72,7 @@ const DonorDashboard = ({ user }) => {
 										id={pod.id}
 										photoUrl={pod.photoUrl}
 										setActivePod={() => setActivePod(pod)}
+										pod={pod}
 									/>
 								))}
 					</div>

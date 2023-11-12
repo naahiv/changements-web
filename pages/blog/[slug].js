@@ -11,7 +11,7 @@ import styles from './Blog.module.scss'
 import SectionContainer from '@/components/SectionContainer'
 import Contact from '@/components/Contact'
 import Image from 'next/image'
-import CardsSection from '@/components/CardsSection'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 // temp lists
 import { articles } from '@/temp/listPlaceholders'
@@ -91,7 +91,9 @@ const Article = ({ blog }) => {
 					<div className={styles.blogText}>
 						<p className={styles.date}>{article.subtitle}</p>
 						<h3>{article.fields.title}</h3>
-						<p>{article.fields.body}</p>
+						<div className={styles.text}>
+							{documentToReactComponents(article.fields.body)}
+						</div>
 					</div>
 				</SectionContainer>
 

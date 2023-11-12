@@ -73,8 +73,17 @@ const NgoProfile = ({ user }) => {
 								<p>{document.donationInformation}</p>
 							</div>
 							<div className={styles.donorProfileColumn}>
-								<h5>Operating Currency</h5>
-								<p>{document.operatingCurrency}</p>
+								<h5>Primary Operating Currency</h5>
+								<p style={{ marginBottom: '2rem' }}>
+									{document.operatingCurrency}
+								</p>
+
+								{document.otherCurrencies && (
+									<>
+										<h5>Other Currencies</h5>
+										<p>{document.otherCurrencies}</p>
+									</>
+								)}
 							</div>
 						</SectionContainer>
 					)}

@@ -34,8 +34,8 @@ const CardsSection = ({ title, content, folder, buttonText, contentful }) => {
 							title={item.fields.title}
 							subtitle={item.sys.createdAt.slice(0, -14)}
 							photo={
-								item.fields.photo
-									? 'https:' + item.fields.photo.fields.file.url
+								item.fields.image
+									? 'https:' + item.fields.image.fields.file.url
 									: null
 							}
 							buttonText={buttonText}

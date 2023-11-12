@@ -1,6 +1,7 @@
 // componenets
 import Image from 'next/image'
 import Button from './Button'
+import Link from 'next/link'
 
 const Card = ({
 	title,
@@ -17,16 +18,18 @@ const Card = ({
 		<div className='card'>
 			{photo && (
 				<div className='card-photo'>
-					<Image
-						src={photo}
-						fill
-						quality={80}
-						sizes='(max-width: 768px) 100vw, 768px'
-						style={{ objectFit: 'cover' }}
-						alt='Section Image'
-						priority={true}
-						as='img'
-					/>
+					<Link href={buttonUrl} style={{ width: '100%' }}>
+						<Image
+							src={photo}
+							fill
+							quality={80}
+							sizes='(max-width: 768px) 100vw, 768px'
+							style={{ objectFit: 'cover' }}
+							alt='Section Image'
+							priority={true}
+							as='img'
+						/>
+					</Link>
 				</div>
 			)}
 			<div className='card-text'>
@@ -36,12 +39,12 @@ const Card = ({
 					{title && <h4>{title}</h4>}
 					{name && <h4>{name}</h4>}
 				</div>
-				{text && <p>{text.slice(0, 30)}...</p>}
+				{/* {text && <p>{text.slice(0, 30)}...</p>} */}
 			</div>
 
-			<Button buttonFunction={buttonFunction} url={buttonUrl} color='simple'>
+			{/* <Button buttonFunction={buttonFunction} url={buttonUrl} color='simple'>
 				{buttonText}
-			</Button>
+			</Button> */}
 		</div>
 	)
 }

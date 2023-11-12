@@ -82,7 +82,7 @@ const DonorInfoForm = ({ data }) => {
 
 				<input
 					type='phone'
-					placeholder='Phone*'
+					placeholder='Phone* (+1 1234567890)'
 					required
 					onChange={e => setPhone(e.target.value)}
 					value={phone}

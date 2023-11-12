@@ -13,19 +13,21 @@ import Contact from '@/components/Contact'
 import Image from 'next/image'
 import CardsSection from '@/components/CardsSection'
 import Button from '@/components/Button'
-
-// temp lists
-import { donorPods } from '@/temp/listPlaceholders'
+import PledgeForm from '@/components/forms/PledgeForm'
 
 // hooks
+import { useAuthContext } from '@/hooks/useAuthContext'
 import { useCollection } from '@/hooks/useCollection'
 import { useDocument } from '@/hooks/useDocument'
+import { useState } from 'react'
 
 const Program = () => {
 	const router = useRouter()
 	const { slug } = router.query
 	const { documents: programs } = useCollection('programs')
 	const { documents: pods } = useCollection('pods')
+	const { user } = useAuthContext()
+	const { document } = useDocument('users', user.uid)
 
 	const program = programs && programs.find(program => program.id === slug)
 
@@ -40,6 +42,9 @@ const Program = () => {
 				{/* Program Detail */}
 				{program && (
 					<SectionContainer back={true} marginTop={true} title={program.name}>
+						{/* Pledge Form */}
+						{/* {document && <PledgeForm activeProgram={program} user={document} />} */}
+
 						<div className={styles.programPhoto}>
 							<Image
 								src={program.photoUrl}
@@ -54,6 +59,15 @@ const Program = () => {
 						</div>
 
 						<div className={styles.programContent}>
+							{/* Make a pledge button */}
+							{user && (
+								<div>
+									<Button color='orange' url='/dashboard'>
+										Make a Pledge
+									</Button>
+								</div>
+							)}
+
 							<div className={styles.programInfo}>
 								<div className={styles.programHighlights}>
 									<div>
@@ -93,6 +107,7 @@ const Program = () => {
 
 								<p>{program.description}</p>
 							</div>
+
 							{/* Donor Pods Section */}
 							<h4>Our ChangeMakers</h4>
 							<div className={styles.programPods}>

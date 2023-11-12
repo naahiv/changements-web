@@ -42,7 +42,14 @@ const Program = () => {
 			</Head>
 			<main>
 				{/* Pod Detail */}
-				{pod && <PodSection pod={pod} podProgram={podProgram} user={user} />}
+				{pod && (
+					<PodSection
+						pod={pod}
+						podProgram={podProgram}
+						user={user}
+						hideMembers
+					/>
+				)}
 
 				{/* Other Pods Section */}
 				{/* {pod && (
