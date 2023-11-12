@@ -20,7 +20,7 @@ const DashboardUI = () => {
 					{document.online && !document.registered && <Registration />}
 
 					{/* Verification */}
-					{document.registered && !user.emailVerified ? (
+					{document.registered && false ? ( //!user.emailVerified
 						<Verification />
 					) : (
 						<>
