@@ -27,7 +27,7 @@ const Program = () => {
 	const { documents: programs } = useCollection('programs')
 	const { documents: pods } = useCollection('pods')
 	const { user } = useAuthContext()
-	const { document } = useDocument('users', user.uid)
+	// const { document } = useDocument('users', user.uid)
 
 	const program = programs && programs.find(program => program.id === slug)
 

@@ -11,6 +11,7 @@ import { useCollection } from '@/hooks/useCollection'
 import { useDocument } from '@/hooks/useDocument'
 
 const PodCard = ({ name, photoUrl, description, setActivePod, pod, user }) => {
+	console.log(pod);
 	const { documents: programs } = useCollection('programs')
 
 	// documents && console.log(documents.find(pledge => pledge.donorId == user.id))
