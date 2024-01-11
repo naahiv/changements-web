@@ -114,6 +114,8 @@ input[type='file']::-webkit-file-upload-button {
 	flex-direction: column;
 	gap: calc(base.$gap / 6);
 	margin: calc(base.$gap / 3) 0;
+	color: black;
+	text-decoration: none !important;
 }
 
 .subtitle {

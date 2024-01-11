@@ -34,10 +34,12 @@ const Card = ({
 			)}
 			<div className='card-text'>
 				<div>
+					<Link href={buttonUrl} style={{ width: '100%', color: 'black'}}>
 					{subtitle && <p className='subtitle'>{subtitle}</p>}
 					{owner && <p className='subtitle'>{owner}</p>}
 					{title && <h4>{title}</h4>}
 					{name && <h4>{name}</h4>}
+					</Link>
 				</div>
 				{/* {text && <p>{text.slice(0, 30)}...</p>} */}
 			</div>
