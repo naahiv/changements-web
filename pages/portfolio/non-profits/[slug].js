@@ -54,13 +54,8 @@ const NonProfit = () => {
 							<div className={styles.ngoInfo}>
 								<h3>{nonProfit.name}</h3>
 								<p>{nonProfit.description}</p>
-
 								<div className='buttons-row'>
-									<Button color='orange' url=''>
-										Contact NGO
-									</Button>
-
-									<Button url=''>Visit Website</Button>
+								<a href={nonProfit.ngoReportFile} target='_blank'><button>View NGO Report</button></a>
 								</div>
 							</div>
 
