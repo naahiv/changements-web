@@ -55,7 +55,9 @@ const NonProfit = () => {
 								<h3>{nonProfit.name}</h3>
 								<p>{nonProfit.description}</p>
 								<div className='buttons-row'>
-								<a href={nonProfit.ngoReportFile} target='_blank'><button>View NGO Report</button></a>
+								{nonProfit.ngoReportFile && (
+									<a href={nonProfit.ngoReportFile} target='_blank'><button>View NGO Report</button></a>
+								)}
 								</div>
 							</div>
 
