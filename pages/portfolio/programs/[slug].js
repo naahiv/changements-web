@@ -79,7 +79,7 @@ const Program = () => {
 												})
 												.slice(0, -3)}
 										</h2>
-										<p>Funds Required</p>
+										<p>Annual Funds Required</p>
 									</div>
 									<div>
 										<h2 className='orange'>
