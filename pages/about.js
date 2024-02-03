@@ -75,39 +75,52 @@ const about = () => {
 							<SectionTitle>
 								How it <span className='red'>Works</span>
 							</SectionTitle>
-
+								<p><span className='orange' style={{ fontWeight: '700'}}>
+									Change-Enabler:
+								</span>{' '}</p> <br />
 							<ol>
 								<li>
 									<span>
-										Gather like-minded friends/family and create a Donor Pod.
+										Contact us and we will help you understand the impact journey.
 									</span>
 								</li>
 								<li>
 									<span>
-										Browse our curated NGO Portfolio and pick a Program that
-										appeals to your group.
+										Gather like-minded friends/family - a potential Donor Pod.
 									</span>
 								</li>
 								<li>
 									<span>
-										Make a collective pledge to support. Each member pledges an
-										amount and periodicity that suits him/her. Individual
-										pledges are confidential.
+										Join us with your group (Donor Pod) for an online Zoom call with the NGO partner.
 									</span>
 								</li>
 								<li>
 									<span>
-										Fulfill your pledges with the NGO. We will remind you
-										periodically about your pledges.
+										Make a collective pledge to partner with the NGO. Each member can pledge an amount and 												periodicity that suits him/her. Individual pledges are confidential.
 									</span>
 								</li>
 								<li>
 									<span>
-										Visit your NGO and write/talk/video about your experience on
-										ChangeBuzz.
+										Fulfill your pledges with the NGO by end of year - don’t worry, we will remind you.
+
+									</span>
+								</li>
+								<li>
+									<span>
+										Watch the impact you made together – through numbers, images, videos from the NGO.
+									</span>
+								</li>
+								<li>
+									<span>
+										Visit your NGO and send us your stories (writing/video) for ChangeBuzz.
 									</span>
 								</li>
 							</ol>
+<br /><br />
+<p><span className='red' style={{ fontWeight: '700'}}>
+									Change-Maker:
+								</span>{' '}</p>
+<p>Contact us to add your NGO to our Portfolio. We will work with you in presenting your NGO to groups of donors and create lasting partnerships to scale impact.</p>
 						</div>
 					</div>
 				</section>
