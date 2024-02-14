@@ -106,6 +106,12 @@ const Program = () => {
 								</div>
 
 								<p>{program.description}</p>
+
+								<div className='buttons-row'>
+								{program.programInfoFile && (
+									<a href={program.programInfoFile} target='_blank'><button>View Program Info</button></a>
+								)}
+								</div>
 							</div>
 
 							{/* Donor Pods Section */}
@@ -153,7 +159,7 @@ const Program = () => {
 				{program && (
 					<CardsSection
 						title='Programs'
-						content={programs.filter(item => item !== program)}
+						content={programs.filter(item => item !== program).filter(item => item.createdBy === program.createdBy)}
 						folder='portfolio/programs'
 						buttonText='Learn More'
 					/>
