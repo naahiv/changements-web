@@ -20,10 +20,10 @@ const Hero = ({ user }) => {
 
 			<div className={styles.heroContent}>
 				<div className={styles.container}>
-					<h1>Changements </h1>
+					<h1>ImpactPlease</h1>
 
 					<p>
-						Bringing together Change Enablers and Change-Makers to multiply the
+						Bringing together Change Enablers and Change Makers to multiply the
 						impact.
 					</p>
 

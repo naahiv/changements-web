@@ -42,7 +42,7 @@ export default function Home({ gallery }) {
 	return (
 		<>
 			<Head>
-				<title>Changements | One cup at a time</title>
+				<title>ImpactPlease | One cup at a time</title>
 				<meta
 					name='description'
 					content='We are a group of professionals committed to making a lasting impact for a happier, healthier and just world.​ A few cups of coffee can make all the difference.'
@@ -85,7 +85,7 @@ export default function Home({ gallery }) {
 					photoUrl='/indian-old-woman.jpg'
 				>
 					<SectionTitle color='black'>
-						Changements
+						ImpactPlease
 						<br />
 						<span className='red'>Portfolio</span>
 					</SectionTitle>
