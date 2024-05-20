@@ -29,7 +29,7 @@ const NonProfit = () => {
 	return (
 		<>
 			<Head>
-				<title>{nonProfit && `Changements | ${nonProfit.name}`}</title>
+				<title>{nonProfit && `ImpactPlease | ${nonProfit.name}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>

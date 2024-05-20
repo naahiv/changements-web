@@ -20,7 +20,7 @@ const portfolio = () => {
 	return (
 		<>
 			<Head>
-				<title>Changements | Our Portfolio</title>
+				<title>ImpactPlease | Our Portfolio</title>
 				<meta
 					name='description'
 					content='The NGOs listed here are fully operational, approved with a TaxID. Come together as a group to compound change. You might find more than one cause that interest you and your family and friends. You can belong to more than one group or Pod. Be sure to check the progress, get involved, visit and post your experiences on our blog/vlog. Enjoy the change you are making. '

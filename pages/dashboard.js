@@ -19,7 +19,7 @@ const dashboard = () => {
 	return (
 		<>
 			<Head>
-				<title>Changements | Dashboard</title>
+				<title>ImpactPlease | Dashboard</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>

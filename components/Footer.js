@@ -8,7 +8,7 @@ const Footer = () => {
 	return (
 		<footer className={styles.credits}>
 			<div className={styles.footerContainer}>
-				<p>Changements - Copyright 2023 - All Rights Reserved</p>
+				<p>ImpactPlease - Copyright 2023 - All Rights Reserved</p>
 				<div className={styles.footerLinks}>
 					<Link href=''>
 						<p>Privacy Policy</p>

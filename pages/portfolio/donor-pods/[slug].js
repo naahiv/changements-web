@@ -36,7 +36,7 @@ const Program = () => {
 	return (
 		<>
 			<Head>
-				<title>{pod && `Changements | ${pod.name}`}</title>
+				<title>{pod && `ImpactPlease | ${pod.name}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>

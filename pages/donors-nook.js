@@ -24,7 +24,7 @@ const DonorsNook = () => {
 	return (
 		<>
 			<Head>
-				<title>Changements | Donor's Nook</title>
+				<title>ImpactPlease | Donor's Nook</title>
 				<meta
 					name='description'
 					content='Celebrate the joy of collective giving with friends and family. 
@@ -61,7 +61,7 @@ const DonorsNook = () => {
 								make a huge difference.
 							</p>
 							<p>
-								First create a Changements account if you do not have one. Then
+								First create a ImpactPlease account if you do not have one. Then
 								create or join Donor Pods.
 							</p>
 

@@ -19,7 +19,7 @@ const NGOSquare = () => {
 	return (
 		<>
 			<Head>
-				<title>Changements | NGO Square</title>
+				<title>ImpactPlease | NGO Square</title>
 				<meta
 					name='description'
 					content='Join our NGO portfolio to reach out to our Donor base, that will stay for the long term in your changemaking journey.'

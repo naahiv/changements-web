@@ -20,7 +20,7 @@ const about = () => {
 	return (
 		<>
 			<Head>
-				<title>Changements | About Us</title>
+				<title>ImpactPlease | About Us</title>
 				<meta
 					name='description'
 					content="We create a long term partnership between NGOs and groups of friends or family that are vested in joining hands to help NGOs achieve scales. 

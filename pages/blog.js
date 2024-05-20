@@ -35,7 +35,7 @@ const blog = ({ blog }) => {
 	return (
 		<>
 			<Head>
-				<title>Changements | Change Buzz</title>
+				<title>ImpactPlease | Change Buzz</title>
 				<meta
 					name='description'
 					content='Read about the latest from our NGO partners.
