@@ -25,7 +25,7 @@ const CreateProgramForm = ({ setOpenForm }) => {
 	// form submission
 	const handleSubmit = e => {
 		e.preventDefault()
-
+		
 		addDocumentWithPhoto(
 			{
 				name: name,

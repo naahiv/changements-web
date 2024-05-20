@@ -110,7 +110,10 @@ export const useFirestore = data => {
 				type: 'ADDED_DOCUMENT',
 				payload: addedDocument
 			})
+			console.log(addedDocument)
 		} catch (err) {
+			console.log(err.message);
+			console.log(err);
 			dispatchIfNotCancelled({ type: 'ERROR', payload: err.message })
 		}
 	}
