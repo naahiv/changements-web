@@ -2,9 +2,17 @@
 import styles from '@/styles/Login.module.scss'
 
 // hooks
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
+import dynamic from 'next/dynamic'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useAuthContext } from '@/hooks/useAuthContext'
+
+const ReactQuill = dynamic(() => import('react-quill'), {
+  ssr: false
+});
+
+import 'react-quill/dist/quill.snow.css';
+
 
 const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 	// firestore
@@ -19,9 +27,24 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 		activeProgram.fundsFulfilled
 	)
 	const [fundsSeeking, setFundsSeeking] = useState(activeProgram.fundsSeeking)
-	const [description, setDescription] = useState(activeProgram.description)
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
+
+	// @naahiv
+	const [quillbox, setQuillbox] = useState(activeProgram.description)
+	const quillModules = {
+		toolbar: [
+			[{header: [4,5,6, false]}],
+			['bold','italic','underline','strike'],
+			[
+				{list: 'ordered'},
+				{list: 'bullet'},
+				{indent: '-1'},
+				{indent: '+1'}
+			],
+			['link']
+		]
+	}
 
 
 	// @naahiv
@@ -46,7 +69,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 				fundsRequired: fundsRequired,
 				// fundsFulfilled: fundsFulfilled,
 				// fundsSeeking: fundsSeeking,
-				description: description
+				description: quillbox
 			},
 			photo,
 			'photos'
@@ -114,28 +137,18 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 				value={formattedAmount()}
 			/>
 
-			{/* <input
-				type='number'
-				placeholder='Funds Fulfilled'
-				required
-				onChange={e => setFundsFulfilled(e.target.value)}
-				value={fundsFulfilled}
-			/>
+			<div className={styles.quillbox}>
+				<ReactQuill theme="snow" value={quillbox} placeholder ="Description" onChange={setQuillbox} className={styles.quillboxInput} modules={quillModules} required />
+			</div>
 
-			<input
-				type='number'
-				placeholder='Funds Seeking'
-				required
-				onChange={e => setFundsSeeking(e.target.value)}
-				value={fundsSeeking}
-			/> */}
-
+		{/*
 			<textarea
 				placeholder='Description'
 				required
 				onChange={e => setDescription(e.target.value)}
 				value={description}
 			/>
+		*/}
 
 			<div className={styles.uploadFile}>
 				{photoError ? <p>{photoError}</p> : <p>Upload Photo</p>}

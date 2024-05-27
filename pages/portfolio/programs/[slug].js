@@ -105,7 +105,8 @@ const Program = () => {
 									</div>
 								</div>
 
-								<p>{program.description}</p>
+								{ /* <p>{program.description}</p> */ }
+								<p dangerouslySetInnerHTML={{ __html: program.description }}></p>
 
 								<div className='buttons-row'>
 								{program.programInfoFile && (

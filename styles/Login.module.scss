@@ -58,7 +58,7 @@
 		grid-column: span 6;
 	}
 
-	textarea {
+	textarea, {
 		grid-column: span 12;
 		grid-row: span 2;
 	}
@@ -67,6 +67,18 @@
 		width: fit-content;
 		grid-column: span 12;
 	}
+}
+
+.quillbox {
+	grid-column: span 12;
+	grid-row: span 5;
+	display: flex;
+}
+
+.quillboxInput {
+	height: 80%;
+	width: 100%;
+	font-family: 'Source Sans Pro', sans-serif;
 }
 
 .uploadFile {
