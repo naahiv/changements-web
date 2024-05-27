@@ -109,7 +109,7 @@ const NgoProgram = ({
 									</div>
 								</div>
 
-								<p>{program.description}</p>
+								<p dangerouslySetInnerHTML={{ __html: program.description }}></p>
 
 								{pledges && pledges.length > 0 && (
 									<>

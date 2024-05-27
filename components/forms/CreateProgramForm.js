@@ -32,16 +32,19 @@ const CreateProgramForm = ({ setOpenForm }) => {
 
 
 	const [quillbox, setQuillbox] = useState('')
-	/*
 	const quillModules = {
 		toolbar: [
-			[{header: [1,2,3, false]}],
-			// [{font: []}],
-			[{size: []}],
-
+			[{header: [4,5,6, false]}],
+			['bold','italic','underline','strike'],
+			[
+				{list: 'ordered'},
+				{list: 'bullet'},
+				{indent: '-1'},
+				{indent: '+1'}
+			],
+			['link']
 		]
 	}
-	*/
 	
 
 	// @naahiv
@@ -138,7 +141,7 @@ const CreateProgramForm = ({ setOpenForm }) => {
 			/>
 
 			<div className={styles.quillbox}>
-				<ReactQuill theme="snow" value={quillbox} placeholder ="Description" onChange={setQuillbox} className={styles.quillboxInput} required />
+				<ReactQuill theme="snow" value={quillbox} placeholder ="Description" onChange={setQuillbox} modules={quillModules} className={styles.quillboxInput} required />
 			</div>
 
 		{/*
