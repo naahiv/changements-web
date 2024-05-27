@@ -46,6 +46,14 @@ button:hover {
 	}
 }
 
+.button-orange:disabled {
+	background-color: #ddbda8;
+	color: gray;
+	.button-arrow::after {}
+	cursor: not-allowed;
+	
+}
+
 .button-red {
 	background-color: base.$color-primary-red;
 	color: white;

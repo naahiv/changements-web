@@ -2,7 +2,7 @@
 import styles from '@/styles/Login.module.scss'
 
 // hooks
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
@@ -23,6 +23,18 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
 
+
+	// @naahiv
+	// disables "Save" button if there is an error with the image.
+	const [buttonEnabled, setButtonEnabled] = useState(true)
+
+	useEffect(() => {
+		setButtonEnabled((photoError == null))
+	}, [photoError])	
+
+	// ---
+
+	
 	// form submission
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -60,7 +72,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 		}
 
 		if (selected.size > 1000000) {
-			setPhotoError('Image file size must be lesst than a 1000kb')
+			setPhotoError('Image file size must be less than a 1000kb')
 			return
 		}
 
@@ -138,7 +150,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 				<button className='button-gray' onClick={() => setOpenForm(false)}>
 					Cancel
 				</button>
-				<button className='button-orange'>Save</button>
+				<button className='button-orange' disabled={!buttonEnabled}>Save</button>
 			</div>
 		</form>
 	)
