@@ -31,6 +31,8 @@ const Program = () => {
 
 	const program = programs && programs.find(program => program.id === slug)
 
+	// const langLocale = `en-${program.currency.slice(0,2)}`
+
 	return (
 		<>
 			<Head>
@@ -73,7 +75,7 @@ const Program = () => {
 									<div>
 										<h2 className='dark-orange'>
 											{Number(program.fundsRequired)
-												.toLocaleString('en-US', {
+												.toLocaleString(`en-${program.currency.slice(0,2)}`, {
 													style: 'currency',
 													currency: program.currency
 												})
@@ -84,7 +86,7 @@ const Program = () => {
 									<div>
 										<h2 className='orange'>
 											{Number(program.fundsFulfilled)
-												.toLocaleString('en-US', {
+												.toLocaleString(`en-${program.currency.slice(0,2)}`, {
 													style: 'currency',
 													currency: program.currency
 												})
@@ -95,7 +97,7 @@ const Program = () => {
 									<div>
 										<h2 className='red'>
 											{Number(program.fundsRequired - program.fundsFulfilled)
-												.toLocaleString('en-US', {
+												.toLocaleString(`en-${program.currency.slice(0,2)}`, {
 													style: 'currency',
 													currency: program.currency
 												})
