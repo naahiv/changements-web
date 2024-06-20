@@ -118,7 +118,7 @@ const Program = () => {
 							</div>
 
 							{/* Donor Pods Section */}
-							<h4>Our ChangeMakers</h4>
+							<h4>Our Change Enablers</h4>
 							<div className={styles.programPods}>
 								{/* Donor Pods Section */}
 								{pods
