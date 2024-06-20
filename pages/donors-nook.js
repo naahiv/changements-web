@@ -94,7 +94,7 @@ const DonorsNook = () => {
 
 				{/* Donor Pods Section */}
 				<CardsSection
-					title='Our ChangeMakers'
+					title='Our Change Enablers'
 					content={donorPods}
 					folder='portfolio/donor-pods'
 					buttonText='Learn More'
