@@ -57,12 +57,12 @@ section {
 }
 
 .columnImage {
-	width: 40%;
-	aspect-ratio: 1 / 1;
+	width: 50%;
+	aspect-ratio: 2.5 / 1;
 }
 
 .columnText {
-	width: 60%;
+	width: 50%;
 	padding: calc(base.$gap + (base.$gap / 2));
 	display: flex;
 	flex-direction: column;
