@@ -58,7 +58,7 @@ const portfolio = () => {
 				{/* NonProfits Section */}
 				{nonProfits && (
 					<CardsSection
-						title='Non-Profits(NGOs)'
+						title='NGOs'
 						content={nonProfits.filter(user => user.type == 'ngo')}
 						folder='portfolio/non-profits'
 						buttonText='Learn More'

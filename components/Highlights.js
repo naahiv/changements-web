@@ -6,15 +6,19 @@ import { useCollection } from '@/hooks/useCollection'
 
 const Highlights = () => {
 	const { documents: users } = useCollection('users')
-	const highlightsData = useCollection('staticData').documents.find(e => e.id == 'highlights')
-	console.log(highlightsData)
+	// const highlightsData = useCollection('staticData').documents.find(e => e.id == 'highlights')
+	const { documents: staticData} = useCollection('staticData')
+
+	function highlightsData() {
+		return staticData.find(e => e.id == 'highlights')
+	}
 
 	return (
 		<section>
 			<div className='sectionContainer'>
 				<div className={styles.highlights}>
 					<div>
-						<h2 style={{ color: '#FB8B24' }}>{highlightsData && highlightsData.dollarsDonated}</h2>
+						<h2 style={{ color: '#FB8B24' }}>{staticData && highlightsData().dollarsDonated}</h2>
 						<p>
 							Dollars
 							<br />
@@ -22,7 +26,7 @@ const Highlights = () => {
 						</p>
 					</div>
 					<div>
-						<h2 style={{ color: '#E36414' }}>{highlightsData && highlightsData.peopleBenefitted}</h2>
+						<h2 style={{ color: '#E36414' }}>{staticData && highlightsData().peopleBenefitted}</h2>
 						<p>
 							People
 							<br />

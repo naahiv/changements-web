@@ -12,7 +12,8 @@ const Card = ({
 	photo,
 	buttonText,
 	buttonUrl,
-	buttonFunction
+	buttonFunction,
+	tagline
 }) => {
 	return (
 		<div className='card'>
@@ -39,6 +40,7 @@ const Card = ({
 					{owner && <p className='subtitle'>{owner}</p>}
 					{title && <h4>{title}</h4>}
 					{name && <h4>{name}</h4>}
+					{tagline && <p className='subtitle'>{tagline}</p>}
 					</Link>
 				</div>
 				{/* {text && <p>{text.slice(0, 30)}...</p>} */}

@@ -24,6 +24,7 @@ const CardsSection = ({ title, content, folder, buttonText, contentful }) => {
 							photo={item.photoUrl}
 							buttonText={buttonText}
 							buttonUrl={`/${folder}/${item.id}`}
+							tagline={item.tagline}
 						/>
 					))}
 
