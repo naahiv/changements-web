@@ -70,11 +70,11 @@ export default function Home({ gallery }) {
 					</SectionTitle>
 					<p>
 						We are a group of professionals committed to making a lasting impact
-						for a happier, healthier and just world. ​A few cups of coffee can
+						for a happier, healthier, and more just world. ​A few cups of coffee can
 						make all the difference.
 					</p>
 					<br />
-					<p>BE THE CHANGE YOU WANT TO SEE.</p>
+					<b><p>Be the change you want to see.</p></b>
 				</ImageTextColumns>
 
 				{/* Portfolio Section */}
