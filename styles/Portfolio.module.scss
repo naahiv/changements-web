@@ -72,8 +72,12 @@
 
 	div {
 		padding-right: base.$gap;
-		width: 28%;
+		/*width: 28%;*/
 		border-right: 1px solid base.$color-secondary-red;
+	}
+
+	h2 {
+		font-size: 3.2vw;
 	}
 
 	div:last-of-type {

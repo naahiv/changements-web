@@ -32,6 +32,13 @@ const Program = () => {
 	const program = programs && programs.find(program => program.id === slug)
 
 	// const langLocale = `en-${program.currency.slice(0,2)}`
+	
+	// function to compute h2 font-size for top numbers
+	function computeH2Font(width) {
+		let m = 0.00243902
+		let b = -0.512195
+		return m*width+b
+	}
 
 	return (
 		<>
