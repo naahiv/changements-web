@@ -6,34 +6,29 @@ import { useCollection } from '@/hooks/useCollection'
 
 import React, { useState, useEffect } from 'react';
 
-
 const Highlights = () => {
 	const { documents: users } = useCollection('users')
-	// const highlightsData = useCollection('staticData').documents.find(e => e.id == 'highlights')
 	const { documents: staticData} = useCollection('staticData')
 
 	function highlightsData() {
 		return staticData.find(e => e.id == 'highlights')
 	}
 	const [countryCode, setCountryCode] = useState('')
-	const locURI = 'https://api.geoapify.com/v1/ipinfo?apiKey=563fd5222c284852b7695aeaa8eae276'
+	const locURI = `https://api.geoapify.com/v1/ipinfo?apiKey=${process.env.NEXT_PUBLIC_GEO_KEY}`
 
 	const getCountryCode = async () => {
 		const response = await fetch(locURI)
 		const data = await response.json()
 		setCountryCode(data.country.iso_code)
 	}
+
+
+	// console.log(process.env.accessToken)
 	
 	useEffect(() => {
 		getCountryCode()
 		console.log(countryCode)
 	}, [])
-
-	/*
-	await fetch('https://api.geoapify.com/v1/ipinfo?apiKey=563fd5222c284852b7695aeaa8eae276').then(response => response.json()).then(data => {
-		console.log(data.country.iso_code)
-	})
-	*/
 
 
 	return (
