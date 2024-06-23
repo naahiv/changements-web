@@ -4,6 +4,8 @@ import styles from '@/styles/Homepage.module.scss'
 // hooks
 import { useCollection } from '@/hooks/useCollection'
 
+import React, { useState, useEffect } from 'react';
+
 
 const Highlights = () => {
 	const { documents: users } = useCollection('users')
@@ -13,6 +15,19 @@ const Highlights = () => {
 	function highlightsData() {
 		return staticData.find(e => e.id == 'highlights')
 	}
+	const [countryCode, setCountryCode] = useState('')
+	const locURI = 'https://api.geoapify.com/v1/ipinfo?apiKey=563fd5222c284852b7695aeaa8eae276'
+
+	const getCountryCode = async () => {
+		const response = await fetch(locURI)
+		const data = await response.json()
+		setCountryCode(data.country.iso_code)
+	}
+	
+	useEffect(() => {
+		getCountryCode()
+		console.log(countryCode)
+	}, [])
 
 	/*
 	await fetch('https://api.geoapify.com/v1/ipinfo?apiKey=563fd5222c284852b7695aeaa8eae276').then(response => response.json()).then(data => {
@@ -20,14 +35,15 @@ const Highlights = () => {
 	})
 	*/
 
+
 	return (
 		<section>
 			<div className='sectionContainer'>
 				<div className={styles.highlights}>
 					<div>
-						<h2 style={{ color: '#FB8B24' }}>{staticData && highlightsData().dollarsDonated}</h2>
+						<h2 style={{ color: '#FB8B24' }}>{staticData && ((countryCode == 'IN') ? highlightsData().rupeesDonated : highlightsData().dollarsDonated)}</h2>
 						<p>
-							Dollars
+							{(countryCode == 'IN') ? 'Rupees' : 'Dollars'}
 							<br />
 							donated
 						</p>
