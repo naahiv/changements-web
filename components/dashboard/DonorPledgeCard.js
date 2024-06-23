@@ -7,20 +7,23 @@ import Image from 'next/image'
 // hooks
 import { useCurrency } from '@/hooks/useCurrency'
 import { useCollection } from '@/hooks/useCollection'
+import { useDocument } from '@/hooks/useDocument'
 
 const DonorPledgeCard = ({
 	name,
 	photoUrl,
 	fundsRequired,
 	// fundsFulfilled,
-	// pledges,
+	pledges,
 	user,
 	currency,
 	id
 }) => {
-	const { documents: pledges } = useCollection(`programs/${id}/pledges`)
 
-	// documents && console.log(documents.find(pledge => pledge.donorId == user.id))
+	// const { documents: programs } = useCollection('programs')
+	// const pledges = (programs && programs.find((prg) => prg.id == id).pledges
+
+
 
 	// Currencies
 	const { convert } = useCurrency()
@@ -33,6 +36,7 @@ const DonorPledgeCard = ({
 			(accumulator, pledge) => accumulator + pledge.fulfilledAmount,
 			0
 		)
+
 
 	return (
 		<>

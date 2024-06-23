@@ -39,6 +39,8 @@ const DonorDashboard = ({ user }) => {
 		setOpenForm(true)
 	}
 
+	programs && console.log(programs)
+
 	return (
 		<section>
 			{/* My Pods */}
@@ -203,15 +205,9 @@ const DonorDashboard = ({ user }) => {
 				<SectionContainer marginTop={true}>
 					<div className={styles.dashboardHeader}>
 						<SectionTitle>My Pledges</SectionTitle>
-						{/* <button
-							className='button-orange'
-							onClick={() => setOpenSearch(true)}
-						>
-							Make a Pledge
-						</button> */}
 					</div>
 					<div className={styles.cardsContainer}>
-						{programs &&
+						{programs && 
 							programs
 								.filter(program =>
 									program.pledges.find(pledge => pledge.donorId == user.id)
