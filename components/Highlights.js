@@ -37,7 +37,7 @@ const Highlights = () => {
 						<p>
 							{(countryCode == 'IN') ? 'Rupees' : 'Dollars'}
 							<br />
-							donated {`$countryCode{}`}
+							donated {`${countryCode}`}
 						</p>
 					</div>
 					<div>
