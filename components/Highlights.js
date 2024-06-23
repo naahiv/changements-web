@@ -22,9 +22,6 @@ const Highlights = () => {
 		setCountryCode(data.country.iso_code)
 	}
 
-
-	// console.log(process.env.accessToken)
-	
 	useEffect(() => {
 		getCountryCode()
 		console.log(countryCode)
@@ -40,7 +37,7 @@ const Highlights = () => {
 						<p>
 							{(countryCode == 'IN') ? 'Rupees' : 'Dollars'}
 							<br />
-							donated
+							donated {`$countryCode{}`}
 						</p>
 					</div>
 					<div>
