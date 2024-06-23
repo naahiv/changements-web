@@ -4,6 +4,7 @@ import styles from '@/styles/Homepage.module.scss'
 // hooks
 import { useCollection } from '@/hooks/useCollection'
 
+
 const Highlights = () => {
 	const { documents: users } = useCollection('users')
 	// const highlightsData = useCollection('staticData').documents.find(e => e.id == 'highlights')
@@ -12,6 +13,12 @@ const Highlights = () => {
 	function highlightsData() {
 		return staticData.find(e => e.id == 'highlights')
 	}
+
+	/*
+	await fetch('https://api.geoapify.com/v1/ipinfo?apiKey=563fd5222c284852b7695aeaa8eae276').then(response => response.json()).then(data => {
+		console.log(data.country.iso_code)
+	})
+	*/
 
 	return (
 		<section>

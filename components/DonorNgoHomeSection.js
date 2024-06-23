@@ -14,7 +14,7 @@ const DonorNgoHomeSection = () => {
 			</div>
 			<div className='twoColumnSectionContainer'>
 				{/* Donor */}
-				<div className='columnText' style={{ background: 'none' }}>
+				<div className='specialColumnText' style={{ background: 'none'}}>
 					<SectionTitle>
 						<span className='red'>Donor's</span> Nook
 					</SectionTitle>
@@ -32,7 +32,7 @@ const DonorNgoHomeSection = () => {
 				</div>
 
 				{/* NGO */}
-				<div className='columnText' style={{ background: 'none' }}>
+				<div className='specialColumnText' style={{ background: 'none'}}>
 					<SectionTitle color='white'>
 						<span className='orange'>NGO</span> Square
 					</SectionTitle>

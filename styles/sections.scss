@@ -57,11 +57,21 @@ section {
 }
 
 .columnImage {
-	width: 50%;
-	aspect-ratio: 2.5 / 1;
+	width: 40%;
+	aspect-ratio: 1 / 1;
 }
 
 .columnText {
+	width: 60%;
+	padding: calc(base.$gap + (base.$gap / 2));
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.specialColumnText {
+	position: relative;
+	background-color: base.$color-primary-gray;
 	width: 50%;
 	padding: calc(base.$gap + (base.$gap / 2));
 	display: flex;
@@ -104,7 +114,8 @@ section {
 
 @media screen and (max-width: 1024px) {
 	.columnImage,
-	.columnText {
+	.columnText,
+   	.specialColumnText	{
 		width: 100%;
 	}
 
@@ -129,6 +140,10 @@ section {
 	}
 
 	.columnText {
+		padding: calc(base.$gap / 2);
+	}
+
+	.specialColumnText {
 		padding: calc(base.$gap / 2);
 	}
 }
