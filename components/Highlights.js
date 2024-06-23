@@ -24,7 +24,6 @@ const Highlights = () => {
 
 	useEffect(() => {
 		getCountryCode()
-		console.log(countryCode)
 	}, [])
 
 
@@ -37,7 +36,7 @@ const Highlights = () => {
 						<p>
 							{(countryCode == 'IN') ? 'Rupees' : 'Dollars'}
 							<br />
-							donated {`${countryCode}`}
+							donated
 						</p>
 					</div>
 					<div>
