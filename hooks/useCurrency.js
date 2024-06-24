@@ -8,8 +8,7 @@ export const useCurrency = () => {
 	const [currencies, setCurrencies] = useState(['EUR', 'USD', 'INR', 'GBP'])
 	const [data, setData] = useState()
 
-	const tempData = { USD: 1.092598, INR: 90.841878, GBP: 0.857285, EUR: 1 }
-
+	const tempData = { USD: 1.06951874, INR: 89.36014056, GBP: 0.84535325, EUR: 1.0 }
 
 	const convertUnformatted = (fromValue, toValue, amount) => {
 		const from =
@@ -46,6 +45,7 @@ export const useCurrency = () => {
 	// 				setData({ ...data.rates, EUR: 1 })
 	// 		})
 	// }, [])
+	// FOR LIVE UPDATES: https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/eur.json
 
 	return { currencies, convert, convertUnformatted, format}
 }

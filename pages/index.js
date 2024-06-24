@@ -18,6 +18,10 @@ import SectionTitle from '@/components/SectionTitle'
 // contentful
 import { createClient } from 'contentful'
 
+
+import { useCurrency } from '@/hooks/useCurrency'
+
+
 export async function getStaticProps() {
 	const client = createClient({
 		space: process.env.space,
