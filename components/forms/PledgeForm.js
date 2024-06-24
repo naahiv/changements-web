@@ -15,9 +15,13 @@ const PledgeForm = ({
 	setActiveProgram,
 	setOpenSearch
 }) => {
+
+	console.log('in the pledge form thingy')
+
 	// firestore
 	const { updateDocument } = useFirestore('programs')
 	const { addDocument } = useFirestore(`programs/${activeProgram.id}/pledges`)
+
 
 	// Email JS
 	const { sendEmail } = useEmailJS()

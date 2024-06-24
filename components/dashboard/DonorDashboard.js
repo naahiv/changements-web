@@ -39,7 +39,7 @@ const DonorDashboard = ({ user }) => {
 		setOpenForm(true)
 	}
 
-	programs && console.log(programs)
+	// programs && console.log(programs)
 
 	return (
 		<section>
@@ -81,8 +81,8 @@ const DonorDashboard = ({ user }) => {
 				</SectionContainer>
 			)}
 
-			{/* My Invites */}
-			{!openPodForm && !openEditForm && !openPodsSearch && !activePod && (
+			{/* My Invites - make sure the new mod works*/}
+			{(pods && pods.filter(item => item.invites.includes(user.email)).length >0) && !openPodForm && !openEditForm && !openPodsSearch && !activePod && (
 				<SectionContainer marginTop={true}>
 					<div className={styles.dashboardHeader}>
 						<SectionTitle>My Invites</SectionTitle>
@@ -190,13 +190,13 @@ const DonorDashboard = ({ user }) => {
 					backFunction={() => setOpenForm(false)}
 					title='Make a Pledge'
 				>
-					<PledgeForm
+				{/*<PledgeForm
 						activeProgram={activeProgram}
 						user={user}
 						setOpenForm={setOpenForm}
 						setActiveProgram={setActiveProgram}
 						setOpenSearch={setOpenSearch}
-					/>
+					/>*/}
 				</SectionContainer>
 			)}
 

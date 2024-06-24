@@ -11,7 +11,7 @@ import { useCollection } from '@/hooks/useCollection'
 import { useDocument } from '@/hooks/useDocument'
 
 const PodCard = ({ name, photoUrl, description, setActivePod, pod, user }) => {
-	console.log(pod);
+	// console.log(pod);
 	const { documents: programs } = useCollection('programs')
 
 	// documents && console.log(documents.find(pledge => pledge.donorId == user.id))
@@ -145,7 +145,7 @@ const PodCard = ({ name, photoUrl, description, setActivePod, pod, user }) => {
 							</Button>
 						)}
 
-						<Button color='orange' buttonFunction={setActivePod}>
+						<Button color='orange' url='/portfolio'>
 							Make a Pledge
 						</Button>
 					</div>
