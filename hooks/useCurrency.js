@@ -10,7 +10,8 @@ export const useCurrency = () => {
 
 	const tempData = { USD: 1.092598, INR: 90.841878, GBP: 0.857285, EUR: 1 }
 
-	const convert = (fromValue, toValue, amount) => {
+
+	const convertUnformatted = (fromValue, toValue, amount) => {
 		const from =
 			tempData &&
 			Object.entries(tempData).filter(([key, value]) => key == fromValue)
@@ -22,12 +23,19 @@ export const useCurrency = () => {
 			from &&
 			to &&
 			((1 / from[0][1]) * to[0][1] * amount)
-				.toLocaleString('en-US', {
-					style: 'currency',
-					currency: toValue
-				})
-				.slice(0, -3)
 		)
+	}
+	
+	const format = (curr, num) => {
+		return num.toLocaleString(`en-${curr.slice(0, 2)}`, {
+			style: 'currency',
+			currency: curr
+		})
+		.slice(0, -3)
+	}
+
+	const convert = (fromValue, toValue, amount) => {
+		return format(toValue, convertUnformatted(fromValue, toValue, amount))
 	}
 
 	// useEffect(() => {
@@ -39,5 +47,5 @@ export const useCurrency = () => {
 	// 		})
 	// }, [])
 
-	return { currencies, convert }
+	return { currencies, convert, convertUnformatted, format}
 }

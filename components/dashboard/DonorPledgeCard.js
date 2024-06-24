@@ -26,16 +26,13 @@ const DonorPledgeCard = ({
 
 
 	// Currencies
-	const { convert } = useCurrency()
+	const { convert, convertUnformatted, format } = useCurrency()
 
 	const pledge = pledges && pledges.find(pledge => pledge.donorId == user.id)
 
-	const fundsFulfilled =
-		pledges &&
-		pledges.reduce(
-			(accumulator, pledge) => accumulator + pledge.fulfilledAmount,
-			0
-		)
+	const fundsFulfilled = pledges && pledges.reduce((acc, pledge) => 
+		acc + convertUnformatted(pledge.currency, user.operatingCurrency, pledge.fulfilledAmount)
+		, 0)
 
 
 	return (
@@ -73,7 +70,7 @@ const DonorPledgeCard = ({
 							</div>
 							<div>
 								<h4>
-									{convert(currency, user.operatingCurrency, fundsFulfilled)}
+									{format(user.operatingCurrency, fundsFulfilled)}
 								</h4>
 								<p>
 									Funds
@@ -83,11 +80,10 @@ const DonorPledgeCard = ({
 							</div>
 							<div>
 								<h4>
-									{convert(
+									{format(user.operatingCurrency, convertUnformatted(
 										currency,
 										user.operatingCurrency,
-										fundsRequired - fundsFulfilled
-									)}
+										fundsRequired) - fundsFulfilled)}
 								</h4>
 								<p>
 									Funds
@@ -97,12 +93,7 @@ const DonorPledgeCard = ({
 							</div>
 							<div>
 								<h4>
-									{Number(pledge.amount)
-										.toLocaleString('en-US', {
-											style: 'currency',
-											currency: user.operatingCurrency
-										})
-										.slice(0, -3)}
+									{convert(pledge.currency, user.operatingCurrency, pledge.amount)}
 								</h4>
 								<p>
 									My Total
@@ -112,12 +103,7 @@ const DonorPledgeCard = ({
 							</div>
 							<div>
 								<h4>
-									{Number(pledge.fulfilledAmount)
-										.toLocaleString('en-US', {
-											style: 'currency',
-											currency: user.operatingCurrency
-										})
-										.slice(0, -3)}
+									{convert(pledge.currency, user.operatingCurrency, pledge.fulfilledAmount)}
 								</h4>
 								<p>
 									My Fulfilled
@@ -127,12 +113,7 @@ const DonorPledgeCard = ({
 							</div>
 							<div>
 								<h4>
-									{Number(pledge.amount - pledge.fulfilledAmount)
-										.toLocaleString('en-US', {
-											style: 'currency',
-											currency: user.operatingCurrency
-										})
-										.slice(0, -3)}
+									{convert(pledge.currency, user.operatingCurrency, pledge.amount - pledge.fulfilledAmount)}
 								</h4>
 								<p>
 									My Pending
