@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { useCurrency } from '@/hooks/useCurrency'
 import { useCollection } from '@/hooks/useCollection'
 import { useDocument } from '@/hooks/useDocument'
+import { useRouter } from 'next/router'
 
 const DonorPledgeCard = ({
 	name,
@@ -23,6 +24,12 @@ const DonorPledgeCard = ({
 	// const { documents: programs } = useCollection('programs')
 	// const pledges = (programs && programs.find((prg) => prg.id == id).pledges
 
+	// const ngoId = programs && programs.find(program => program.id === id).createdBy
+	const router = useRouter()
+	const toProgramPage = () => {
+		// router.push(`/${ngoId}/${id}`)
+		router.push(`/portfolio/programs/${id}`)
+	}
 
 
 	// Currencies
@@ -54,7 +61,7 @@ const DonorPledgeCard = ({
 
 					<div className={styles.cardContent}>
 						<div className={styles.cardTitle}>
-							<h4>{name}</h4>
+							<h4 onClick={toProgramPage}>{name}</h4>
 						</div>
 
 						<div className={styles.pledges}>

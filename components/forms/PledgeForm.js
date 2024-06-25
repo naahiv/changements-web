@@ -7,6 +7,8 @@ import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
 import { useDocument } from '@/hooks/useDocument'
 import { useEmailJS } from '@/hooks/useEmailJS'
+import { useRouter } from 'next/router'
+import { useCollection } from '@/hooks/useCollection'
 
 const PledgeForm = ({
 	activeProgram,
@@ -22,6 +24,14 @@ const PledgeForm = ({
 	const { updateDocument } = useFirestore('programs')
 	const { addDocument } = useFirestore(`programs/${activeProgram.id}/pledges`)
 
+	const { documents: pods} = useCollection('pods')
+
+	const podFirestore = useFirestore('pods')
+	const updatePods = podFirestore.updateDocument
+
+
+	// router
+	const router = useRouter()
 
 	// Email JS
 	const { sendEmail } = useEmailJS()
@@ -46,17 +56,26 @@ const PledgeForm = ({
 			pledges: [
 				...activeProgram.pledges,
 				{
-					// amount: amount,
-					// fulfilledAmount: 0,
-					// frequency: frequency,
-					donorId: user.id
-					// donorName: user.name,
-					// donorCurrency: user.operatingCurrency,
-					// donorPhoto: user.photoUrl
+					amount: amount,
+					fulfilledAmount: 0,
+					frequency: frequency,
+					donorId: user.id,
+					donorName: user.name,
+					currency: donationCurrency,
+					donorPhoto: user.photoUrl
 				}
 			]
 		})
 
+		pods.forEach((pod) => {
+			if (pod.members.indexOf(user.id) >= 0) {
+				updatePods(pod.id, {programs: [...pod.programs,{
+					programName: activeProgram.name
+				}]})
+			}
+		})	
+
+		/*
 		addDocument({
 			// programId: activeProgram.id,
 			amount: amount,
@@ -67,13 +86,16 @@ const PledgeForm = ({
 			donorCurrency: donationCurrency,
 			donorPhoto: user.photoUrl
 		})
+		*/
 
 		setOpenForm(false)
-		setActiveProgram(null)
-		setOpenSearch(false)
+		setActiveProgram && setActiveProgram(null)
+		setOpenSearch && setOpenSearch(false)
 
 		// sending email
 		sendEmail(form.current)
+
+		router.push('/dashboard')	
 	}
 
 	// currencies

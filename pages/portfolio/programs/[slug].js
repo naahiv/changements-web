@@ -26,10 +26,14 @@ const Program = () => {
 	const { slug } = router.query
 	const { documents: programs } = useCollection('programs')
 	const { documents: pods } = useCollection('pods')
+	const {documents: users} = useCollection('users')
 	const { user } = useAuthContext()
-	// const { document } = useDocument('users', user.uid)
+	const [formOpen, setFormOpen] = useState(false)
+	const { document } = useDocument('users', user.uid)
 
 	const program = programs && programs.find(program => program.id === slug)
+
+	const userType = user && users && users.find(usrDoc => usrDoc.id == user.uid).type
 
 	// const langLocale = `en-${program.currency.slice(0,2)}`
 	
@@ -68,11 +72,20 @@ const Program = () => {
 						</div>
 
 						<div className={styles.programContent}>
+
+							{/* Pledge Form */}
+							{formOpen && program && (
+								<PledgeForm 
+									activeProgram={program}
+									user={document}															 setOpenForm={setFormOpen}
+								/>
+							)}
+
 							{/* Make a pledge button */}
-							{user && (
+							{userType && userType == 'donor' && (
 								<div>
-									<Button color='orange' url='/dashboard'>
-										Make a Pledge
+									<Button color='orange' buttonFunction={() => {setFormOpen(!formOpen)}}>
+										{formOpen ? ('Close') : 'Make a Pledge'}
 									</Button>
 								</div>
 							)}
