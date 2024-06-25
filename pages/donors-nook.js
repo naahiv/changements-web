@@ -95,7 +95,7 @@ const DonorsNook = () => {
 				{/* Donor Pods Section */}
 				<CardsSection
 					title='Our Change Enablers'
-					content={donorPods}
+					content={donorPods && donorPods.filter(pod => !pod.specialty)}
 					folder='portfolio/donor-pods'
 					buttonText='Learn More'
 				/>

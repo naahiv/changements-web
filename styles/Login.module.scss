@@ -69,6 +69,12 @@
 	}
 }
 
+#pledgeForm {
+	grid-template-rows: repeat(2, 1fr);
+}
+
+
+
 .quillbox {
 	grid-column: span 12;
 	grid-row: span 5;

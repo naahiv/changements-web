@@ -117,7 +117,7 @@ const PledgeForm = ({
 	}
 
 	return (
-		<form ref={form} className={styles.form} onSubmit={handleSubmit}>
+		<form ref={form} className={styles.form} onSubmit={handleSubmit} id={styles.pledgeForm}>
 			<input
 				type='text'
 				placeholder='Amount'
