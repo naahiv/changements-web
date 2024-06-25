@@ -25,9 +25,9 @@ const about = () => {
 					name='description'
 					content="We create a long term partnership between NGOs and groups of friends or family that are vested in joining hands to help NGOs achieve scales. 
 
-                    Change-Enabler - You are one if you are interested in making the world a better place for everybody. We bring you curated non-profits that you can engage with and be part of the journey. 
+                    Change Enabler - You are one if you are interested in making the world a better place for everybody. We bring you curated non-profits that you can engage with and be part of the journey. 
                     
-                    Change-Makers - If you are an NGO looking to connect with the right people to fulfill your dream, we'll bring them to you."
+                    Change Makers - If you are an NGO looking to connect with the right people to fulfill your dream, we'll bring them to you."
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
@@ -56,7 +56,7 @@ const about = () => {
 							<br />
 							<p>
 								<span className='orange' style={{ fontWeight: '700' }}>
-									Change-Enabler:
+									Change Enabler:
 								</span>{' '}
 								You are a donor interested in making the world a better place.
 								We bring you curated non-profits (NGOs) to begin your journey.
@@ -65,7 +65,7 @@ const about = () => {
 
 							<p>
 								<span className='red' style={{ fontWeight: '700' }}>
-									Change-Makers:
+									Change Makers:
 								</span>{' '}
 								You are an NGO looking for the right people to fulfill your
 								dream. We will bring you the donors to partner in your journey.
@@ -76,7 +76,7 @@ const about = () => {
 								How it <span className='red'>Works</span>
 							</SectionTitle>
 								<p><span className='orange' style={{ fontWeight: '700'}}>
-									Change-Enabler:
+									Change Enabler:
 								</span>{' '}</p> <br />
 							<ol>
 								<li>
@@ -118,7 +118,7 @@ const about = () => {
 							</ol>
 <br /><br />
 <p><span className='red' style={{ fontWeight: '700'}}>
-									Change-Maker:
+									Change Maker:
 								</span>{' '}</p>
 <p>Contact us to add your NGO to our Portfolio. We will work with you in presenting your NGO to groups of donors and create lasting partnerships to scale impact.</p>
 						</div>
