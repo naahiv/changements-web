@@ -49,7 +49,7 @@ const Highlights = () => {
 					</div>
 					<div>
 						<h2 style={{ color: '#9A031E' }}>
-							{users && users.filter(user => user.type == 'donor').length}
+							{users && Math.max(15, users.filter(user => user.type == 'donor').length)}
 						</h2>
 						<p>
 							Friends & Family
