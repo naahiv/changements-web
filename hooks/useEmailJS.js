@@ -2,13 +2,14 @@ import emailjs from '@emailjs/browser'
 
 export const useEmailJS = () => {
 	// add form.current instead of formRef
+	// NOTE: this only works for Pledge emails
 	const sendEmail = formRef => {
 		emailjs
 			.sendForm(
-				'changementsinfo',
-				'template_nqhoin9',
+				'service_m28rvve',
+				'template_11de3km',
 				formRef,
-				'm6KQHX88ImtfbCLaf'
+				'Otv13-tmfAo18EPpR'
 			)
 			.then(
 				result => {

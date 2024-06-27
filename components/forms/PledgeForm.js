@@ -165,18 +165,27 @@ const PledgeForm = ({
 					type='email'
 					placeholder='Email Address'
 					style={{ display: 'none' }}
-					name='email'
-					value={owner.email}
+					name='to_email'
+					value={user.email}
 				/>
 			)}
-
+			
 			<input
 				type='text'
+				placeholder='Name'
+				value={user.name}
+				name='to_name'
+				style={{ display: 'none' }}
+			/>
+
+		{activeProgram && owner && (<input
+				type='text'
 				placeholder='Email Address'
-				value={`${user.name} has pledged ${amount} ${donationCurrency} ${frequency}. Please contact ${user.name} at ${user.email} for more information.`}
+				value={`Thank you for pledging to donate to ${activeProgram.name}! Our records indicate that you have pledged ${amount} ${donationCurrency} ${frequency.toLowerCase()}. The NGO managing the program you selected, ${owner.name}, will be notified shortly about your pledge. ${owner.name} may contact you to fulfill your pledge. If you have any questions or concerns regarding your pledge, please reply to this email.`}
 				name='message'
 				style={{ display: 'none' }}
 			/>
+		)}
 
 			<button className='button-orange'>Make a pledge</button>
 		</form>
