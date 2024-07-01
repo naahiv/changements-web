@@ -3,6 +3,7 @@ import Registration from '@/components/Registration'
 import NgoDashboard from './NgoDashboard'
 import DonorDashboard from './DonorDashboard'
 import Verification from './Verification'
+import AdminDashboard from './AdminDashboard'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -33,6 +34,12 @@ const DashboardUI = () => {
 							{document.registered && document.type == 'donor' && (
 								<DonorDashboard user={document} />
 							)}
+
+							{/* Admin Dashboard */}
+							{document.registered && document.type == 'admin' && (
+								<AdminDashboard user={document} />
+							)}
+							
 						</>
 					)}
 				</>
