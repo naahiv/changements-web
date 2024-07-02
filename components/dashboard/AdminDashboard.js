@@ -10,6 +10,7 @@ import SectionTitle from '../SectionTitle'
 import NgoProgram from './NgoProgram'
 import DonorProfile from './DonorProfile'
 import ProfileUI from '../profile/ProfileUI'
+import CardsSection from '@/components/CardsSection'
 
 // hooks
 import { useState } from 'react'
@@ -18,19 +19,8 @@ import { useFirestore } from '@/hooks/useFirestore'
 
 const AdminDashboard = ({ user }) => {
 	const { deleteDocument } = useFirestore('programs')
-	const [openForm, setOpenForm] = useState(false)
-	const [openProgram, setOpenProgram] = useState(false)
-	const [openDonor, setOpenDonor] = useState(false)
-	const [formType, setFormType] = useState('create')
-	const [activeProgram, setActiveProgram] = useState()
-	const [activeDonor, setActiveDonor] = useState()
+	const { documents: users} = useCollection('users')
 
-	// firebase
-	const { documents: programs } = useCollection('programs', [
-		'createdBy',
-		'==',
-		user.id
-	])
 
 	return (
 		<section>
@@ -41,14 +31,17 @@ const AdminDashboard = ({ user }) => {
 					<div className={styles.cardsContainer}>
 						<p>Welcome to the administrator dashboard.</p>
 					</div>
-
 				</SectionContainer>
 
-				<SectionContainer marginTop={true}>
-					<div className={styles.dashboardHeader}>
-						<SectionTitle>Section Two</SectionTitle>
-					</div>
-				</SectionContainer>
+				{users && (
+					<CardsSection
+						title='Manage Users'
+						content={users.filter(user => user.type != 'admin')}
+						folder='dashboard/user'
+						buttonText='Learn More'
+						adminFlag={true}
+					/>
+				)}
 		</section>
 	)
 }

@@ -2,7 +2,12 @@
 import SectionTitle from './SectionTitle'
 import Card from './Card'
 
-const CardsSection = ({ title, content, folder, buttonText, contentful }) => {
+const CardsSection = ({ title, content, folder, buttonText, contentful, adminFlag}) => {
+	const prettyType = (type) => {
+		if (type == 'ngo') return 'NGO'
+		else if (type == 'donor') return 'Donor'
+		else return null
+	}
 	return (
 		<section>
 			{title && (
@@ -18,13 +23,13 @@ const CardsSection = ({ title, content, folder, buttonText, contentful }) => {
 							key={index}
 							name={item.name}
 							title={item.title}
-							subtitle={item.subtitle}
+							subtitle={adminFlag ? prettyType(item.type) : item.subtitle}
 							owner={item.owner}
 							text={item.description}
 							photo={item.photoUrl}
 							buttonText={buttonText}
 							buttonUrl={`/${folder}/${item.id}`}
-							tagline={item.tagline}
+							tagline={adminFlag ? item.email : item.tagline }
 						/>
 					))}
 
