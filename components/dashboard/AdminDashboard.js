@@ -20,17 +20,11 @@ import { useFirestore } from '@/hooks/useFirestore'
 const AdminDashboard = ({ user }) => {
 	const { deleteDocument } = useFirestore('programs')
 	const { documents: users} = useCollection('users')
-
+	const { documents: pods } = useCollection('pods')
 
 	return (
 		<section>
-				<SectionContainer marginTop={true}>
-					<div className={styles.dashboardHeader}>
-						<SectionTitle>Administrator Test</SectionTitle>
-					</div>
-					<div className={styles.cardsContainer}>
-						<p>Welcome to the administrator dashboard.</p>
-					</div>
+				<SectionContainer>
 				</SectionContainer>
 
 				{users && (
@@ -38,6 +32,16 @@ const AdminDashboard = ({ user }) => {
 						title='Manage Users'
 						content={users.filter(user => user.type != 'admin')}
 						folder='dashboard/user'
+						buttonText='Learn More'
+						adminFlag={true}
+					/>
+				)}
+
+				{pods && (
+					<CardsSection
+						title='Manage Pods'
+						content={pods}
+						folder='dashboard/pod'
 						buttonText='Learn More'
 						adminFlag={true}
 					/>
