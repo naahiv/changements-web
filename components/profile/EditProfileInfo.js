@@ -72,12 +72,20 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 	return (
 		<>
 			<form className={styles.form} onSubmit={handleSubmit}>
+
 				<input
 					type='text'
 					placeholder='Name*'
 					required
 					onChange={e => setName(e.target.value)}
 					value={name}
+				/>
+
+				<input
+					type='email'
+					placeholder='Email*'
+					disabled
+					value={data.email}
 				/>
 
 				<input
@@ -92,6 +100,7 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 					onChange={e => setOperatingCurrency(e.target.value)}
 					required
 					defaultValue='defaultOption'
+					value={operatingCurrency}
 				>
 					<option disabled hidden value='defaultOption'>
 						Operating Currency*
@@ -110,6 +119,21 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 					onChange={e => setAddress(e.target.value)}
 					value={address}
 				/>
+
+
+
+				{/* If an NGO */}
+				{(data.type === 'ngo') && (
+
+				<input
+					type='text'
+					placeholder='Mailing Address'
+					onChange={e => setAddress(e.target.value)}
+					value={address}
+				/>
+
+				)}
+
 
 				<div className={styles.uploadFile}>
 					{photoError ? <p>{photoError}</p> : <p>Upload Photo</p>}
