@@ -5,39 +5,29 @@ import styles from '@/styles/Login.module.scss'
 import { useState } from 'react'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
+import { deleteField } from 'firebase/firestore'
 
 const EditProfileInfo = ({ data, setShowForm }) => {
-	// firestore
-	const { updateDocument } = useFirestore('users')
 
-	// form values
-	const [name, setName] = useState(data.name)
-	const [phone, setPhone] = useState(data.phone)
-	const [operatingCurrency, setOperatingCurrency] = useState(
-		data.operatingCurrency
-	)
-	const [address, setAddress] = useState(data.address)
+	const { updateDocument } = useFirestore('users')
+	const [doc, setDoc] = useState(data)
+	
+	const handleChange = (key) => {
+		return (e) => {
+		  var t = {...doc}
+		  // t[key] = e.target.value !== '' ? e.target.value : deleteField()
+		  t[key] = e.target.value
+		  setDoc(t)
+		} 
+  	}
+
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
 
 	// form submission
 	const handleSubmit = async e => {
 		e.preventDefault()
-
-		updateDocument(
-			data.id,
-			{
-				name: name,
-				phone: phone,
-				operatingCurrency: operatingCurrency,
-				address: address,
-				registered: true
-			},
-			photo,
-			'photos'
-		)
-
-		setShowForm && setShowForm(false)
+		updateDocument(data.id, doc, photo, 'photos')
 	}
 
 	// validating profile image
@@ -77,8 +67,8 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 					type='text'
 					placeholder='Name*'
 					required
-					onChange={e => setName(e.target.value)}
-					value={name}
+					onChange={handleChange('name')}
+					value={doc.name}
 				/>
 
 				<input
@@ -92,15 +82,15 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 					type='phone'
 					placeholder='Phone*'
 					required
-					onChange={e => setPhone(e.target.value)}
-					value={phone}
+					onChange={handleChange('phone')}
+					value={doc.phone}
 				/>
 
 				<select
-					onChange={e => setOperatingCurrency(e.target.value)}
+					onChange={handleChange('operatingCurrency')}
 					required
 					defaultValue='defaultOption'
-					value={operatingCurrency}
+					value={doc.operatingCurrency}
 				>
 					<option disabled hidden value='defaultOption'>
 						Operating Currency*
@@ -116,23 +106,38 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 				<input
 					type='text'
 					placeholder='Mailing Address'
-					onChange={e => setAddress(e.target.value)}
-					value={address}
+					onChange={handleChange('address')}
+					value={doc.address}
 				/>
 
 
-
-				{/* If an NGO */}
-				{(data.type === 'ngo') && (
-
-				<input
-					type='text'
-					placeholder='Mailing Address'
-					onChange={e => setAddress(e.target.value)}
-					value={address}
-				/>
-
-				)}
+				{/* If an NGO, the extra fields are:
+					donationCurrency
+					donationInformation
+					ngoId
+					ngoReportFile
+					primaryContactName
+					tagline
+					website
+					description
+				*/}
+				{data.type === 'ngo' && [
+					'donationCurrency',
+					'donationInformation',
+					'ngoId',
+					'ngoReportFile',
+					'primaryContactName',
+					'tagline',
+					'website',
+					'description'
+				].map((val, i, arr) => {return (
+					<input
+						type='text'
+						placeholder={val}
+						onChange={handleChange(val)}
+						value={doc[val]}
+					/>
+				)})}
 
 
 				<div className={styles.uploadFile}>
