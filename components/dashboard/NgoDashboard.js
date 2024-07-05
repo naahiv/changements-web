@@ -16,7 +16,7 @@ import { useState } from 'react'
 import { useCollection } from '@/hooks/useCollection'
 import { useFirestore } from '@/hooks/useFirestore'
 
-const NgoDashboard = ({ user }) => {
+const NgoDashboard = ({ user, adminFlag }) => {
 	const { deleteDocument } = useFirestore('programs')
 	const [openForm, setOpenForm] = useState(false)
 	const [openProgram, setOpenProgram] = useState(false)
@@ -67,7 +67,7 @@ const NgoDashboard = ({ user }) => {
 	return (
 		<section>
 			{/* Profile Info */}
-			<ProfileUI />
+			{ !adminFlag && (<ProfileUI />) }
 
 			{!openForm && !openProgram && (
 				<SectionContainer marginTop={true}>

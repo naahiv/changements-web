@@ -12,6 +12,7 @@ import SectionContainer from '@/components/SectionContainer'
 import CardsSection from '@/components/CardsSection'
 import Contact from '@/components/Contact'
 import EditProfileInfo from '@/components/profile/EditProfileInfo.js'
+import NgoDashboard from '@/components/dashboard/NgoDashboard.js'
 import Image from 'next/image'
 import Button from '@/components/Button'
 
@@ -43,21 +44,13 @@ const NonProfit = () => {
 			</SectionContainer>
 			)}
 				
+			{document && document.type === 'ngo' && (
+				<NgoDashboard
+					user={document}
+					adminFlag={true}
+				/>
+			)}
 
-				{/* Programs Section */}
-				{programs && nonProfit && (
-					<CardsSection
-						title='Programs'
-						content={programs.filter(
-							program => program.createdBy == nonProfit.id
-						)}
-						folder='portfolio/programs'
-						buttonText='Learn More'
-					/>
-				)}
-
-				{/* Contact */}
-				<Contact />
 			</main>
 		</>
 	)
