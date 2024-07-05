@@ -7,12 +7,25 @@ import dynamic from 'next/dynamic'
 import { useFirestore } from '@/hooks/useFirestore'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
+// for the quillbox
 const ReactQuill = dynamic(() => import('react-quill'), {
   ssr: false
 });
 
 import 'react-quill/dist/quill.snow.css';
-
+const quillModules = {
+		toolbar: [
+			[{header: [4,5,6, false]}],
+			['bold','italic','underline','strike'],
+			[
+				{list: 'ordered'},
+				{list: 'bullet'},
+				{indent: '-1'},
+				{indent: '+1'}
+			],
+			['link', 'image']
+		]
+	}
 
 const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 	// firestore
@@ -32,19 +45,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 
 	// @naahiv
 	const [quillbox, setQuillbox] = useState(activeProgram.description)
-	const quillModules = {
-		toolbar: [
-			[{header: [4,5,6, false]}],
-			['bold','italic','underline','strike'],
-			[
-				{list: 'ordered'},
-				{list: 'bullet'},
-				{indent: '-1'},
-				{indent: '+1'}
-			],
-			['link', 'image']
-		]
-	}
+	
 
 
 	// @naahiv
@@ -120,7 +121,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 	}
 
 	return (
-		<form className={styles.form} onSubmit={handleSubmit}>
+		<form className={styles.form} id={styles.editProgramForm} onSubmit={handleSubmit}>
 			<input
 				type='text'
 				placeholder='Program Name'

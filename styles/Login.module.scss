@@ -74,6 +74,11 @@
 	grid-row: span 1;
 }
 
+#editProgramForm {
+	grid-template-rows: none;
+	grid-auto-rows: max-content;
+}
+
 #pledgeForm {
 	grid-template-rows: repeat(2, 1fr);
 }
@@ -82,7 +87,7 @@
 
 .quillbox {
 	grid-column: span 12;
-	grid-row: span 5;
+	grid-row: span 4;
 	display: flex;
 }
 
