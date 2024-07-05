@@ -29,7 +29,8 @@ const Program = () => {
 	const {documents: users} = useCollection('users')
 	const { user } = useAuthContext()
 	const [formOpen, setFormOpen] = useState(false)
-	const { document } = useDocument('users', user.uid)
+
+	const { document } = user ? useDocument('users', user.uid) : {document: null}
 
 	const program = programs && programs.find(program => program.id === slug)
 
@@ -56,7 +57,6 @@ const Program = () => {
 				{program && (
 					<SectionContainer back={true} marginTop={true} title={program.name}>
 						{/* Pledge Form */}
-					{/* {document && <PledgeForm activeProgram={program} user={document} />} */}
 
 						<div className={styles.programPhoto}>
 							<Image
