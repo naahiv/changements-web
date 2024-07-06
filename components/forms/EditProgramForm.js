@@ -27,7 +27,7 @@ const quillModules = {
 		]
 	}
 
-const EditProgramForm = ({ setOpenForm, activeProgram }) => {
+const EditProgramForm = ({ setOpenForm, activeProgram, adminFlag }) => {
 	// firestore
 	const { updateDocument } = useFirestore('programs')
 
@@ -39,7 +39,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 	const [fundsFulfilled, setFundsFulfilled] = useState(
 		activeProgram.fundsFulfilled
 	)
-	const [fundsSeeking, setFundsSeeking] = useState(activeProgram.fundsSeeking)
+	// const [fundsSeeking, setFundsSeeking] = useState(activeProgram.fundsSeeking)
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
 
@@ -68,8 +68,7 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 			{
 				name: name,
 				fundsRequired: fundsRequired,
-				// fundsFulfilled: fundsFulfilled,
-				// fundsSeeking: fundsSeeking,
+				fundsFulfilled: fundsFulfilled,
 				description: quillbox
 			},
 			photo,
@@ -137,6 +136,16 @@ const EditProgramForm = ({ setOpenForm, activeProgram }) => {
 				onChange={e => setFundsRequired(e.target.value.replace(/,/g, ''))}
 				value={formattedAmount()}
 			/>
+
+			{adminFlag && (
+				<input
+					type='text'
+					placeholder='Funds Fulfilled'
+					required
+					onChange={e => setFundsFulfilled(e.target.value)}
+					value={fundsFulfilled}
+				/>
+			)}
 
 			<div className={styles.quillbox}>
 				<ReactQuill theme="snow" value={quillbox} placeholder ="Description" onChange={setQuillbox} className={styles.quillboxInput} modules={quillModules} required />

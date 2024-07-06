@@ -126,6 +126,7 @@ const NgoDashboard = ({ user, adminFlag }) => {
 						<EditProgramForm
 							setOpenForm={setOpenForm}
 							activeProgram={activeProgram}
+							adminFlag={adminFlag}
 						/>
 					)}
 				</SectionContainer>
