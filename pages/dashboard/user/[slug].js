@@ -16,10 +16,12 @@ import NgoDashboard from '@/components/dashboard/NgoDashboard.js'
 import Image from 'next/image'
 import Button from '@/components/Button'
 import ErrorPage from '@/components/ErrorPage.js'
+import PledgeEditor from '@/components/dashboard/PledgeEditor.js'
 
 // hooks
 import { useCollection } from '@/hooks/useCollection'
 import { useAuthContext } from '@/hooks/useAuthContext'
+import { useEffect } from 'react'
 
 const NonProfit = () => {
 	const router = useRouter()
@@ -27,7 +29,33 @@ const NonProfit = () => {
 	const { documents: programs } = useCollection('programs')
 	const { documents: users } = useCollection('users')
 
-	const document = users && users.find(usr => usr.id === slug)
+
+	// handle shift keypress
+	const shiftHandler = (setDeleteAllowed) => {
+		useEffect(() => {
+			const keyDownHandler = (e) => {
+				if (e.code == 'ControlLeft') {
+					setDeleteAllowed(true)
+				}
+			}
+
+			const keyUpHandler = (e) => {
+				if (e.code == 'ControlLeft') {
+					setDeleteAllowed(false)
+				}
+			}
+			document.addEventListener("keydown", keyDownHandler)
+			document.addEventListener("keyup", keyUpHandler)
+
+			// clean up
+			return () => {
+			  document.removeEventListener("keydown", keyDownHandler)
+			  document.removeEventListener("keyup", keyUpHandler)
+			}
+		  }, [])
+	}
+
+	const userDoc = users && users.find(usr => usr.id === slug)
 
 	// check admin privelage
 	const { user: authUser } = useAuthContext()
@@ -37,25 +65,34 @@ const NonProfit = () => {
 	return (
 		<>
 			<Head>
-				<title>{document && `ImpactPlease | ${document.name}`}</title>
+				<title>{userDoc && `ImpactPlease | ${userDoc.name}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
 			<main>
 				{authed && (
 				<>
-					{document && (
+					{/* User profile data editor */}
+					{userDoc && (
 						<SectionContainer marginTop={true} back={true} title='Edit Profile'>
-							<EditProfileInfo data={document} />
+							<EditProfileInfo data={userDoc} specialKeypress={shiftHandler}/>
 						</SectionContainer>
 					)}
 
-					{document && document.type === 'ngo' && (
+					{/* if an NGO, edit programs */}
+					{userDoc && userDoc.type === 'ngo' && (
 						<NgoDashboard
-							user={document}
+							user={userDoc}
 							adminFlag={true}
 						/>
 					)}
+
+
+					{/* if a donor, edit pledges */}
+					{userDoc && userDoc.type === 'donor' && (
+						<PledgeEditor user={userDoc}/>
+					)}
+
 				</>
 				)}
 				

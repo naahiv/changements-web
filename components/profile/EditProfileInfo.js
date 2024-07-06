@@ -7,7 +7,7 @@ import { useFirestore } from '@/hooks/useFirestore'
 import { useCurrency } from '@/hooks/useCurrency'
 import { deleteField } from 'firebase/firestore'
 
-const EditProfileInfo = ({ data, setShowForm }) => {
+const EditProfileInfo = ({ data, specialKeypress, setShowForm }) => {
 
 	const { updateDocument } = useFirestore('users')
 	const [doc, setDoc] = useState(data)
@@ -24,10 +24,19 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
 
+	const [deleteAllowed, setDeleteAllowed] = useState(false)
+
 	// form submission
 	const handleSubmit = async e => {
 		e.preventDefault()
 		updateDocument(data.id, doc, photo, 'photos')
+	}
+
+	// handing delete user
+	specialKeypress(setDeleteAllowed)
+
+	const deleteUser = () => {
+		console.log(`Deleting user ${doc.id}`)
 	}
 
 	// validating profile image
@@ -149,7 +158,12 @@ const EditProfileInfo = ({ data, setShowForm }) => {
 					/>
 				</div>
 
-				<button className='button-orange'>Save</button>
+				<button type='submit' className='button-orange'>Save</button>
+				{/* delete the user */}
+				<button className='button-orange' disabled={!deleteAllowed} onClick={deleteUser}>
+					<strong>Delete user</strong>
+				</button>
+
 			</form>
 		</>
 	)

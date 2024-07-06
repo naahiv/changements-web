@@ -12,7 +12,9 @@ const ErrorPage = () => {
 			marginTop={true}
 			title='Error'
 		>
-			<p id={styles.specialP}>This page requires <strong>administrator</strong> privelage. If you think you should have access, contact impactplease@gmail.com.</p>
+			<p className={styles.gridP}>
+				This page requires <strong>administrator</strong> privelage. If you think you should have access, contact impactplease@gmail.com.
+			</p>
 		</SectionContainer>
 	)
 }
