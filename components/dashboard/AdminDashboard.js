@@ -11,6 +11,7 @@ import NgoProgram from './NgoProgram'
 import DonorProfile from './DonorProfile'
 import ProfileUI from '../profile/ProfileUI'
 import CardsSection from '@/components/CardsSection'
+import Button from '@/components/Button.js'
 
 // hooks
 import { useState } from 'react'
@@ -21,6 +22,9 @@ const AdminDashboard = ({ user }) => {
 	const { deleteDocument } = useFirestore('programs')
 	const { documents: users} = useCollection('users')
 	const { documents: pods } = useCollection('pods')
+
+	const [userFormOpen, setUserFormOpen] = useState(false)
+	const [podFormOpen, setPodFormOpen] = useState(false)
 
 	return (
 		<section>
@@ -38,13 +42,32 @@ const AdminDashboard = ({ user }) => {
 				)}
 
 				{pods && (
+				<>
+				<SectionContainer noGap={true}>
+					<div className={styles.dashboardHeader}>
+						<SectionTitle>Manage Change Enablers</SectionTitle>
+						<button className='button-orange' onClick={e => setPodFormOpen(!podFormOpen)}>{podFormOpen ? 'Close form' : 'Add Change Enabler'}</button>
+					</div>
+				</SectionContainer>
+
+				{!podFormOpen && (
 					<CardsSection
-						title='Manage Pods'
-						content={pods}
-						folder='dashboard/pod'
-						buttonText='Learn More'
-						adminFlag={true}
+							content={pods}
+							folder='dashboard/pod'
+							buttonText='Learn More'
+							adminFlag={true}
 					/>
+				)}
+
+
+				{/*
+				{podFormOpen && (
+					<AddChangeEnablerForm />
+				)}
+				*/}
+
+
+				</>
 				)}
 		</section>
 	)

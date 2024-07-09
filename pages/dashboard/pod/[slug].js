@@ -13,107 +13,63 @@ import CardsSection from '@/components/CardsSection'
 import Contact from '@/components/Contact'
 import Image from 'next/image'
 import Button from '@/components/Button'
+import ErrorPage from '@/components/ErrorPage.js'
 
 // hooks
 import { useCollection } from '@/hooks/useCollection'
+import { useAuthContext } from '@/hooks/useAuthContext'
 
 const NonProfit = () => {
 	const router = useRouter()
 	const { slug } = router.query
 	const { documents: programs } = useCollection('programs')
-	const { documents: nonProfits } = useCollection('users')
+	const { documents: pods } = useCollection('pods')
+	const { documents: users } = useCollection('users')
 
-	const nonProfit =
-		nonProfits && nonProfits.find(nonProfit => nonProfit.id === slug)
+	const pod = pods && pods.find(pod => pod.id === slug)
+
+	// check admin privelage
+	const { user: authUser } = useAuthContext()
+	const authUserDoc = authUser && users && users.find(usr => usr.id === authUser.uid)
+	const authed = authUserDoc && authUserDoc.type === 'admin'
 
 	return (
 		<>
 			<Head>
-				<title>{nonProfit && `ImpactPlease | ${nonProfit.name}`}</title>
+				<title>{pod && `ImpactPlease | ${pod.name}`}</title>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
 			<main>
-				{/* NGO Detail */}
-				<SectionContainer back={true} marginTop={true}>
-					{nonProfit && (
-						<>
-							<div className={styles.ngoPhoto}>
-								<Image
-									src={nonProfit.photoUrl}
-									fill
-									quality={100}
-									sizes='(max-width: 768px) 100vw, 768px'
-									style={{ objectFit: 'cover' }}
-									alt='Section Image'
-									priority={true}
-									as='img'
-								/>
-							</div>
 
-							<div className={styles.ngoInfo}>
-								<h3>{nonProfit.name}</h3>
-								<p>{nonProfit.description}</p>
-								<div className='buttons-row'>
-								{nonProfit.ngoReportFile && (
-									<a href={nonProfit.ngoReportFile} target='_blank'><button>View NGO Report</button></a>
-								)}
-								</div>
-							</div>
+				{authed && (
+				<>
 
-							<div className={styles.ngoData}>
-								<div className={styles.ngoDataContainer}>
-									<h5>NGO ID</h5>
-									<p>{nonProfit.ngoId}</p>
-
-									{/* <p>Funded: 12/4/2016</p> */}
-									<p>
-										Operating Currency: {nonProfit.operatingCurrency}
-										<br />
-										Donation Currencies: {nonProfit.donationCurrency}
-									</p>
-								</div>
-								<div className={styles.ngoDataContainer}>
-									<h5>Contact Info</h5>
-									<p>{nonProfit.primaryContactName}</p>
-									<div>
-										<p>{nonProfit.phone}</p>
-										<p>{nonProfit.email}</p>
-										<p>{nonProfit.website}</p>
-									</div>
-								</div>
-							</div>
-
-							<div className={styles.ngoData}>
-								<div className={styles.ngoDataContainer}>
-									<h5>Address</h5>
-									<p>{nonProfit.address}</p>
-								</div>
-								<div className={styles.ngoDataContainer}>
-									<h5>Payment Info</h5>
-									<p>{nonProfit.donationInformation}</p>
-								</div>
-							</div>
-
-							<div className={styles.ngoData}></div>
-						</>
-					)}
+				{/* Pod Detail */}
+				<SectionContainer
+					back={true}
+					marginTop={true}
+					title="Pod Details"
+				>
+					{/*
+					<PodSection
+						pod={pod},
+						user=,
+						backFunction,
+						setOpenEditForm,
+						openPledgeForm,
+						setActivePod,
+						setOpenPodsSearch,
+						hideMembers
+					/>
+					*/}
 				</SectionContainer>
 
-				{/* Programs Section */}
-				{programs && nonProfit && (
-					<CardsSection
-						title='Programs'
-						content={programs.filter(
-							program => program.createdBy == nonProfit.id
-						)}
-						folder='portfolio/programs'
-						buttonText='Learn More'
-					/>
-				)}
+				</>)}
 
-				{/* Contact */}
-				<Contact />
+				{!authed && (
+					<ErrorPage />
+				)}
 			</main>
 		</>
 	)
