@@ -12,6 +12,7 @@ import DonorProfile from './DonorProfile'
 import ProfileUI from '../profile/ProfileUI'
 import CardsSection from '@/components/CardsSection'
 import Button from '@/components/Button.js'
+import AddChangeEnablerForm from '@/components/forms/AddChangeEnablerForm.js'
 
 // hooks
 import { useState } from 'react'
@@ -48,6 +49,11 @@ const AdminDashboard = ({ user }) => {
 						<SectionTitle>Manage Change Enablers</SectionTitle>
 						<button className='button-orange' onClick={e => setPodFormOpen(!podFormOpen)}>{podFormOpen ? 'Close form' : 'Add Change Enabler'}</button>
 					</div>
+
+				{podFormOpen && (
+					<AddChangeEnablerForm setFormOpen={setPodFormOpen} />
+				)}
+
 				</SectionContainer>
 
 				{!podFormOpen && (
@@ -58,14 +64,6 @@ const AdminDashboard = ({ user }) => {
 							adminFlag={true}
 					/>
 				)}
-
-
-				{/*
-				{podFormOpen && (
-					<AddChangeEnablerForm />
-				)}
-				*/}
-
 
 				</>
 				)}
