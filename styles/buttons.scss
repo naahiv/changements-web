@@ -66,11 +66,10 @@ button:hover {
 
 .button-red:hover {
 	background: none;
-	color: white;
-	border-color: white;
+	color: base.$color-primary-red;
 
 	.button-arrow::after {
-		border-color: white;
+		border-color: base.$color-primary-red;
 	}
 }
 

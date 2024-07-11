@@ -10,7 +10,7 @@ import { useCollection } from '@/hooks/useCollection'
 import Select from 'react-select'
 
 
-const AddChangeEnablerForm = (setFormOpen) => {
+const AddChangeEnablerForm = ({setPodFormOpen}) => {
 	// firestore
 	const { addDocumentWithPhoto } = useFirestore('pods')
 	const { documents: programs } = useCollection('programs')
@@ -79,7 +79,7 @@ const AddChangeEnablerForm = (setFormOpen) => {
 			'photos'
 		)
 
-		setFormOpen && setFormOpen(false)
+		setPodFormOpen && setPodFormOpen(false)
 	}
 		
 	// <Select /> setup

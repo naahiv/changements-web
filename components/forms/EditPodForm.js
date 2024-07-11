@@ -8,7 +8,7 @@ import { useAuthContext } from '@/hooks/useAuthContext'
 import { useDocument } from '@/hooks/useDocument'
 import { useCollection } from '@/hooks/useCollection'
 
-const EditPodForm = ({ setOpenPodForm, activePod }) => {
+const EditPodForm = ({ setOpenPodForm, activePod, adminFlag }) => {
 	// firestore
 	const { addDocumentWithPhoto } = useFirestore('pods')
 	const { updateDocument } = useFirestore('pods')
@@ -73,7 +73,7 @@ const EditPodForm = ({ setOpenPodForm, activePod }) => {
 			'photos'
 		)
 
-		setOpenPodForm(false)
+		setOpenPodForm && setOpenPodForm(false)
 	}
 
 	// validating profile image
@@ -213,9 +213,11 @@ const EditPodForm = ({ setOpenPodForm, activePod }) => {
 			</div>
 
 			<div className='buttons-row' style={{ gridColumn: 'span 12' }}>
-				<button className='button-gray' onClick={() => setOpenPodForm(false)}>
+				{!adminFlag && (
+						<button className='button-gray' onClick={() => setOpenPodForm(false)}>
 					Cancel
 				</button>
+				)}
 				<button type='submit' className='button-orange'>
 					Save
 				</button>

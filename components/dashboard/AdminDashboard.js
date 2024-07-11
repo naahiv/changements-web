@@ -51,7 +51,7 @@ const AdminDashboard = ({ user }) => {
 					</div>
 
 				{podFormOpen && (
-					<AddChangeEnablerForm setFormOpen={setPodFormOpen} />
+					<AddChangeEnablerForm setPodFormOpen={setPodFormOpen} />
 				)}
 
 				</SectionContainer>

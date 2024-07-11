@@ -14,10 +14,12 @@ import Contact from '@/components/Contact'
 import Image from 'next/image'
 import Button from '@/components/Button'
 import ErrorPage from '@/components/ErrorPage.js'
+import EditPodForm from '@/components/forms/EditPodForm.js'
 
 // hooks
 import { useCollection } from '@/hooks/useCollection'
 import { useAuthContext } from '@/hooks/useAuthContext'
+import { useFirestore } from '@/hooks/useFirestore'
 
 const NonProfit = () => {
 	const router = useRouter()
@@ -32,6 +34,15 @@ const NonProfit = () => {
 	const { user: authUser } = useAuthContext()
 	const authUserDoc = authUser && users && users.find(usr => usr.id === authUser.uid)
 	const authed = authUserDoc && authUserDoc.type === 'admin'
+
+	// firestore
+	const { deleteDocument } = useFirestore('pods')
+
+	const deleteButtonClicked = () => {
+		console.log('deleting Change Enabler')
+		deleteDocument(pod.id)
+		router.push('/dashboard')
+	}
 
 	return (
 		<>
@@ -51,18 +62,25 @@ const NonProfit = () => {
 					marginTop={true}
 					title="Pod Details"
 				>
-					{/*
-					<PodSection
-						pod={pod},
-						user=,
-						backFunction,
-						setOpenEditForm,
-						openPledgeForm,
-						setActivePod,
-						setOpenPodsSearch,
-						hideMembers
+				
+				{/* Edit a Change Enabler */}
+				{pod && pod.specialty && (
+				<>
+					<EditPodForm
+						activePod={pod}
+						adminFlag={true}
 					/>
-					*/}
+					<button style={{gridColumn: 'span 2'}}className='button-red' onClick={deleteButtonClicked}>Delete Change Enabler</button>
+				</>
+				)}
+
+				{/* Edit an actual Pod */}
+				{pod && !pod.specialty && (
+					<p style={{
+						gridColumn: 'span 12',
+						fontSize: 'large'
+					}}>Sorry! You cannot edit pods, only standalone Change Enablers</p>
+				)}
 				</SectionContainer>
 
 				</>)}
