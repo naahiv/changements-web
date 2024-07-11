@@ -1,0 +1,5 @@
+[[redirects]]
+  force = true
+  from = "/2366613.rss"
+  status = 200
+  to = "https://feeds.buzzsprout.com/2366613.rss"

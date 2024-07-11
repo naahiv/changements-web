@@ -21,7 +21,8 @@ const PodcastPlayer = dynamic(() => import('@mrpollard/react-rss-podcast-player'
   ssr: false
 });
 // const rssFeed = 'https://podcasternews.com/feed/'
-const rssFeed = 'https://anchor.fm/s/3ca3951c/podcast/play/34000987/https%3A%2F%2Fd3ctxlq1ktw2nl.cloudfront.net%2Fstaging%2F2021-4-22%2F189000537-44100-2-8ece7d27bd7d2.m4a%22'
+
+const rssFeed = '/2366613.rss'
 
 const NGOSquare = () => {
 	// context
