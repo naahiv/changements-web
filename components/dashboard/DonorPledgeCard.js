@@ -66,66 +66,39 @@ const DonorPledgeCard = ({
 
 						<div className={styles.pledges}>
 							<div>
-								<h4>
-									{convert(currency, user.operatingCurrency, fundsRequired)}
-								</h4>
+								<h3>
+									{convert(pledge.currency, user.operatingCurrency, pledge.amount)}
+								</h3>
 								<p>
-									Funds
-									<br />
-									Required
+									My Pledge
 								</p>
 							</div>
 							<div>
-								<h4>
-									{format(user.operatingCurrency, fundsFulfilled)}
-								</h4>
+								<h3>
+									{convert(pledge.currency, user.operatingCurrency, pledge.fulfilledAmount)}
+								</h3>
 								<p>
-									Funds
-									<br />
-									Fullfiled
+									Fulfilled Amount
 								</p>
 							</div>
 							<div>
-								<h4>
+								<h3>
+									{convert(pledge.currency, user.operatingCurrency, pledge.amount - pledge.fulfilledAmount)}
+								</h3>
+								<p>
+									Pending Amount
+								</p>
+							</div>
+							<div style={{borderRight: '1px solid #360c25'}}> </div>
+							<div>
+								<h3 style={{color: 'rgb(198 0 0)'}}>
 									{format(user.operatingCurrency, convertUnformatted(
 										currency,
 										user.operatingCurrency,
 										fundsRequired) - fundsFulfilled)}
-								</h4>
+								</h3>
 								<p>
-									Funds
-									<br />
-									Seeking
-								</p>
-							</div>
-							<div>
-								<h4>
-									{convert(pledge.currency, user.operatingCurrency, pledge.amount)}
-								</h4>
-								<p>
-									My Total
-									<br />
-									Pledge
-								</p>
-							</div>
-							<div>
-								<h4>
-									{convert(pledge.currency, user.operatingCurrency, pledge.fulfilledAmount)}
-								</h4>
-								<p>
-									My Fulfilled
-									<br />
-									Pledge
-								</p>
-							</div>
-							<div>
-								<h4>
-									{convert(pledge.currency, user.operatingCurrency, pledge.amount - pledge.fulfilledAmount)}
-								</h4>
-								<p>
-									My Pending
-									<br />
-									Pledge
+									Funds Seeking
 								</p>
 							</div>
 						</div>
