@@ -1,0 +1,27 @@
+@use 'base';
+
+.headText {
+	position: relative;
+	width: fit-content;
+}
+
+.imageText {
+	position: absolute;
+	top: 5%;
+	left: 6%;
+	right: 6%;
+	bottom: 30%;
+	text-align: center;
+	margin: auto;
+}
+
+.extra {
+	position: absolute;
+	top: -30%;
+	left: 15%;
+	right: 0%;
+}
+
+.first {
+	position: relative;
+}

@@ -13,10 +13,15 @@ const Card = ({
 	buttonText,
 	buttonUrl,
 	buttonFunction,
-	tagline
+	tagline,
+	setShowSpeech
 }) => {
 	return (
-		<div className='card'>
+		<div
+			className='card'
+			onMouseEnter={setShowSpeech && ( (e) => {setShowSpeech(true)} ) }
+			onMouseLeave={setShowSpeech && ( (e) => {setShowSpeech(false)} ) }
+		>
 			{photo && (
 				<div className='card-photo'>
 					<Link href={buttonUrl} style={{ width: '100%' }}>

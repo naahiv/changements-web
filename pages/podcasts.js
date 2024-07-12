@@ -1,13 +1,18 @@
 // head element
 import Head from 'next/head'
 
+import styles from '@/styles/Podcasts.module.scss'
+
 import { useAuthContext } from '@/hooks/useAuthContext'
-import React from 'react'
-//
+import React, { useState } from 'react'
+
 // components
 import PagesHero from '@/components/PagesHero'
 import SectionTitle from '@/components/SectionTitle'
 import SectionContainer from '@/components/SectionContainer'
+import Card from '@/components/Card.js'
+import Image from 'next/image'
+
 // import PodcastPlayer from '@mrpollard/react-rss-podcast-player'
 
 import dynamic from 'next/dynamic'
@@ -25,8 +30,26 @@ const PodcastPlayer = dynamic(() => import('@mrpollard/react-rss-podcast-player'
 const rssFeed = '/2366613.rss'
 
 const NGOSquare = () => {
-	// context
-	const { user } = useAuthContext()
+
+	const [showSpeech, setShowSpeech] = useState(false)
+
+	const speechText = "When we left REC Trichy in 1991, we were certain we would remain friends forever. But coming together to help create impact, has brought us together even more. We are glad to have partnered with Payir in reviving the watershed and farming in the area."
+	const speechBubble = (<>
+		<div 
+			className={styles.headText}
+			style={{display: showSpeech ? 'block' : 'none'}}
+		>
+		   <Image
+				width={220}
+				height={180}
+				quality={100}
+				src='/speech-bubble.png'
+		  	/>
+			<div className={styles.imageText}>
+				<p style={{fontSize: '0.82rem', lineHeight: '0.8rem'}}>{speechText}</p>
+			</div>
+		</div>
+	</>)
 
 	return (
 		<>
@@ -49,9 +72,23 @@ const NGOSquare = () => {
 					</p>
 				</PagesHero>
 
-
+				{/* rssFeed && (
 					<PodcastPlayer url={rssFeed} />
-
+				)*/}
+				<div className={styles.first}>
+				<SectionContainer>
+					<Card
+						name='Indian girl'
+						photo='/indian-girl.jpg'
+						tagline='An girl from India.'
+						buttonUrl=''
+						setShowSpeech={setShowSpeech}
+					/>
+				</SectionContainer>
+				<div className={styles.extra}>
+					{speechBubble}
+				</div>
+				</div>
 
 				{/* Contact */}
 				<Contact />
