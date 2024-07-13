@@ -70,7 +70,7 @@ const DonorPledgeCard = ({
 									{convert(pledge.currency, user.operatingCurrency, pledge.amount)}
 								</h3>
 								<p>
-									My Pledge
+									My<br />Pledge
 								</p>
 							</div>
 							<div>
@@ -78,7 +78,7 @@ const DonorPledgeCard = ({
 									{convert(pledge.currency, user.operatingCurrency, pledge.fulfilledAmount)}
 								</h3>
 								<p>
-									Fulfilled Amount
+									Fulfilled<br />Amt
 								</p>
 							</div>
 							<div>
@@ -86,7 +86,7 @@ const DonorPledgeCard = ({
 									{convert(pledge.currency, user.operatingCurrency, pledge.amount - pledge.fulfilledAmount)}
 								</h3>
 								<p>
-									Pending Amount
+									Pending<br />Amt
 								</p>
 							</div>
 							<div style={{borderRight: '1px solid #360c25'}}> </div>
@@ -98,7 +98,7 @@ const DonorPledgeCard = ({
 										fundsRequired) - fundsFulfilled)}
 								</h3>
 								<p>
-									Funds Seeking
+									Funds<br />Seeking
 								</p>
 							</div>
 						</div>
