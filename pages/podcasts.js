@@ -38,6 +38,8 @@ const NGOSquare = () => {
 		<div 
 			className={styles.headText}
 			style={{display: showSpeech ? 'block' : 'none'}}
+			onMouseEnter={(e) => {setShowSpeech(true)}}
+			onMouseLeave={(e) => {setShowSpeech(false)}}
 		>
 		   <Image
 				width={220}
@@ -75,8 +77,12 @@ const NGOSquare = () => {
 				{/* rssFeed && (
 					<PodcastPlayer url={rssFeed} />
 				)*/}
-				<div className={styles.first}>
 				<SectionContainer>
+				<div 
+					onMouseEnter={(e) => {setShowSpeech(true)}}
+					onMouseLeave={(e) => {setShowSpeech(false)}}
+					className={styles.overallContainer}
+				>
 					<Card
 						name='Indian girl'
 						photo='/indian-girl.jpg'
@@ -84,11 +90,13 @@ const NGOSquare = () => {
 						buttonUrl=''
 						setShowSpeech={setShowSpeech}
 					/>
+
+					<div className={styles.speechContainer}>
+						{speechBubble}
+					</div>
+
+				</div>
 				</SectionContainer>
-				<div className={styles.extra}>
-					{speechBubble}
-				</div>
-				</div>
 
 				{/* Contact */}
 				<Contact />
