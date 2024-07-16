@@ -52,6 +52,11 @@
 	gap: calc(base.$gap / 2);
 }
 
+.programContent #customSpacing {
+	margin-top: -1.5rem;
+	margin-bottom: -0.5rem;
+}
+
 .programInfo {
 	display: flex;
 	flex-direction: column;

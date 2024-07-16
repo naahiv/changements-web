@@ -33,7 +33,8 @@ const NGOSquare = () => {
 
 	const [showSpeech, setShowSpeech] = useState(false)
 
-	const speechText = "When we left REC Trichy in 1991, we were certain we would remain friends forever. But coming together to help create impact, has brought us together even more. We are glad to have partnered with Payir in reviving the watershed and farming in the area."
+	// const speechText = "When we left REC Trichy in 1991, we were certain we would remain friends forever. But coming together to help create impact, has brought us together even more. We are glad to have partnered with Payir in reviving the watershed and farming in the area."
+	const speechText = "When we left REC Trichy in 1991, we were certain." 
 	const speechBubble = (<>
 		<div 
 			className={styles.headText}
@@ -41,10 +42,8 @@ const NGOSquare = () => {
 			onMouseEnter={(e) => {setShowSpeech(true)}}
 			onMouseLeave={(e) => {setShowSpeech(false)}}
 		>
-		   <Image
+		   <img
 				width={220}
-				height={180}
-				quality={100}
 				src='/speech-bubble.png'
 		  	/>
 			<div className={styles.imageText}>

@@ -14,6 +14,7 @@ import Image from 'next/image'
 import CardsSection from '@/components/CardsSection'
 import Button from '@/components/Button'
 import PledgeForm from '@/components/forms/PledgeForm'
+import ChangeEnablerItem from '@/components/ChangeEnablerItem'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
@@ -137,8 +138,9 @@ const Program = () => {
 								</div>
 							</div>
 
-							{/* Donor Pods Section */}
+							{/* Change Enablers Section */}
 							<h4>Our Change Enablers</h4>
+							<p id={styles.customSpacing}><i>Tip: Hover over a Change Enabler to learn about their contribution</i></p>
 							<div className={styles.programPods}>
 								{/* Donor Pods Section */}
 								{pods
@@ -148,30 +150,9 @@ const Program = () => {
 										)
 									)
 									.map(pod => (
-										<div key={pod.id} className={styles.pod}>
-											<div className={styles.podImage}>
-												<Image
-													src={pod.photoUrl}
-													fill
-													quality={100}
-													sizes='(max-width: 768px) 100vw, 768px'
-													style={{ objectFit: 'cover' }}
-													alt='Pod Photo'
-													priority={true}
-													as='img'
-												/>
-											</div>
-											<div>
-												<h5>{pod.name}</h5>
-												<p>{pod.description}</p>
-											</div>
-											{/* <Button
-											url={`/portfolio/donor-pods/${pod.id}`}
-											color='simple'
-										>
-											Learn More
-										</Button> */}
-										</div>
+										<ChangeEnablerItem
+											pod={pod}
+										/>
 									))}
 							</div>
 						</div>

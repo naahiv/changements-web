@@ -28,6 +28,7 @@ const EditPodForm = ({ setOpenPodForm, activePod, adminFlag }) => {
 	const [description, setDescription] = useState(activePod.description)
 	const [photo, setPhoto] = useState(null)
 	const [photoError, setPhotoError] = useState(null)
+	const [message, setMessage] = useState(activePod.message)
 
 	const selectNgo = value => {
 		setNgoName(value)
@@ -67,7 +68,8 @@ const EditPodForm = ({ setOpenPodForm, activePod, adminFlag }) => {
 			{
 				name: name,
 				programs: podPrograms,
-				description: description
+				description: description,
+				message: message
 			},
 			photo,
 			'photos'
@@ -201,6 +203,12 @@ const EditPodForm = ({ setOpenPodForm, activePod, adminFlag }) => {
 				required
 				onChange={e => setDescription(e.target.value)}
 				value={description}
+			/>
+
+			<textarea
+				placeholder='Message'
+				onChange={e => setMessage(e.target.value)}
+				value={message}
 			/>
 
 			<div className={styles.uploadFile}>
