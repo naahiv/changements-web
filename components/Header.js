@@ -43,9 +43,9 @@ const Header = () => {
 				<div className={styles.logoNav}>
 					<Link href='/'>
 						<Image
-							src='/logo.svg'
-							width={176}
-							height={42}
+							src='Nocup2.svg'
+							width={200}
+							height={65}
 							alt='Changements Logo'
 							priority={true}
 							as='img'
