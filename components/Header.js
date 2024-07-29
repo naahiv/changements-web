@@ -103,7 +103,7 @@ const Header = () => {
 						</Link>
 						<Link href='/blog'>
 							<li onClick={() => closeMenu()} className='nav-li'>
-								Change Buzz
+								Impact Buzz
 							</li>
 						</Link>
 					</ul>

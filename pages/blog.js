@@ -35,7 +35,7 @@ const blog = ({ blog }) => {
 	return (
 		<>
 			<Head>
-				<title>ImpactPlease | Change Buzz</title>
+				<title>ImpactPlease | Impact Buzz</title>
 				<meta
 					name='description'
 					content='Read about the latest from our NGO partners.
@@ -48,7 +48,7 @@ const blog = ({ blog }) => {
 			<main>
 				{/* Hero */}
 				<PagesHero imageUrl='/blog-hero.jpg'>
-					<h1>Change Buzz</h1>
+					<h1>Impact Buzz</h1>
 					<p style={{ fontSize: '2rem' }}>Impact News from Our NGO Partners</p>
 				</PagesHero>
 
