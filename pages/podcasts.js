@@ -3,8 +3,10 @@ import Head from 'next/head'
 
 import styles from '@/styles/Podcasts.module.scss'
 
+// hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
 import React, { useState } from 'react'
+import { useCollection } from '@/hooks/useCollection'
 
 // components
 import PagesHero from '@/components/PagesHero'
@@ -12,6 +14,7 @@ import SectionTitle from '@/components/SectionTitle'
 import SectionContainer from '@/components/SectionContainer'
 import Card from '@/components/Card.js'
 import Image from 'next/image'
+import PodcastCard from '@/components/PodcastCard'
 
 // extras
 import AudioPlayer from 'react-h5-audio-player';
@@ -30,7 +33,9 @@ import Contact from '@/components/Contact'
 
 const rssFeed = '/2366613.rss'
 
-const NGOSquare = () => {
+const Podcasts = () => {
+	const [activePodcast, setActivePodcast] = useState(null)
+	const { documents: podcasts } = useCollection('podcasts')
 
 	return (
 		<>
@@ -54,54 +59,37 @@ const NGOSquare = () => {
 				</PagesHero>
 
 				<div style={{
-					width: '70%',
+					width: activePodcast ? '67%' : '87%',
 					float: 'left'
 				}}>
 					<SectionContainer>
-					<Card
-						name='Indian girl'
-						photo='/indian-girl.jpg'
-						tagline='An girl from India.'
-						buttonUrl=''
-						bigger
-					/>
-					<Card
-						name='Indian girl'
-						photo='/indian-girl.jpg'
-						tagline='An girl from India.'
-						buttonUrl=''
-						bigger
-					/>
-					<Card
-						name='Indian girl'
-						photo='/indian-girl.jpg'
-						tagline='An girl from India.'
-						buttonUrl=''
-						bigger
-					/>
-					<Card
-						name='Indian girl'
-						photo='/indian-girl.jpg'
-						tagline='An girl from India.'
-						buttonUrl=''
-						bigger
-					/>
-					<Card
-						name='Indian girl'
-						photo='/indian-girl.jpg'
-						tagline='An girl from India.'
-						buttonUrl=''
-						bigger
-					/>
+					{podcasts && podcasts.map(podcast => (
+						<PodcastCard
+							name={podcast.name}
+							date={podcast.date}
+							blurb={podcast.blurb}
+							image={podcast.imageUrl}
+							action={() => {setActivePodcast(podcast)}}
+						/>
+					))}
 					</SectionContainer>
 				</div>
 				
-				<div className={styles.playerContainer}>
-					<p style={{textAlign: 'center'}}>Episode 1: Indian Girl</p>
-					<AudioPlayer
-						src='https://www.buzzsprout.com/2366613/15162307-episode-1-swabhimaan-charitable-trust.mp3'
-					/>
-				</div>
+				{activePodcast && (
+					<div className={styles.playerContainer}>
+						<h3>Episode {activePodcast.episode}</h3>
+						<h4>{activePodcast.name}</h4>
+						<img
+							src={activePodcast.imageUrl}
+							width='50%'
+							style={{marginTop: '10px'}}
+						/>
+						<p className={styles.descriptionText}>{activePodcast.blurb}</p>
+						<AudioPlayer src={activePodcast.audioUrl}/>
+							
+						<button className='button-orange' style={{marginTop: '15px'}} onClick={() => {setActivePodcast(null)}}>Close player</button>
+					</div>
+				)}
 
 				<div style={{clear: 'both'}}></div>
 				
@@ -113,4 +101,4 @@ const NGOSquare = () => {
 	)
 }
 
-export default NGOSquare
+export default Podcasts
