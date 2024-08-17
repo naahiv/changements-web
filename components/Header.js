@@ -101,9 +101,16 @@ const Header = () => {
 								Portfolio
 							</li>
 						</Link>
+						{/*
 						<Link href='/blog'>
 							<li onClick={() => closeMenu()} className='nav-li'>
 								Impact Buzz
+							</li>
+						</Link>
+						*/}
+						<Link href='/podcasts'>
+							<li onClick={() => closeMenu()} className='nav-li'>
+								Podcasts
 							</li>
 						</Link>
 					</ul>

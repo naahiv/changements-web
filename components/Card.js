@@ -14,13 +14,15 @@ const Card = ({
 	buttonUrl,
 	buttonFunction,
 	tagline,
-	setShowSpeech
+	setShowSpeech,
+	bigger
 }) => {
 	return (
 		<div
 			className='card'
 			onMouseEnter={setShowSpeech && ( (e) => {setShowSpeech(true)} ) }
 			onMouseLeave={setShowSpeech && ( (e) => {setShowSpeech(false)} ) }
+			style={bigger && {gridColumn: 'span 4'}}
 		>
 			{photo && (
 				<div className='card-photo'>

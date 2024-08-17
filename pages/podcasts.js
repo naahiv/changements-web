@@ -13,6 +13,10 @@ import SectionContainer from '@/components/SectionContainer'
 import Card from '@/components/Card.js'
 import Image from 'next/image'
 
+// extras
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
+
 // import PodcastPlayer from '@mrpollard/react-rss-podcast-player'
 
 import dynamic from 'next/dynamic'
@@ -22,35 +26,11 @@ import ImageTextColumns from '@/components/ImageTextColumns'
 import Contact from '@/components/Contact'
 
 
-const PodcastPlayer = dynamic(() => import('@mrpollard/react-rss-podcast-player'), {
-  ssr: false
-});
 // const rssFeed = 'https://podcasternews.com/feed/'
 
 const rssFeed = '/2366613.rss'
 
 const NGOSquare = () => {
-
-	const [showSpeech, setShowSpeech] = useState(false)
-
-	// const speechText = "When we left REC Trichy in 1991, we were certain we would remain friends forever. But coming together to help create impact, has brought us together even more. We are glad to have partnered with Payir in reviving the watershed and farming in the area."
-	const speechText = "When we left REC Trichy in 1991, we were certain." 
-	const speechBubble = (<>
-		<div 
-			className={styles.headText}
-			style={{display: showSpeech ? 'block' : 'none'}}
-			onMouseEnter={(e) => {setShowSpeech(true)}}
-			onMouseLeave={(e) => {setShowSpeech(false)}}
-		>
-		   <img
-				width={220}
-				src='/speech-bubble.png'
-		  	/>
-			<div className={styles.imageText}>
-				<p style={{fontSize: '0.82rem', lineHeight: '0.8rem'}}>{speechText}</p>
-			</div>
-		</div>
-	</>)
 
 	return (
 		<>
@@ -73,29 +53,58 @@ const NGOSquare = () => {
 					</p>
 				</PagesHero>
 
-				{/* rssFeed && (
-					<PodcastPlayer url={rssFeed} />
-				)*/}
-				<SectionContainer>
-				<div 
-					onMouseEnter={(e) => {setShowSpeech(true)}}
-					onMouseLeave={(e) => {setShowSpeech(false)}}
-					className={styles.overallContainer}
-				>
+				<div style={{
+					width: '70%',
+					float: 'left'
+				}}>
+					<SectionContainer>
 					<Card
 						name='Indian girl'
 						photo='/indian-girl.jpg'
 						tagline='An girl from India.'
 						buttonUrl=''
-						setShowSpeech={setShowSpeech}
+						bigger
 					/>
-
-					<div className={styles.speechContainer}>
-						{speechBubble}
-					</div>
-
+					<Card
+						name='Indian girl'
+						photo='/indian-girl.jpg'
+						tagline='An girl from India.'
+						buttonUrl=''
+						bigger
+					/>
+					<Card
+						name='Indian girl'
+						photo='/indian-girl.jpg'
+						tagline='An girl from India.'
+						buttonUrl=''
+						bigger
+					/>
+					<Card
+						name='Indian girl'
+						photo='/indian-girl.jpg'
+						tagline='An girl from India.'
+						buttonUrl=''
+						bigger
+					/>
+					<Card
+						name='Indian girl'
+						photo='/indian-girl.jpg'
+						tagline='An girl from India.'
+						buttonUrl=''
+						bigger
+					/>
+					</SectionContainer>
 				</div>
-				</SectionContainer>
+				
+				<div className={styles.playerContainer}>
+					<p style={{textAlign: 'center'}}>Episode 1: Indian Girl</p>
+					<AudioPlayer
+						src='https://www.buzzsprout.com/2366613/15162307-episode-1-swabhimaan-charitable-trust.mp3'
+					/>
+				</div>
+
+				<div style={{clear: 'both'}}></div>
+				
 
 				{/* Contact */}
 				<Contact />
