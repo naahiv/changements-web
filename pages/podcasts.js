@@ -82,12 +82,11 @@ const Podcasts = () => {
 						<img
 							src={activePodcast.imageUrl}
 							width='50%'
-							style={{marginTop: '10px'}}
 						/>
-						<p className={styles.descriptionText}>{activePodcast.blurb}</p>
-						<AudioPlayer src={activePodcast.audioUrl}/>
+						<p className={styles.descriptionText}>{activePodcast.description}</p>
+						<AudioPlayer src={activePodcast.audioUrl} customAdditionalControls={[]}/>
 							
-						<button className='button-orange' style={{marginTop: '15px'}} onClick={() => {setActivePodcast(null)}}>Close player</button>
+						<button className='button-orange' style={{alignSelf: 'start'}} onClick={() => {setActivePodcast(null)}}>Close</button>
 					</div>
 				)}
 
