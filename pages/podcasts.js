@@ -48,8 +48,8 @@ const Podcasts = () => {
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 				<link rel='icon' href='/favicon.svg' />
 			</Head>
-
-			<main>
+			{/* transitions are temporarily disabled on this page */}
+			<main className={styles.notrans}> 
 				{/* Hero */}
 				<PagesHero imageUrl='/ngo-square-hero.jpg'>
 					<h1>Podcasts</h1>

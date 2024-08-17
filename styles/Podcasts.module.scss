@@ -11,6 +11,11 @@
 	text-align: center;
 }
 
+.notrans * {
+	transition: none !important;
+}
+
+
 .descriptionText {
 	width: 90%;
 	margin: 0 auto;

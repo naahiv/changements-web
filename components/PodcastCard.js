@@ -6,7 +6,7 @@ const defaultImage = 'https://firebasestorage.googleapis.com/v0/b/changements-fi
 
 const PodcastCard = ({ name, date, blurb, episode, image, action, lessColumns}) => {
 	return (
-		<div style={{gridColumn: lessColumns ? 'span 3' : 'span 4'}} onClick={action}>
+		<div style={{gridColumn: lessColumns ? 'span 3' : 'span 4', cursor: 'pointer'}} onClick={action}>
 			<div className='card-photo'>
 				<Image
 					src={image ? image : defaultImage}
