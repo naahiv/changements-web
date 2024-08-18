@@ -59,7 +59,7 @@ const Podcasts = () => {
 				</PagesHero>
 
 				<div style={{
-					width: activePodcast ? '67%' : '87%',
+					width: activePodcast ? 'calc(97% - 400px)' : '87%',
 					float: 'left'
 				}}>
 					<SectionContainer>
@@ -84,7 +84,11 @@ const Podcasts = () => {
 							width='50%'
 						/>
 						<p className={styles.descriptionText}>{activePodcast.description}</p>
-						<AudioPlayer src={activePodcast.audioUrl} customAdditionalControls={[]}/>
+						<AudioPlayer
+							src={activePodcast.audioUrl}
+							customAdditionalControls={[]}
+							style={{width: '95%'}}
+						/>
 							
 						<button className='button-orange' style={{alignSelf: 'start'}} onClick={() => {setActivePodcast(null)}}>Close</button>
 					</div>

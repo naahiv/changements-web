@@ -21,7 +21,7 @@ const PodcastCard = ({ name, date, blurb, episode, image, action, lessColumns}) 
 			</div>
 
 			<div className='card-text' style={{margin: '0.7rem 0', gap: '0.1rem'}}>
-				<p className='subtitle' style={{color: '#999999'}}>{date}</p>
+				<p className='subtitle' style={{color: 'rgb(118 118 118)', fontVariant: 'small-caps'}}><b>{date}</b></p>
 				<h4>{name}</h4>
 				<p className='subtitle'>{blurb}</p>
 			</div>
