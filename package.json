@@ -12,6 +12,7 @@
 		"@contentful/rich-text-react-renderer": "^15.18.0",
 		"@emailjs/browser": "^3.11.0",
 		"@mrpollard/react-rss-podcast-player": "^1.5.1",
+		"@uidotdev/usehooks": "^2.4.1",
 		"contentful": "^10.5.1",
 		"firebase": "^10.0.0",
 		"next": "^13.4.9",

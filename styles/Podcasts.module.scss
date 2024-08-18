@@ -59,3 +59,15 @@
 	grid-column: span 3;
 	position: relative;
 }
+// end old things
+
+
+@media screen and (max-width: 768px) {
+	.mobileHidden {
+		color: blue;
+	}
+	.mobileMain {
+		width: 87%;
+	}
+}
+

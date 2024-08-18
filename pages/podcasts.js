@@ -5,9 +5,10 @@ import styles from '@/styles/Podcasts.module.scss'
 
 // hooks
 import { useAuthContext } from '@/hooks/useAuthContext'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useCollection } from '@/hooks/useCollection'
-
+import { useWindowSize } from "@uidotdev/usehooks";
+//
 // components
 import PagesHero from '@/components/PagesHero'
 import SectionTitle from '@/components/SectionTitle'
@@ -36,6 +37,8 @@ const rssFeed = '/2366613.rss'
 const Podcasts = () => {
 	const [activePodcast, setActivePodcast] = useState(null)
 	const { documents: podcasts } = useCollection('podcasts')
+	const size = useWindowSize()
+	const mobile = size && size.width <= 768
 
 	return (
 		<>
@@ -59,24 +62,33 @@ const Podcasts = () => {
 				</PagesHero>
 
 				<div style={{
-					width: activePodcast ? 'calc(97% - 400px)' : '87%',
-					float: 'left'
+					width: (activePodcast && !mobile) ? 'calc(97% - 400px)' : '87%',
+					float: !mobile && 'left',
+					margin: 'auto'
 				}}>
-					<SectionContainer>
-					{podcasts && podcasts.map(podcast => (
+					<SectionContainer noGap>
+					{podcasts && podcasts.map(podcast => (<>
 						<PodcastCard
 							name={podcast.name}
 							date={podcast.date}
 							blurb={podcast.blurb}
 							image={podcast.imageUrl}
-							action={() => {setActivePodcast(podcast)}}
+							action={() => {setActivePodcast(podcast = activePodcast ? null : podcast)}}
+							isMobile={size && mobile}
 						/>
-					))}
+						{mobile && activePodcast && (
+							<AudioPlayer
+								src={activePodcast.audioUrl}
+								customAdditionalControls={[]}
+								style={{gridColumn: 'span 12'}}
+							/>
+						)}
+					</>))}
 					</SectionContainer>
 				</div>
 				
-				{activePodcast && (
-					<div className={styles.playerContainer}>
+				{activePodcast && !mobile && (
+					<div className={`${styles.playerContainer} ${styles.mobileHidden}`}>
 						<h3>Episode {activePodcast.episode}</h3>
 						<h4>{activePodcast.name}</h4>
 						<img
