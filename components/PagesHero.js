@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-const PagesHero = ({ children, imageUrl }) => {
+const PagesHero = ({ children, imageUrl, style }) => {
 	return (
-		<section className='pages-hero'>
+		<section className='pages-hero' style={style}>
 			<Image
 				src={imageUrl}
 				fill

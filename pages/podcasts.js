@@ -54,9 +54,9 @@ const Podcasts = () => {
 			{/* transitions are temporarily disabled on this page */}
 			<main className={styles.notrans}> 
 				{/* Hero */}
-				<PagesHero imageUrl='/ngo-square-hero.jpg'>
+				<PagesHero imageUrl='/ngo-square-hero.jpg' style={{marginBottom: '3rem'}}>
 					<h1>Podcasts</h1>
-					<p style={{ fontSize: '2rem' }}>
+					<p style={{ fontSize: '2rem', lineHeight: '2rem' }}>
 						Listen to the stories of NGOs making change.
 					</p>
 				</PagesHero>
@@ -66,6 +66,12 @@ const Podcasts = () => {
 					float: !mobile && 'left',
 					margin: 'auto'
 				}}>
+
+					<div className='titleContainer' style={{paddingBottom: '0.5rem'}}>
+						<h3 style={{paddingBottom: '0.5rem'}}>Podcasts</h3>
+						<p className='section-title undefined'><i>Tip: Click on a Podcast to listen.</i></p>
+					</div>
+
 					<SectionContainer noGap>
 					{podcasts && podcasts.map(podcast => (<>
 						<PodcastCard
