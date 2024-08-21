@@ -83,11 +83,18 @@ const Podcasts = () => {
 							isMobile={size && mobile}
 						/>
 						{mobile && activePodcast && (
+							<div style={{gridColumn: 'span 12'}}>
+
 							<AudioPlayer
 								src={activePodcast.audioUrl}
 								customAdditionalControls={[]}
-								style={{gridColumn: 'span 12'}}
 							/>
+							<div className={styles.buttonRow}>
+							<PodcastButtonRow podcast={podcast} />
+							</div>
+
+							</div>
+							
 						)}
 					</>))}
 					</SectionContainer>
