@@ -108,7 +108,15 @@ const Podcasts = () => {
 							style={{width: '95%'}}
 						/>
 							
-						<button className='button-orange' style={{alignSelf: 'start'}} onClick={() => {setActivePodcast(null)}}>Close</button>
+						<div className={styles.buttonRow}>
+							<button className='button-orange' onClick={() => {setActivePodcast(null)}}>Close</button>
+							<div style={{flex: 1}}></div>
+							{/* Apple Podcasts, Spotify, YouTube button*/}
+							<PodcastButtonRow podcast={activePodcast} />
+
+						</div>
+
+
 					</div>
 				)}
 
@@ -120,6 +128,23 @@ const Podcasts = () => {
 			</main>
 		</>
 	)
+}
+
+const PodcastButtonRow = ({ podcast }) => {
+	return (<>
+		<a className={styles.iconButton} href={podcast.appleLink} target='_blank'>
+			<img className={styles.iconImage} src={'/apple_podcasts_icon.svg'} />
+		</a>
+		<a className={styles.iconButton} href={podcast.spotifyLink} target='_blank'>
+			<img className={styles.iconImage} src={'/spotify_podcasts_icon.png'} />
+		</a>
+		<a className={`${styles.iconButton} ${podcast.youtubeLink ? '' : styles.disabled}`} href={podcast.youtubeLink} target='_blank'>
+			<img
+				className={styles.iconImage}
+				src={podcast.youtubeLink ? '/youtube_podcasts_icon.svg' : '/youtube_podcasts_icon_disabled.svg'} 
+			/>
+		</a>
+	</>)
 }
 
 export default Podcasts
