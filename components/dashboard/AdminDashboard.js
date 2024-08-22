@@ -23,6 +23,7 @@ const AdminDashboard = ({ user }) => {
 	const { deleteDocument } = useFirestore('programs')
 	const { documents: users} = useCollection('users')
 	const { documents: pods } = useCollection('pods')
+	const { documents: podcasts } = useCollection('podcasts')
 
 	const [userFormOpen, setUserFormOpen] = useState(false)
 	const [podFormOpen, setPodFormOpen] = useState(false)
@@ -43,8 +44,7 @@ const AdminDashboard = ({ user }) => {
 				)}
 
 				{pods && (
-				<>
-				<SectionContainer noGap={true}>
+				<div className='sectionContainer'>
 					<div className={styles.dashboardHeader}>
 						<SectionTitle>Manage Change Enablers</SectionTitle>
 						<button className='button-orange' onClick={e => setPodFormOpen(!podFormOpen)}>{podFormOpen ? 'Close form' : 'Add Change Enabler'}</button>
@@ -54,7 +54,6 @@ const AdminDashboard = ({ user }) => {
 					<AddChangeEnablerForm setPodFormOpen={setPodFormOpen} />
 				)}
 
-				</SectionContainer>
 
 				{!podFormOpen && (
 					<CardsSection
@@ -65,8 +64,18 @@ const AdminDashboard = ({ user }) => {
 					/>
 				)}
 
-				</>
+				</div>
 				)}
+
+		{podcasts && (
+			<CardsSection
+				content={podcasts}
+				folder='dashboard/pod'
+				buttonText='Learn More'
+				adminFlag={true}
+				title='Podcasts'
+			/>
+		)}
 		</section>
 	)
 }
