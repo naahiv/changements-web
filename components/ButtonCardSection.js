@@ -6,7 +6,7 @@ import dashboardStyles from '@/styles/Dashboard.module.scss'
 import SectionTitle from './SectionTitle'
 import Card from './Card'
 
-const CardsSection = ({ title, content, folder, buttonText, contentful, adminFlag, titleButton, titleButtonAction}) => {
+const ButtonCardSection = ({ children, title, content, folder, buttonText, adminFlag, titleButton, formOpen, titleButtonAction }) => {
 	const prettyType = (type) => {
 		if (type == 'ngo') return 'NGO'
 		else if (type == 'donor') return 'Donor'
@@ -23,10 +23,9 @@ const CardsSection = ({ title, content, folder, buttonText, contentful, adminFla
 				</div>
 			)}
 			<div className='sectionContainer'>
-				{content &&
+				{formOpen ? children : (content &&
 					content.map((item, index) => (
 						<Card
-							// key={item.id}
 							key={index}
 							name={item.name}
 							title={item.title}
@@ -38,28 +37,11 @@ const CardsSection = ({ title, content, folder, buttonText, contentful, adminFla
 							buttonUrl={`/${folder}/${item.id}`}
 							tagline={adminFlag ? item.email : item.tagline }
 						/>
-					))}
+					)))}
 
-				{contentful &&
-					contentful.map(item => (
-						<Card
-							key={item.sys.id}
-							title={item.fields.title}
-							subtitle={item.sys.createdAt.slice(0, -14)}
-							photo={
-								item.fields.image
-									? 'https:' + item.fields.image.fields.file.url
-									: null
-							}
-							buttonText={buttonText}
-							buttonUrl={`/${folder}/${item.fields.title
-								.toLowerCase()
-								.replace(/\s+/g, '-')}`}
-						/>
-					))}
 			</div>
 		</section>
 	)
 }
 
-export default CardsSection
+export default ButtonCardSection

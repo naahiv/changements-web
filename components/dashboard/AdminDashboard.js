@@ -2,6 +2,7 @@
 import styles from '@/styles/Dashboard.module.scss'
 
 // components
+import ButtonCardSection from '@/components/ButtonCardSection'
 import SectionContainer from '../SectionContainer'
 import NgoProgramCard from './NgoProgramCard'
 import CreateProgramForm from '../forms/CreateProgramForm'
@@ -44,36 +45,29 @@ const AdminDashboard = ({ user }) => {
 				)}
 
 				{pods && (
-				<div className='sectionContainer'>
-					<div className={styles.dashboardHeader}>
-						<SectionTitle>Manage Change Enablers</SectionTitle>
-						<button className='button-orange' onClick={e => setPodFormOpen(!podFormOpen)}>{podFormOpen ? 'Close form' : 'Add Change Enabler'}</button>
-					</div>
-
-				{podFormOpen && (
-					<AddChangeEnablerForm setPodFormOpen={setPodFormOpen} />
+					<ButtonCardSection
+						title='Manage Change Enablers'
+						content={pods}
+						folder='dashboard/pod'
+						buttonText='Learn More'
+						adminFlag={true}
+						titleButton={!podFormOpen ? 'Add Change Enabler' : 'Close form'}
+						formOpen={podFormOpen}
+						titleButtonAction={e => setPodFormOpen(!podFormOpen)}
+					>
+						<AddChangeEnablerForm setPodFormOpen={setPodFormOpen} />
+					</ButtonCardSection>
 				)}
 
-
-				{!podFormOpen && (
-					<CardsSection
-							content={pods}
-							folder='dashboard/pod'
-							buttonText='Learn More'
-							adminFlag={true}
-					/>
-				)}
-
-				</div>
-				)}
 
 		{podcasts && (
-			<CardsSection
+			<ButtonCardSection
 				content={podcasts}
 				folder='dashboard/pod'
 				buttonText='Learn More'
 				adminFlag={true}
 				title='Podcasts'
+				titleButton='Create podcast'
 			/>
 		)}
 		</section>
