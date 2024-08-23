@@ -14,6 +14,7 @@ import ProfileUI from '../profile/ProfileUI'
 import CardsSection from '@/components/CardsSection'
 import Button from '@/components/Button.js'
 import AddChangeEnablerForm from '@/components/forms/AddChangeEnablerForm.js'
+import AddPodcastForm from '@/components/forms/AddPodcastForm'
 
 // hooks
 import { useState } from 'react'
@@ -28,6 +29,7 @@ const AdminDashboard = ({ user }) => {
 
 	const [userFormOpen, setUserFormOpen] = useState(false)
 	const [podFormOpen, setPodFormOpen] = useState(false)
+	const [podcastFormOpen, setPodcastFormOpen] = useState(false)
 
 	return (
 		<section>
@@ -62,13 +64,17 @@ const AdminDashboard = ({ user }) => {
 
 		{podcasts && (
 			<ButtonCardSection
+				title='Manage Podcasts'
 				content={podcasts}
 				folder='dashboard/pod'
 				buttonText='Learn More'
 				adminFlag={true}
-				title='Podcasts'
-				titleButton='Create podcast'
-			/>
+				titleButton={!podcastFormOpen ? 'Create podcast' : 'Close form'}
+				titleButtonAction={e => setPodcastFormOpen(!podcastFormOpen)}
+				formOpen={podcastFormOpen}
+			>
+				<AddPodcastForm setPodFormOpen={setPodcastFormOpen} />
+			</ButtonCardSection>
 		)}
 		</section>
 	)
