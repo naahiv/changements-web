@@ -72,7 +72,7 @@ const Podcasts = () => {
 						<p className='section-title undefined'><i>Tip: Click on a Podcast to listen.</i></p>
 					</div>
 
-					<SectionContainer noGap>
+					<SectionContainer>
 					{podcasts && podcasts.map(podcast => (<>
 						<PodcastCard
 							name={podcast.name}
