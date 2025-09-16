@@ -107,7 +107,8 @@ const EditPodcastForm = ({ activePodcast }) => {
 		setPhoto(selected)
 	}
 
-	return (
+	return true
+	/*(
 		<form className={styles.form} onSubmit={handleSubmit}>
 			<input
 				type='text'
@@ -173,5 +174,6 @@ const EditPodcastForm = ({ activePodcast }) => {
 		</form>
 	)
 }
+*/
 
 export default EditPodcastForm
