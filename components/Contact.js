@@ -50,8 +50,11 @@ const Contact = () => {
 						<Link href='/portfolio'>
 							<li>Portfolio</li>
 						</Link>
+						<Link href='/podcasts'>
+							<li>Podcasts</li>
+						</Link>
 						<Link href='/blog'>
-							<li>Change Buzz</li>
+							<li>Impact Buzz</li>
 						</Link>
 					</ul>
 					<ul>

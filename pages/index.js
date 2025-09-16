@@ -61,24 +61,23 @@ export default function Home({ gallery }) {
 				{/* Highlights Section */}
 				<Highlights />
 
-				{/* About Section */}
+				{/* Podcasts Section */}
 				<ImageTextColumns
 					direction='row'
-					buttonText='Learn More'
-					url='/about'
-					photoUrl='/indian-girl.jpg'
+					buttonText='Start Listening'
+					url='/podcasts'
+					photoUrl='/impact-please-podcast.jpg'
 				>
 					<SectionTitle color='black'>
-						About Us &<br />
-						<span className='red'>How it works</span>
+						Podcasts
 					</SectionTitle>
 					<p>
-						We are a group of professionals committed to making a lasting impact
-						for a happier, healthier, and more just world. ​A few cups of coffee can
-						make all the difference.
+						The ImpactPlease podcast tells the stories of our partner NGOs. Each episode
+						showcases a different program and how donor funds are used to address it. Listen
+						today on major streaming services or on our website.
 					</p>
 					<br />
-					<b><p>Be the change you want to see.</p></b>
+					<b><p>Listen to stories of NGOs making change.</p></b>
 				</ImageTextColumns>
 
 				{/* Portfolio Section */}
@@ -105,15 +104,18 @@ export default function Home({ gallery }) {
 				{!user && <DonorNgoHomeSection />}
 
 				{/* Donor Impact Section */}
-				<ImageTextColumns direction='row' photoUrl='/donor-impact.jpg'>
+				<ImageTextColumns
+					direction='row' 
+					buttonText='Read Here'
+					url='/blog'
+					photoUrl='/donor-impact.jpg'>
 					<SectionTitle color='black'>
-						Donor <span className='red'>Impact</span>
+						Impact <span className='red'>Buzz</span>
 					</SectionTitle>
 					<p>
-						Checkout the causes our donors are supporting. Much like the joy of
-						singing and dancing in a group, collective giving multiplies the joy
-						of making the world a better place for everybody. Here you will find
-						stories from NGOs, donors and beneficiaries.
+						Read the stories of partner NGOs and donor contributions
+						on the Impact Buzz blog. Please contact us to suggest
+						an Impact Buzz post.
 					</p>
 				</ImageTextColumns>
 
