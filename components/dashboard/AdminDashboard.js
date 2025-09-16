@@ -66,7 +66,7 @@ const AdminDashboard = ({ user }) => {
 			<ButtonCardSection
 				title='Manage Podcasts'
 				content={podcasts}
-				folder='dashboard/podcast'
+				folder='dashboard/pod'
 				buttonText='Learn More'
 				adminFlag={true}
 				titleButton={!podcastFormOpen ? 'Create podcast' : 'Close form'}
